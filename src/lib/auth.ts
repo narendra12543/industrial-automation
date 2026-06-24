@@ -4,19 +4,15 @@ import bcrypt from "bcryptjs";
 
 import { Role } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import type { NextAuthConfig } from "next-auth";
+import authConfig from "@/lib/auth.config";
 
-
-
-export const authConfig: NextAuthConfig = {
-
-  session: {
-    strategy: "jwt",
-  },
-
-  pages: {
-    signIn: "/login",
-  },
+export const {
+  handlers,
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
+  ...authConfig,
 
   providers: [
     Credentials({
@@ -27,6 +23,7 @@ export const authConfig: NextAuthConfig = {
           label: "Email",
           type: "email",
         },
+
         password: {
           label: "Password",
           type: "password",
@@ -93,13 +90,4 @@ export const authConfig: NextAuthConfig = {
       return session;
     },
   },
-
-  trustHost: true,
-};
-
-export const {
-  handlers,
-  auth,
-  signIn,
-  signOut,
-} = NextAuth(authConfig);
+});

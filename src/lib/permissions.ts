@@ -1,13 +1,11 @@
-import { Role } from "@prisma/client";
-
-export function isAdmin(role?: Role | null): boolean {
-  return role === Role.ADMIN;
+export function canAccessAdmin(
+  role?: string
+) {
+  return role === "ADMIN";
 }
 
-export function isUser(role?: Role | null): boolean {
-  return role === Role.USER;
-}
-
-export function canAccessAdmin(role?: Role | null): boolean {
-  return role === Role.ADMIN;
+export function canAccessUser(
+  role?: string
+) {
+  return role === "USER" || role === "ADMIN";
 }

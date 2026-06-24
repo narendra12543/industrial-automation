@@ -1,61 +1,32 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import NextAuth from "next-auth";
+import authConfig from "@/lib/auth.config";
 
-import { auth } from "@/lib/auth";
-import { canAccessAdmin } from "@/lib/permissions";
-
-const DASHBOARD_ROUTE = "/dashboard";
-const ADMIN_ROUTE = "/admin";
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const pathname = req.nextUrl.pathname;
 
-  const session = req.auth;
-
   const isDashboardRoute =
-    pathname === DASHBOARD_ROUTE ||
+    pathname === "/dashboard" ||
     pathname.startsWith("/dashboard/");
 
   const isAdminRoute =
-    pathname === ADMIN_ROUTE ||
+    pathname === "/admin" ||
     pathname.startsWith("/admin/");
 
-  /**
-   * Protected User Routes
-   */
-  if (isDashboardRoute) {
-    if (!session?.user) {
-      return NextResponse.redirect(
-        new URL("/login", req.nextUrl)
-      );
-    }
-
-    return NextResponse.next();
+  if (isDashboardRoute && !req.auth) {
+    return Response.redirect(
+      new URL("/login", req.url)
+    );
   }
 
-  /**
-   * Protected Admin Routes
-   */
-  if (isAdminRoute) {
-    if (!session?.user) {
-      return NextResponse.redirect(
-        new URL("/login", req.nextUrl)
-      );
-    }
-
-    if (!canAccessAdmin(session.user.role)) {
-      return NextResponse.redirect(
-        new URL("/unauthorized", req.nextUrl)
-      );
-    }
-
-    return NextResponse.next();
+  if (isAdminRoute && !req.auth) {
+    return Response.redirect(
+      new URL("/login", req.url)
+    );
   }
 
-  /**
-   * Public Routes
-   */
-  return NextResponse.next();
+  return null;
 });
 
 export const config = {
