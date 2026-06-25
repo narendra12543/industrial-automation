@@ -77,13 +77,7 @@ export default async function AdminLayout({
               {/* Navigation */}
               <nav className="p-4">
                 <div className="space-y-2">
-                  <Link
-                    href="/admin"
-                    className="block rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-[#0F2747]"
-                  >
-                    Dashboard
-                  </Link>
-
+                  
                   <Link
                     href="/admin/products"
                     className="block rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-[#0F2747]"
@@ -112,12 +106,7 @@ export default async function AdminLayout({
                     Users
                   </Link>
 
-                  <Link
-                    href="/admin/analytics"
-                    className="block rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-[#0F2747]"
-                  >
-                    Analytics
-                  </Link>
+                  
                 </div>
               </nav>
             </div>

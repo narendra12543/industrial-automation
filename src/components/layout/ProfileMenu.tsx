@@ -137,7 +137,7 @@ export default function ProfileMenu({
           {isAuthenticated && !isAdmin && (
             <>
               <Link
-                href="/dashboard"
+                href="/dashboard/enquiries"
                 className="
                   block
                   px-4
@@ -176,7 +176,7 @@ export default function ProfileMenu({
           {isAuthenticated && isAdmin && (
             <>
               <Link
-                href="/dashboard"
+                href="/dashboard/enquiries"
                 className="
                   block
                   px-4

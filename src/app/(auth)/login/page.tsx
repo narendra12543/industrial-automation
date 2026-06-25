@@ -2,13 +2,20 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import {
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 
 import { loginUser } from "@/actions/auth/login";
 import { loginSchema } from "@/validations/auth";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const callbackUrl =
+  searchParams.get("callbackUrl") || "/";
 
   const [isPending, startTransition] = useTransition();
 
@@ -42,6 +49,7 @@ export default function LoginPage() {
       const result = await loginUser({
         email,
         password,
+        callbackUrl,
       });
 
       if (!result.success) {
@@ -56,7 +64,7 @@ export default function LoginPage() {
 
       setSuccessMessage(result.message);
 
-      router.push("/");
+      router.push(callbackUrl);
       router.refresh();
     });
   };

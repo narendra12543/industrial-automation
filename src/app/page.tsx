@@ -11,17 +11,13 @@ export default function HomePage() {
     <>
       <HeroSection />
 
-      <TrustSection />
-
       <FeaturedProductsSection />
+
+      <TrustSection />
 
       <WhyChooseUsSection />
 
       
-
-      {/* <IndustriesSection /> */}
-
-      {/* <ProcessSection /> */}
 
       <StatisticsSection />
 

@@ -4,17 +4,20 @@ import { useState } from "react";
 
 import { createEnquiry } from "@/actions/enquiries";
 import { createEnquirySchema } from "@/validations/enquiry";
+import { useRouter } from "next/navigation";
 
 interface ProductEnquiryFormProps {
   productId: string;
   userName?: string;
   userEmail?: string;
+  isAuthenticated: boolean;
 }
 
 export default function ProductEnquiryForm({
   productId,
   userName = "",
   userEmail = "",
+  isAuthenticated,
 }: ProductEnquiryFormProps) {
   const [name, setName] =
     useState(userName);
@@ -42,12 +45,30 @@ export default function ProductEnquiryForm({
 
   const [success, setSuccess] =
     useState("");
+  
+  const router = useRouter();
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
 
+if (!isAuthenticated) {
+  setError("Please login to submit an enquiry.");
+
+  const callbackUrl =
+    `${window.location.pathname}#enquiry`;
+
+  setTimeout(() => {
+    router.push(
+      `/login?callbackUrl=${encodeURIComponent(
+        callbackUrl
+      )}`
+    );
+  }, 1500);
+
+  return;
+}
     setError("");
     setSuccess("");
 
@@ -234,11 +255,13 @@ export default function ProductEnquiryForm({
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-[#0F2747] px-6 py-3 font-medium text-white transition hover:bg-[#18385F] disabled:opacity-60"
+          className="rounded-lg bg-[#0F2747] px-6 py-3 font-medium text-white transition hover:bg-[#18385F] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {loading
-            ? "Submitting..."
-            : "Send Enquiry"}
+          {!isAuthenticated
+            ? "Login to Send Enquiry"
+            : loading
+              ? "Submitting..."
+              : "Send Enquiry"}
         </button>
       </form>
     </div>

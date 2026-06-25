@@ -24,17 +24,7 @@ export default function ProductsHero({
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4">
-        <div className="mb-2 flex items-center text-sm text-slate-500">
-          <Link href="/">Home</Link>
-
-          <ChevronRight
-            size={16}
-            className="mx-2"
-          />
-
-          <span>Products</span>
-        </div>
-
+      
         <h1 className="text-4xl font-bold text-[#0F2747] md:text-5xl">
           Industrial Automation Products
         </h1>

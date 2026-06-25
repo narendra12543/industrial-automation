@@ -298,10 +298,6 @@ export default async function EnquiryDetailsPage({
             <h2 className="text-lg font-semibold text-white">
             Status History
             </h2>
-
-            <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">
-            Timeline Coming Soon
-            </span>
         </div>
 
         <div className="p-6">
@@ -339,48 +335,8 @@ export default async function EnquiryDetailsPage({
             </div>
         </div>
         </div>
-      {/* Quick Actions */}
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <div className="flex items-center justify-between bg-[#0F2747] px-6 py-4">
-          <h2 className="text-lg font-semibold text-white">
-            Quick Actions
-          </h2>
-
-          <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">
-            Coming Soon
-          </span>
-        </div>
-
-        <div className="flex flex-wrap gap-3 p-6">
-          <button
-            disabled
-            className="rounded-lg border border-slate-300 px-4 py-2 text-slate-500"
-          >
-            Change Status
-          </button>
-
-          <button
-            disabled
-            className="rounded-lg border border-slate-300 px-4 py-2 text-slate-500"
-          >
-            Send Quotation
-          </button>
-
-          <button
-            disabled
-            className="rounded-lg border border-slate-300 px-4 py-2 text-slate-500"
-          >
-            Mark Won
-          </button>
-
-          <button
-            disabled
-            className="rounded-lg border border-slate-300 px-4 py-2 text-slate-500"
-          >
-            Mark Lost
-          </button>
-        </div>
-      </div>
+      
+      
     </div>
   );
 }

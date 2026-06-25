@@ -49,6 +49,12 @@ export async function createEnquiry(
     }
 
     const session = await auth();
+    if (!session?.user) {
+      return {
+        success: false,
+        message: "Please login to submit enquiry.",
+      };
+    }
 
     const userId =
       session?.user?.id ?? null;

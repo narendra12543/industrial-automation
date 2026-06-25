@@ -20,7 +20,9 @@ export type LoginActionResult =
     };
 
 export async function loginUser(
-  input: LoginInput
+  input: LoginInput & {
+    callbackUrl?: string;
+  }
 ): Promise<LoginActionResult> {
   try {
     const validatedFields = loginSchema.safeParse(input);
@@ -33,12 +35,17 @@ export async function loginUser(
       };
     }
 
-    const { email, password } = validatedFields.data;
+    const {
+      email,
+      password,
+    } = validatedFields.data;
 
     await signIn("credentials", {
       email,
       password,
       redirect: false,
+      redirectTo:
+        input.callbackUrl || "/",
     });
 
     return {

@@ -9,13 +9,13 @@ import {
   type CreateProductInput,
   type UpdateProductInput,
 } from "@/validations/product";
-import { unlink } from "fs/promises";
-import path from "path";
-
 import {
   validateProductImage,
   saveProductImage,
+  deleteProductImageFromCloudinary,
 } from "@/lib/uploads/product-image";
+
+
 
 type ActionResponse = {
   success: boolean;
@@ -376,6 +376,7 @@ export async function uploadProductImage(
     productId: string;
     imageUrl: string;
     sortOrder: number;
+    cloudinaryPublicId: string | null;
     createdAt: Date;
     updatedAt: Date;
   };
@@ -414,11 +415,13 @@ export async function uploadProductImage(
       };
     }
 
-    const { imageUrl } =
-      await saveProductImage(
-        productId,
-        file
-      );
+    const {
+      imageUrl,
+      publicId,
+    } = await saveProductImage(
+      productId,
+      file
+    );
 
     const lastImage =
       await prisma.productImage.findFirst({
@@ -442,9 +445,9 @@ export async function uploadProductImage(
         data: {
           productId,
           imageUrl,
+          cloudinaryPublicId: publicId,
           sortOrder:
             (lastImage?.sortOrder ?? -1) + 1,
-
           isPrimary: !existingPrimary,
         },
       });
@@ -587,18 +590,12 @@ export async function deleteProductImage(
       };
     }
 
-    const filePath = path.join(
-      process.cwd(),
-      "public",
-      image.imageUrl
-    );
-
-    try {
-      await unlink(filePath);
-    } catch {
-      // file already removed
-    }
-
+    if (image.cloudinaryPublicId) {
+        await deleteProductImageFromCloudinary(
+          image.cloudinaryPublicId
+        );
+      }
+      
     await prisma.productImage.delete({
       where: {
         id: imageId,

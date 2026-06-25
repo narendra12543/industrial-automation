@@ -26,17 +26,7 @@ export default function AboutHero() {
       <div className="relative mx-auto max-w-7xl px-4">
         {/* Breadcrumb */}
 
-        <div className=" flex items-center text-sm text-slate-500">
-          <Link href="/">Home</Link>
-
-          <ChevronRight
-            size={16}
-            className="mx-2"
-          />
-
-          <span>About</span>
-        </div>
-
+        
         <div className="grid items-center gap-6 lg:grid-cols-2">
           {/* Left */}
 

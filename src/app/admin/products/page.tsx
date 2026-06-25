@@ -82,23 +82,23 @@ export default async function AdminProductsPage() {
         </div>
 
         {/* Search & Filter */}
-        <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        {/* <div className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="grid gap-4 md:grid-cols-2">
             <input
               type="text"
               placeholder="Search products..."
-              disabled
+              
               className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none"
             />
 
             <select
-              disabled
+              
               className="rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none"
             >
               <option>All Categories</option>
             </select>
           </div>
-        </div>
+        </div> */}
 
         {/* Empty State */}
         {products.length === 0 ? (

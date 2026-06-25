@@ -68,19 +68,6 @@ export default async function DashboardLayout({
             {/* Navigation */}
             <nav className="p-4">
               <div className="space-y-2">
-                <Link
-                  href="/dashboard"
-                  className="block rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-[#0F2747]"
-                >
-                  Dashboard
-                </Link>
-
-                <Link
-                  href="/dashboard/profile"
-                  className="block rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-[#0F2747]"
-                >
-                  My Profile
-                </Link>
 
                 <Link
                   href="/dashboard/enquiries"

@@ -75,14 +75,7 @@ export default async function ProductDetailsPage({
   <div className="bg-slate-50">
     <div className="mx-auto max-w-7xl px-4 py-10">
 
-      {/* Breadcrumb */}
-
-      <div className="mb-6 text-sm text-slate-500">
-        Home / Products /
-        <span className="ml-1 text-[#0F2747]">
-          {product.name}
-        </span>
-      </div>
+     
 
       {/* Hero Section */}
 
@@ -216,12 +209,9 @@ export default async function ProductDetailsPage({
 
               <ProductEnquiryForm
                 productId={product.id}
-                userName={
-                  session?.user?.name ?? ""
-                }
-                userEmail={
-                  session?.user?.email ?? ""
-                }
+                userName={session?.user?.name ?? ""}
+                userEmail={session?.user?.email ?? ""}
+                isAuthenticated={!!session?.user}
               />
 
             </div>

@@ -1,6 +1,6 @@
-import { mkdir, writeFile } from "fs/promises";
-import path from "path";
-
+import { v2 as cloudinary } from "cloudinary";
+import cloudinaryClient from "@/lib/cloudinary";
+import type { UploadApiResponse, UploadApiErrorResponse } from "cloudinary";
 const ALLOWED_TYPES = [
   "image/jpeg",
   "image/jpg",
@@ -23,7 +23,11 @@ export async function validateProductImage(
     };
   }
 
-  if (!ALLOWED_TYPES.includes(file.type as (typeof ALLOWED_TYPES)[number])) {
+  if (
+    !ALLOWED_TYPES.includes(
+      file.type as (typeof ALLOWED_TYPES)[number]
+    )
+  ) {
     return {
       success: false,
       message:
@@ -49,36 +53,55 @@ export async function saveProductImage(
   file: File
 ): Promise<{
   imageUrl: string;
+  publicId: string;
 }> {
-  const uploadDir = path.join(
-    process.cwd(),
-    "public",
-    "uploads",
-    "products"
-  );
+  const bytes = await file.arrayBuffer();
 
-  await mkdir(uploadDir, {
-    recursive: true,
+  const buffer = Buffer.from(bytes);
+
+  return new Promise((resolve, reject) => {
+    const uploadStream =
+      cloudinaryClient.uploader.upload_stream(
+        {
+          folder: "industrial-automation/products",
+
+          public_id: `product-${productId}-${Date.now()}`,
+
+          overwrite: false,
+
+          resource_type: "image",
+        },
+        (
+          error: UploadApiErrorResponse | undefined,
+          result: UploadApiResponse | undefined
+        ) => {
+          if (error || !result) {
+            reject(
+              new Error("Failed to upload image.")
+            );
+            return;
+          }
+
+          resolve({
+            imageUrl: result.secure_url,
+            publicId: result.public_id,
+          });
+        }
+      );
+
+    uploadStream.end(buffer);
   });
+}
 
-  const extension =
-    file.name.split(".").pop()?.toLowerCase() ??
-    "webp";
+export async function deleteProductImageFromCloudinary(
+  publicId: string
+) {
+  if (!publicId) return;
 
-  const uniqueFilename = `product-${productId}-${Date.now()}.${extension}`;
-
-  const filePath = path.join(
-    uploadDir,
-    uniqueFilename
+  await cloudinaryClient.uploader.destroy(
+    publicId,
+    {
+      resource_type: "image",
+    }
   );
-
-  const buffer = Buffer.from(
-    await file.arrayBuffer()
-  );
-
-  await writeFile(filePath, buffer);
-
-  return {
-    imageUrl: `/uploads/products/${uniqueFilename}`,
-  };
 }
