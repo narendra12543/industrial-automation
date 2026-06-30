@@ -29,17 +29,30 @@ export default async function ProductsPage() {
       },
     });
 
-  const categoriesData =
-    await prisma.category.findMany({
-      orderBy: {
-        name: "asc",
-      },
-    });
-
   const categories =
-    categoriesData.map(
-      (category) => category.name
-    );
+  await prisma.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+
+    include: {
+      products: {
+        where: {
+          isActive: true,
+        },
+
+        orderBy: {
+          name: "asc",
+        },
+
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+        },
+      },
+    },
+  });
 
   const featuredProducts =
     products.filter(
@@ -61,12 +74,6 @@ export default async function ProductsPage() {
           featuredProducts.length
         }
       />
-
-      {/* <FeaturedProductsStrip
-        products={
-          featuredProducts
-        }
-      /> */}
 
       <ProductsCatalog
         products={products}

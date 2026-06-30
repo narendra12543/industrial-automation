@@ -12,8 +12,7 @@ export default function ProductsHero({
 }: ProductsHeroProps) {
   return (
     <section className="relative overflow-hidden bg-slate-50 py-8">
-      <div className="absolute -top-20 left-0 h-72 w-72 rounded-full bg-orange-100 blur-3xl" />
-      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-blue-100 blur-3xl" />
+      
 
       <div className="absolute inset-0 opacity-[0.03]">
         <div

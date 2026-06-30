@@ -201,12 +201,12 @@ export default function Header({
                 // /catalog/Industrial-Automation-Catalog.pdf
                 target="_blank"
                 rel="noopener noreferrer"
-                className="
+                tems-center
+                  gap-2
+                  className="
                   hidden
                   lg:inline-flex
-                  items-center
-                  gap-2
-                  rounded-xl
+                  irounded-xl
                   bg-gradient-to-r
                   from-orange-300
                   to-[#173967]
@@ -374,6 +374,7 @@ export default function Header({
         onClose={() => setMobileOpen(false)}
         isAuthenticated={isAuthenticated}
         isAdmin={isAdmin}
+        categories={categories}
       />
     </>
   );

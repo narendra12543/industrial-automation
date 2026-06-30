@@ -8,7 +8,7 @@ const ALLOWED_TYPES = [
   "image/webp",
 ] as const;
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 export async function validateProductImage(
   file: File
@@ -39,7 +39,7 @@ export async function validateProductImage(
     return {
       success: false,
       message:
-        "Image size cannot exceed 5 MB.",
+        "Image size cannot exceed 10 MB.",
     };
   }
 

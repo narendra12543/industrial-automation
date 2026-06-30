@@ -85,11 +85,11 @@ export default async function ProductDetailsPage({
                 {product.name}
               </h1>
 
-              {product.shortDescription && (
-                <p className="mt-5 text-lg leading-8 text-slate-600">
+              {/* {product.shortDescription && (
+                <p className="mt-5 text-lg leading-6 text-slate-600">
                   {product.shortDescription}
                 </p>
-              )}
+              )} */}
             </div>
 
             {/* Downloads */}
@@ -121,10 +121,10 @@ export default async function ProductDetailsPage({
             {product.description && (
               <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
                 <h2 className="mb-5 text-2xl font-bold text-[#0F2747]">
-                  Product Overview
+                  Introduction
                 </h2>
 
-                <div className="leading-8 text-slate-700 whitespace-pre-line">
+                <div className="leading-7 text-slate-700 whitespace-pre-line">
                   {product.description}
                 </div>
               </section>

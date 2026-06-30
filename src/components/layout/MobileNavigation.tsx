@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   X,
   Home,
@@ -11,6 +12,8 @@ import {
   Phone,
   LogOut,
   LogIn,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
@@ -19,6 +22,16 @@ interface MobileNavigationProps {
   onClose: () => void;
   isAuthenticated: boolean;
   isAdmin: boolean;
+
+    categories: {
+    id: string;
+    name: string;
+    products: {
+      id: string;
+      name: string;
+      slug: string;
+    }[];
+  }[];
 }
 
 export default function MobileNavigation({
@@ -26,8 +39,14 @@ export default function MobileNavigation({
   onClose,
   isAuthenticated,
   isAdmin,
+  categories,
 }: MobileNavigationProps) {
   const router = useRouter();
+  const [productsOpen, setProductsOpen] =
+    useState(false);
+
+  const [openCategory, setOpenCategory] =
+    useState<string | null>(null);
 
   const handleLogout = async () => {
     await signOut({
@@ -130,26 +149,112 @@ export default function MobileNavigation({
               About
             </Link>
 
-            <Link
-              href="/products"
-              onClick={onClose}
-              className="
-                flex
-                items-center
-                gap-2
-                rounded-xl
-                px-4
-                py-1
-                font-medium
-                text-slate-700
-                transition
-                hover:bg-slate-100
-                hover:text-[#0F2747]
-              "
-            >
-              <Package size={18} />
-              Products
-            </Link>
+            <div >
+
+              <button
+                onClick={() =>
+                  setProductsOpen(!productsOpen)
+                }
+                className="
+                  flex
+                  w-full
+                  items-center
+                  justify-between
+                  px-4
+                  py-3
+                  font-medium
+                  text-slate-700
+                "
+              >
+                <div className="flex items-center gap-2">
+                  <Package size={18} />
+                  Products
+                </div>
+
+                {productsOpen ? (
+                  <ChevronUp size={18} />
+                ) : (
+                  <ChevronDown size={18} />
+                )}
+              </button>
+
+              {productsOpen && (
+                <div>
+
+                  {categories.map((category) => (
+                    <div key={category.id}>
+
+                      <button
+                        onClick={() =>
+                          setOpenCategory(
+                            openCategory === category.id
+                              ? null
+                              : category.id
+                          )
+                        }
+                        className="
+                          flex
+                          w-full
+                          items-center
+                          justify-between
+                          px-5
+                          py-1
+                          text-left
+                          text-sm
+                          font-semibold
+                          text-black
+                        "
+                      >
+                        {category.name}
+
+                        {openCategory === category.id ? (
+                          <ChevronUp size={15}/>
+                        ) : (
+                          <ChevronDown size={15}/>
+                        )}
+                      </button>
+
+                      {openCategory === category.id && (
+                        <div className="">
+
+                          {category.products.map(
+                            (product) => (
+                              <Link
+                                key={product.id}
+                                href={`/products/${product.slug}`}
+                                onClick={onClose}
+                                className="
+                                  block
+                                  px-8
+                                  text-sm
+                                  text-slate-700
+                                  hover:text-[#0F2747]
+                                "
+                              >
+                                <span
+                                  className="
+                                    block
+                                    overflow-hidden
+                                    text-ellipsis
+                                    whitespace-nowrap
+                                  "
+                                >
+                                  - {product.name}
+                                </span>
+                              </Link>
+                            )
+                          )}
+
+                        </div>
+                      )}
+
+                    </div>
+                  ))}
+
+                </div>
+              )}
+
+            </div>
 
             <Link
               href="/contact"

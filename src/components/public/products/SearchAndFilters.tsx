@@ -16,7 +16,7 @@ export default function SearchAndFilters({
   onCategoryChange,
 }: SearchAndFiltersProps) {
   return (
-    <section className="py-2">
+    <section className="py-2 lg:hidden md:hidden">
       <div className="mx-auto max-w-7xl px-4">
         {/* Search */}
 
@@ -84,7 +84,7 @@ export default function SearchAndFilters({
 
         {/* Mobile Dropdown */}
 
-        <div className="mt-6 md:hidden">
+        <div className="mt-6 md:hidden lg:hidden">
           <select
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}

@@ -33,7 +33,7 @@ const slides = [
 
 export default function SolutionsSwiper() {
   return (
-    <section className="relative overflow-hidden bg-white py-6 lg:py-4">
+    <section className="relative overflow-hidden bg-white py-2 lg:py-2">
       {/* Background Blur */}
 
       <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-orange-100 blur-3xl" />
@@ -43,7 +43,7 @@ export default function SolutionsSwiper() {
       <div className="relative mx-auto max-w-7xl px-4">
         {/* Heading */}
 
-        <div className="mb-8 text-center lg:mb-10">
+        <div className="mb-2 text-center">
           <span
             className="
               inline-flex
@@ -67,7 +67,7 @@ export default function SolutionsSwiper() {
           <h2
             className="
               mx-auto
-              mt-2
+              mt-1
               max-w-3xl
               text-center
               text-3xl

@@ -234,7 +234,7 @@ export default function ProductForm({
                 />
               </div>
 
-              <div>
+              {/* <div>
                 <label className="mb-2 block text-sm font-medium text-[#0F2747]">
                   Short Description
                 </label>
@@ -249,7 +249,7 @@ export default function ProductForm({
                   }
                   className={inputClass}
                 />
-              </div>
+              </div> */}
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-[#0F2747]">

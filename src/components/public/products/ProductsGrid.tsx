@@ -23,15 +23,18 @@ export default function ProductsGrid({
   }
 
   return (
-    <section className="pb-20">
-      <div className="mx-auto max-w-7xl px-4">
+    <section
+      id="products-grid"
+      className="pb-20"
+    >
+      <div className="mx-auto max-w-3xl px-4">
         <div
           className="
             grid
-            gap-5
+            gap-10
             grid-cols-1
             sm:grid-cols-2
-            lg:grid-cols-5
+            lg:grid-cols-3
           "
         >
           {products.map((product) => (

@@ -116,28 +116,28 @@ export default function FeaturedProductsCarousel({
         loop={products.length > 4}
         spaceBetween={12}
 
-breakpoints={{
-  0: {
-    slidesPerView: 1.1,
-    spaceBetween: 10,
-  },
-  640: {
-    slidesPerView: 2,
-    spaceBetween: 12,
-  },
-  768: {
-    slidesPerView: 2.5,
-    spaceBetween: 14,
-  },
-  1024: {
-    slidesPerView: 4,
-    spaceBetween: 16,
-  },
-  1280: {
-    slidesPerView: 4,
-    spaceBetween: 16,
-  },
-}}
+        breakpoints={{
+          0: {
+            slidesPerView: 1.1,
+            spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 12,
+          },
+          768: {
+            slidesPerView: 2.5,
+            spaceBetween: 14,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 16,
+          },
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 16,
+          },
+        }}
       >
         {products.map((product) => (
           <SwiperSlide key={product.id}>

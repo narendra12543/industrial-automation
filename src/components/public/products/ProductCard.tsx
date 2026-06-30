@@ -34,21 +34,22 @@ export default function ProductCard({
     {/* Image */}
 
     <Link href={`/products/${product.slug}`}>
-      <div className="relative h-36 overflow-hidden bg-slate-100">
+      <div className="relative h-52 overflow-hidden bg-white">
         <Image
           src={image}
           alt={product.name}
           fill
-          sizes="(max-width:768px) 100vw, 25vw"
           className="
-            object-cover
-            transition-transform
+            object-contain
+            p-4
+            transition-all
             duration-500
-            group-hover:scale-110
+            group-hover:scale-105
           "
         />
+        
 
-        {product.featured && (
+        {/* {product.featured && (
           <span
             className="
               absolute
@@ -65,7 +66,7 @@ export default function ProductCard({
           >
             Featured
           </span>
-        )}
+        )} */}
       </div>
     </Link>
 
