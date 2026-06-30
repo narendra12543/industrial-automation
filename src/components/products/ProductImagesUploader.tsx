@@ -22,7 +22,7 @@ const ALLOWED_TYPES = [
   "image/webp",
 ];
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
 export default function ProductImagesUploader({
   productId,
@@ -63,7 +63,7 @@ export default function ProductImagesUploader({
 
       if (file.size > MAX_FILE_SIZE) {
         setError(
-          "File exceeds 5MB limit."
+          "File exceeds 10MB limit."
         );
         continue;
       }
