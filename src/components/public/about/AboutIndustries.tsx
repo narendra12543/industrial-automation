@@ -28,7 +28,7 @@ export default function AboutIndustries() {
               <div className="relative h-[520px]">
 
                 <Image
-                  src="/about-industries.jpg"
+                  src="/about/about.png"
                   alt="Industrial Automation"
                   fill
                   className="object-cover"

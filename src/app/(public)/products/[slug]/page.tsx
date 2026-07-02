@@ -69,17 +69,7 @@ export default async function ProductDetailsPage({
             <ProductGallery images={product.images} />
 
             <div className="mt-8">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-slate-100 px-4 py-2 text-sm font-medium">
-                  {product.category?.name}
-                </span>
-
-                {product.featured && (
-                  <span className="rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-700">
-                    Featured Product
-                  </span>
-                )}
-              </div>
+              
 
               <h1 className="mt-5 text-2xl font-bold text-[#0F2747]">
                 {product.name}
@@ -171,7 +161,7 @@ export default async function ProductDetailsPage({
 
               <div className="relative">
                 <div className="mb-10">
-                  <h2 className=" text-3xl font-bold text-white">
+                  <h2 className=" text-2xl font-bold text-white">
                     Request Product Enquiry
                   </h2>
 

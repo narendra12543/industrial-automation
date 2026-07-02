@@ -19,8 +19,7 @@ export default function ApplicationsSection({
   const applicationsArray =
     Array.isArray(applications)
       ? applications
-      : typeof applications ===
-        "object"
+      : typeof applications === "object"
       ? Object.values(
           applications as Record<
             string,
@@ -44,24 +43,24 @@ export default function ApplicationsSection({
   ];
 
   return (
-    <section className="mt-8">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-[#0F2747]">
+    <section className="mt-8 px-4 sm:px-0">
+      <div className="mb-5">
+        <h2 className="text-xl font-bold text-[#0F2747] sm:text-2xl">
           Applications
         </h2>
 
-        <p className="mt-2 text-slate-600">
-          Suitable for multiple
-          industrial environments.
+        <p className="mt-1 text-sm text-slate-500">
+          Suitable for multiple industrial environments.
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {/* 
+        Changed grid-cols to 'grid-cols-2' by default for mobile view. 
+        Adjusted the gap and padding slightly to make the 2-column mobile cards look compact and clean.
+      */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {applicationsArray.map(
-          (
-            application,
-            index
-          ) => {
+          (application, index) => {
             const Icon =
               icons[
                 index %
@@ -72,28 +71,27 @@ export default function ApplicationsSection({
               <div
                 key={index}
                 className="
-                  rounded-2xl
+                  group
+                  rounded-xl
                   border
                   border-slate-200
                   bg-white
-                  p-5
+                  p-4
                   shadow-sm
                   transition-all
-                  duration-300
-                  hover:-translate-y-1
+                  duration-200
+                  hover:-translate-y-0.5
                   hover:border-orange-400
-                  hover:shadow-lg
+                  hover:shadow-md
                 "
               >
                 <Icon
-                  size={24}
-                  className="text-orange-500"
+                  size={20}
+                  className="text-orange-500 transition-transform group-hover:scale-110"
                 />
 
-                <p className="mt-3 font-medium text-[#0F2747]">
-                  {String(
-                    application
-                  )}
+                <p className="mt-2.5 text-sm font-semibold text-[#0F2747] leading-tight break-words">
+                  {String(application)}
                 </p>
               </div>
             );

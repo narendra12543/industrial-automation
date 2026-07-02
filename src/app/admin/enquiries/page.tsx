@@ -10,7 +10,6 @@ import EnquiryStatsCards from "@/components/enquiries/EnquiryStatsCards";
 
 import RecentEnquiriesWidget from "@/components/enquiries/RecentEnquiriesWidget";
 
-import StatusDistributionCard from "@/components/enquiries/StatusDistributionCard";
 import {
   getRecentEnquiries,
 } from "@/actions/enquiries";
@@ -167,9 +166,9 @@ const recentEnquiries =
           </p>
         </div>
       </div> */}
-      <EnquiryStatsCards
+      {/* <EnquiryStatsCards
         analytics={analytics}
-      />
+      /> */}
 
       <div className="grid gap-6 xl:grid-cols-2">
         {/* <StatusDistributionCard

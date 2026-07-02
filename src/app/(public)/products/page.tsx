@@ -62,7 +62,6 @@ export default async function ProductsPage() {
 
   return (
     <>
-    
       <ProductsHero
         totalProducts={
           products.length

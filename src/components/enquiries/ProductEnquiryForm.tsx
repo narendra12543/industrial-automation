@@ -48,12 +48,15 @@ export default function ProductEnquiryForm({
   
   const router = useRouter();
 
+  const REQUIRE_LOGIN_FOR_ENQUIRY = false;
+
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
 
-if (!isAuthenticated) {
+
+if (REQUIRE_LOGIN_FOR_ENQUIRY && !isAuthenticated) {
   setError("Please login to submit an enquiry.");
 
   const callbackUrl =
@@ -248,7 +251,7 @@ if (!isAuthenticated) {
           disabled={loading}
           className="rounded-lg bg-[#0F2747] px-6 py-3 font-medium text-white transition hover:bg-[#18385F] disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {!isAuthenticated
+          {REQUIRE_LOGIN_FOR_ENQUIRY && !isAuthenticated
             ? "Login to Send Enquiry"
             : loading
               ? "Submitting..."

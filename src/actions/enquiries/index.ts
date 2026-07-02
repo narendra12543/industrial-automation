@@ -48,8 +48,9 @@ export async function createEnquiry(
       };
     }
 
+    const REQUIRE_LOGIN_FOR_ENQUIRY = false;
     const session = await auth();
-    if (!session?.user) {
+    if (REQUIRE_LOGIN_FOR_ENQUIRY && !session?.user) {
       return {
         success: false,
         message: "Please login to submit enquiry.",
