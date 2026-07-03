@@ -187,10 +187,24 @@ export default function Footer() {
             text-center
             text-xs
             text-slate-400
+            flex
+            flex-col
+            gap-1
           "
         >
-          © 2026 Industrial Automation
-          Solutions. All Rights Reserved.
+          <div>© 2026 Industrial Automation Solutions. All Rights Reserved.</div>
+          <div>
+            Designed and developed by{" "}
+            <a 
+              href="https://bytefluxtech.in/" 
+              className=" text-white hover:text-white font-bold transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              
+            >
+              BytefluxTechnologies
+            </a>
+          </div>
         </div>
       </div>
     </footer>
