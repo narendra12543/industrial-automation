@@ -10,6 +10,7 @@ import EnquiryStatsCards from "@/components/enquiries/EnquiryStatsCards";
 
 import RecentEnquiriesWidget from "@/components/enquiries/RecentEnquiriesWidget";
 
+import StatusDistributionCard from "@/components/enquiries/StatusDistributionCard";
 import {
   getRecentEnquiries,
 } from "@/actions/enquiries";

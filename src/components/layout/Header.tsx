@@ -197,7 +197,7 @@ export default function Header({
             <div className="flex items-center gap-4">
               {/* Catalogue */}
               <a
-                href="#"
+                href="/catalog/Industrial-Automation-Catalog.pdf"
                 // /catalog/Industrial-Automation-Catalog.pdf
                 target="_blank"
                 rel="noopener noreferrer"
@@ -206,10 +206,8 @@ export default function Header({
                   className="
                   hidden
                   lg:inline-flex
-                  irounded-xl
-                  bg-gradient-to-r
-                  from-orange-300
-                  to-[#173967]
+                  rounded-2xl
+                  bg-[#0F2747]
                   px-5
                   py-2.5
                   font-semibold
@@ -302,7 +300,7 @@ export default function Header({
               </div>
               {/* Mobile Catalogue */}
               <a
-                href="#" 
+                href="/catalog/Industrial-Automation-Catalog.pdf" 
                 // /catalog/Industrial-Automation-Catalog.pdf
                 target="_blank"
                 rel="noopener noreferrer"
@@ -312,9 +310,7 @@ export default function Header({
                   items-center
                   gap-2
                   rounded-xl
-                  bg-gradient-to-r
-                  from-orange-300
-                  to-[#173967]
+                  bg-[#0F2747]
                   px-4
                   py-2.5
                   font-semibold
