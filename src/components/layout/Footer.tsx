@@ -98,13 +98,13 @@ export default function Footer() {
               >
                 Products
               </Link>
-
+{/* 
               <Link
                 href="/projects"
                 className="block text-sm text-slate-300 transition hover:text-white"
               >
                 Projects
-              </Link>
+              </Link> */}
 
               <Link
                 href="/contact"

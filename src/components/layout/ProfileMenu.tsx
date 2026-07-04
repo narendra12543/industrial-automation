@@ -60,27 +60,29 @@ export default function ProfileMenu({
       className="relative"
     >
       {/* Profile Button */}
-      <button
-        onClick={() => setOpen((prev) => !prev)}
-        className="
-          flex
-          h-10
-          w-10
-          items-center
-          justify-center
-          rounded-full
-          bg-[#0F2747]
-          text-white
-          transition
-          hover:scale-105
-          hidden lg:block
-        "
-      >
-        👤
-      </button>
+      {isAdmin && (
+        <button
+          onClick={() => setOpen((prev) => !prev)}
+          className="
+            hidden
+            lg:flex
+            h-10
+            w-10
+            items-center
+            justify-center
+            rounded-full
+            bg-[#0F2747]
+            text-white
+            transition
+            hover:scale-105
+          "
+        >
+          👤
+        </button>
+      )}
 
       {/* Dropdown Menu */}
-      {open && (
+      {isAdmin && open && (
         <div
           className="
             absolute
@@ -176,7 +178,7 @@ export default function ProfileMenu({
           {/* Admin Menu */}
           {isAuthenticated && isAdmin && (
             <>
-              <Link
+              {/* <Link
                 href="/dashboard/enquiries"
                 className="
                   block
@@ -190,13 +192,12 @@ export default function ProfileMenu({
                 onClick={() => setOpen(false)}
               >
                 User Dashboard
-              </Link>
+              </Link> */}
 
               <Link
                 href="/admin"
                 className="
                   block
-                  border-t
                   px-4
                   py-3
                   text-sm

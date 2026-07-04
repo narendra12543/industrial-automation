@@ -305,7 +305,7 @@ export default function MobileNavigation({
               </>
             )}
           </nav>
-          {isAuthenticated ? (
+          {isAdmin&& (
             <button
               onClick={handleLogout}
               className="
@@ -323,25 +323,25 @@ export default function MobileNavigation({
               <LogOut size={18} />
               Logout
             </button>
-          ) : (
-            <Link
-              href="/login"
-              onClick={onClose}
-              className="
-                flex
-                gap-2
-                rounded-xl
-                px-4
-                py-3
-                font-medium
-                text-slate-700
-                transition
+          // ) : (
+          //   <Link
+          //     href="/login"
+          //     onClick={onClose}
+          //     className="
+          //       flex
+          //       gap-2
+          //       rounded-xl
+          //       px-4
+          //       py-3
+          //       font-medium
+          //       text-slate-700
+          //       transition
                
-              "
-            >
-              <LogIn size={18} />
-              Login
-            </Link>
+          //     "
+          //   >
+          //     <LogIn size={18} />
+          //     Login
+          //   </Link>
           )}
         </div>
 

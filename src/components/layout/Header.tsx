@@ -282,22 +282,25 @@ export default function Header({
 
               {/* Profile */}
 
-              <div
-                className="
-                  rounded-xl
-                  hidden lg:block
-                  border
-                  border-slate-200
-                  bg-white
-                  p-1
-                  shadow-sm
-                "
-              >
-                <ProfileMenu
-                  isAuthenticated={isAuthenticated}
-                  isAdmin={isAdmin}
-                />
-              </div>
+              {isAdmin && (
+                <div
+                  className="
+                    hidden
+                    lg:block
+                    rounded-xl
+                    border
+                    border-slate-200
+                    bg-white
+                    p-1
+                    shadow-sm
+                  "
+                >
+                  <ProfileMenu
+                    isAuthenticated={isAuthenticated}
+                    isAdmin={isAdmin}
+                  />
+                </div>
+              )}
               {/* Mobile Catalogue */}
               <a
                 href="/catalog/Industrial-Automation-Catalog.pdf" 
