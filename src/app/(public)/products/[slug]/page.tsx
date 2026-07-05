@@ -9,6 +9,7 @@ import FeaturesSection from "@/components/public/product-details/FeaturesSection
 import ApplicationsSection from "@/components/public/product-details/ApplicationsSection";
 
 import ProductEnquiryForm from "@/components/enquiries/ProductEnquiryForm";
+import ProductDescription from "@/components/products/ProductDescription";
 
 interface ProductDetailsPageProps {
   params: Promise<{
@@ -109,15 +110,9 @@ export default async function ProductDetailsPage({
             {/* Description */}
 
             {product.description && (
-              <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-                <h2 className="mb-5 text-2xl font-bold text-[#0F2747]">
-                  Introduction
-                </h2>
-
-                <div className="leading-7 text-slate-700 whitespace-pre-line">
-                  {product.description}
-                </div>
-              </section>
+              <ProductDescription
+                description={product.description}
+              />
             )}
 
             {/* Features */}

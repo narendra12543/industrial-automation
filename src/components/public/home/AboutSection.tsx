@@ -61,12 +61,37 @@ export default function AboutSection() {
               engineering solutions.
             </p>
 
-            <p className="mt-2 text-md leading-8 text-slate-600">
-              Our expertise includes PLC & SCADA systems, HMI solutions,
-              electrical control panels, gate automation, boom barriers,
-              rolling shutters, access control systems and customized
-              industrial automation projects designed to meet modern
-              industry requirements.
+            <p
+              className="
+                text-md
+                leading-8
+                text-slate-600
+              "
+            >
+              From PLC & SCADA systems,
+              Industrial Control Panels,
+              Gate Automation, Rolling
+              Shutters, Boom Barriers,
+              Automatic Doors and customized
+              engineering solutions, our
+              products are trusted by
+              businesses throughout India
+              to meet modern industry
+              requirements{" "}
+
+              <Link
+                href="/about#industries"
+                className="
+                  inline-flex
+                  items-center
+                  font-semibold
+                  text-[#0F2747]
+                  hover:text-red-500
+                "
+              >
+                Read More...
+
+              </Link>
             </p>
 
             <Link

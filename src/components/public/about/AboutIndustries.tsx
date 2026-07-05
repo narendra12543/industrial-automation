@@ -6,7 +6,9 @@ import {
 
 export default function AboutIndustries() {
   return (
-    <section className="bg-white py-10">
+    <section id="industries"
+            className="bg-white py-10"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <div className="grid items-center gap-14 lg:grid-cols-2">
@@ -103,6 +105,7 @@ export default function AboutIndustries() {
               products are trusted by
               businesses throughout India.
             </p>
+            
 
             {/* Industries */}
 
