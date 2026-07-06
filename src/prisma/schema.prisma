@@ -175,6 +175,8 @@ model ContactMessage {
   email       String
   mobile      String
   companyName String?
+  categoryId  String?
+  productId   String?
   city        String?
   message     String
   createdAt   DateTime @default(now())

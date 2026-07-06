@@ -1,7 +1,37 @@
 import ContactForm from "@/components/public/contact/ContactForm";
 import GoogleMapSection from "@/components/public/contact/GoogleMapSection";
+import { prisma } from "@/lib/prisma";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  
+  const categories =
+    await prisma.category.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: {
+        name: "asc",
+      },
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+
+  const products =
+    await prisma.product.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: {
+        name: "asc",
+      },
+      select: {
+        id: true,
+        name: true,
+        categoryId: true,
+      },
+    });
   return (
     <>
       {/* Contact Section */}
@@ -21,7 +51,10 @@ export default function ContactPage() {
           {/* Form + Map */}
 
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-start mt-2">
-            <ContactForm />
+            <ContactForm
+              categories={categories}
+              products={products}
+            />
 
             <GoogleMapSection />
           </div>

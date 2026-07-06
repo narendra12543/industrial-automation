@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-
 import { resend } from "@/lib/resend";
 
 export async function createContact(data: {
@@ -9,106 +8,144 @@ export async function createContact(data: {
   email: string;
   mobile: string;
   companyName?: string;
+  categoryId?: string;
+  productId?: string;
   city?: string;
   message: string;
 }) {
   try {
+    console.log("Saving Contact...");
+
     await prisma.contactMessage.create({
       data,
     });
 
+    console.log("Contact Saved Successfully");
+    const category = data.categoryId
+      ? await prisma.category.findUnique({
+          where: {
+            id: data.categoryId,
+          },
+          select: {
+            name: true,
+          },
+        })
+      : null;
+
+    const product = data.productId
+      ? await prisma.product.findUnique({
+          where: {
+            id: data.productId,
+          },
+          select: {
+            name: true,
+          },
+        })
+      : null;
+
     // Customer Email
 
-    await resend.emails.send({
-      from:
-        process.env.FROM_EMAIL!,
+    console.log("Sending Customer Email...");
 
-      to: data.email,
+    const customerEmailResponse =
+      await resend.emails.send({
+        from: process.env.FROM_EMAIL!,
+        to: data.email,
+        subject: "Thank You For Contacting Us",
+        html: `
+          <div style="font-family:Arial,sans-serif">
+            <h2>Thank You ${data.name}</h2>
 
-      subject:
-        "Thank You For Contacting Us",
+            <p>
+              We have received your message.
+            </p>
 
-      html: `
-        <div style="font-family:Arial,sans-serif">
+            <p>
+              Our automation team will
+              contact you shortly.
+            </p>
 
-          <h2>
-            Thank You ${data.name}
-          </h2>
+            <br/>
 
-          <p>
-            We have received your message.
-          </p>
+            <p>
+              Regards,<br/>
+              Industrial Automation Solutions
+            </p>
+          </div>
+        `,
+      });
 
-          <p>
-            Our automation team will
-            contact you shortly.
-          </p>
-
-          <br />
-
-          <p>
-            Regards,<br/>
-            Industrial Automation Solutions
-          </p>
-
-        </div>
-      `,
-    });
+    console.log(
+      "Customer Email Response:",
+      customerEmailResponse
+    );
 
     // Business Email
 
-    await resend.emails.send({
-      from:
-        process.env.FROM_EMAIL!,
+    console.log("Sending Business Email...");
 
-      to:
-        process.env.BUSINESS_EMAIL!,
+    const businessEmailResponse =
+      await resend.emails.send({
+        from: process.env.FROM_EMAIL!,
+        to: process.env.BUSINESS_EMAIL!,
+        subject: "New Contact Form Submission",
+        html: `
+          <div style="font-family:Arial,sans-serif">
 
-      subject:
-        "New Contact Form Submission",
+            <h2>
+              New Contact Message
+            </h2>
 
-      html: `
-        <div style="font-family:Arial,sans-serif">
+            <hr/>
 
-          <h2>
-            New Contact Message
-          </h2>
+            <p>
+              <strong>Name:</strong>
+              ${data.name}
+            </p>
 
-          <hr/>
+            <p>
+              <strong>Email:</strong>
+              ${data.email}
+            </p>
 
-          <p>
-            <strong>Name:</strong>
-            ${data.name}
-          </p>
+            <p>
+              <strong>Mobile:</strong>
+              ${data.mobile}
+            </p>
 
-          <p>
-            <strong>Email:</strong>
-            ${data.email}
-          </p>
+            <p>
+              <strong>Company:</strong>
+              ${data.companyName ?? "-"}
+            </p>
 
-          <p>
-            <strong>Mobile:</strong>
-            ${data.mobile}
-          </p>
+            <p>
+              <strong>Category:</strong>
+              ${category?.name ?? "-"}
+            </p>
 
-          <p>
-            <strong>Company:</strong>
-            ${data.companyName ?? "-"}
-          </p>
+            <p>
+              <strong>Product:</strong>
+              ${product?.name ?? "-"}
+            </p>
 
-          <p>
-            <strong>City:</strong>
-            ${data.city ?? "-"}
-          </p>
+            <p>
+              <strong>City:</strong>
+              ${data.city ?? "-"}
+            </p>
 
-          <p>
-            <strong>Message:</strong>
-            ${data.message}
-          </p>
+            <p>
+              <strong>Message:</strong>
+              ${data.message}
+            </p>
 
-        </div>
-      `,
-    });
+          </div>
+        `,
+      });
+
+    console.log(
+      "Business Email Response:",
+      businessEmailResponse
+    );
 
     return {
       success: true,
@@ -116,7 +153,10 @@ export async function createContact(data: {
         "Message submitted successfully.",
     };
   } catch (error) {
-    console.error(error);
+    console.error(
+      "Create Contact Error:",
+      error
+    );
 
     return {
       success: false,

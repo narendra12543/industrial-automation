@@ -195,17 +195,16 @@ export default function Header({
             {/* Right Side */}
 
             <div className="flex items-center gap-4">
-              {/* Catalogue */}
+             
               <a
                 href="/catalog/Industrial-Automation-Catalog.pdf"
-                // /catalog/Industrial-Automation-Catalog.pdf
                 target="_blank"
                 rel="noopener noreferrer"
-                tems-center
-                  gap-2
-                  className="
+                className="
                   hidden
                   lg:inline-flex
+                  items-center
+                  gap-2
                   rounded-2xl
                   bg-[#0F2747]
                   px-5
@@ -222,6 +221,7 @@ export default function Header({
               >
                 <FileText size={18} />
                 Catalogue
+
               </a>
               {/* WhatsApp */}
 
@@ -304,7 +304,6 @@ export default function Header({
               {/* Mobile Catalogue */}
               <a
                 href="/catalog/Industrial-Automation-Catalog.pdf" 
-                // /catalog/Industrial-Automation-Catalog.pdf
                 target="_blank"
                 rel="noopener noreferrer"
                 className="

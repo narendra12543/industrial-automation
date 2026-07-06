@@ -7,6 +7,8 @@ export const createContactSchema =
     mobile: z.string().min(10),
 
     companyName: z.string().optional(),
+    categoryId: z.string().optional(),
+    productId: z.string().optional(),
     city: z.string().optional(),
 
     message: z.string().min(10),

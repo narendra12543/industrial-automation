@@ -110,7 +110,7 @@ export default function ProductsCatalog({
   };
 
   return (
-    <>
+    <div className="bg-gradient-to-b from-slate-50 via-white to-white">
       <SearchAndFilters
         search={search}
         selectedCategory="all"
@@ -119,8 +119,8 @@ export default function ProductsCatalog({
         onCategoryChange={() => {}}
       />
 
-      <div className="mx-auto max-w-7xl px-4 ">
-        <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+      <div className="mx-auto max-w-7xl px-4 py-2">
+        <div className="grid gap-10 lg:grid-cols-[280px_1fr]">
           <ProductSidebar
             categories={categories}
             selectedProductId={selectedProductId}
@@ -128,17 +128,37 @@ export default function ProductsCatalog({
             onShowAllProducts={handleShowAllProducts}
           />
 
-          <div>
+          <div className="lg:border-l lg:border-slate-200 lg:pl-10">
+            <div className="hidden md:block mb-8">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-400">
+                Our Catalogue
+              </span>
+
+              <h2 className="mt-1 text-xl font-bold text-[#0F2747] sm:text-2xl">
+                Built for Performance, Designed for Reliability
+              </h2>
+
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+                Explore our range of industrial automation solutions  engineered for
+                durability, security, and seamless integration across barriers, gates,
+                and high-speed door systems.
+              </p>
+
+              <div className="mt-6 h-px w-full bg-gradient-to-r from-slate-200 via-slate-200 to-transparent" />
+            </div>
+
             <ProductsGrid products={paginatedProducts} />
 
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
+            <div className="mt-4">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

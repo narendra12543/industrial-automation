@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MessageCircle } from "lucide-react";
 
 import { ProductType } from "@/types/product";
 
@@ -7,157 +8,158 @@ interface ProductCardProps {
   product: ProductType;
 }
 
-export default function ProductCard({
-  product,
-}: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const image =
-    product.images?.[0]?.imageUrl ||
-    "/placeholder-product.jpg";
+    product.images?.[0]?.imageUrl || "/placeholder-product.jpg";
 
   return (
-  <div
-    className="
-      group
-      overflow-hidden
-      rounded-xl
-      border
-      max-w-[280px]
-      border-slate-240
-      bg-white
-      transition-all
-      duration-300
-      hover:-translate-y-1
-      hover:shadow-xl
-      hover:border-slate-300
-    "
-  >
-    {/* Image */}
-
-    <Link href={`/products/${product.slug}`}>
-      <div className="relative h-52 overflow-hidden bg-white">
-        <Image
-          src={image}
-          alt={product.name}
-          fill
-          className="
-            object-contain
-            p-4
-            transition-all
-            duration-500
-            group-hover:scale-105
-          "
-        />
-        
-
-        {/* {product.featured && (
-          <span
+    <div
+      className="
+        group
+        relative
+        mx-auto max-w-[240px] w-full
+        overflow-hidden
+        rounded-lg
+        border
+        border-slate-400
+        bg-white
+        transition-all
+        duration-300
+        hover:-translate-y-0.5
+        hover:border-slate-300
+        hover:shadow-lg
+      "
+    >
+      {/* Image */}
+      <Link href={`/products/${product.slug}`}>
+        <div className="relative h-36 overflow-hidden bg-slate-50">
+          <Image
+            src={image}
+            alt={product.name}
+            fill
             className="
-              absolute
-              left-2
-              top-2
-              rounded-md
-              bg-gray-600
-              px-2
-              py-1
-              text-[10px]
-              font-semibold
-              text-white
+              object-contain
+              p-3
+              transition-transform
+              duration-500
+              group-hover:scale-105
             "
-          >
-            Featured
-          </span>
-        )} */}
-      </div>
-    </Link>
+          />
+        </div>
+      </Link>
 
-    {/* Content */}
-
-    <div className="p-3">
-
-      <div className="mb-2">
+      {/* Content */}
+      <div className="p-3">
         <span
           className="
-            rounded-md
+            inline-block
+            rounded
             bg-slate-100
-            px-2
-            py-1
-            text-[10px]
-            font-medium
-            text-slate-600
+            px-1.5
+            py-0.5
+            text-[9px]
+            font-semibold
+            uppercase
+            tracking-wide
+            text-slate-500
           "
         >
           {product.category?.name}
         </span>
-      </div>
 
-      <Link href={`/products/${product.slug}`}>
-        <h3
-          className="
-            line-clamp-2
-            text-sm
-            font-bold
-            text-[#0F2747]
-            transition-colors
-            group-hover:text-gray-700
-          "
-        >
-          {product.name}
-        </h3>
-      </Link>
-
-      <p
-        className="
-          mt-2
-          line-clamp-2
-          text-xs
-          text-slate-500
-        "
-      >
-        {product.shortDescription}
-      </p>
-
-      <div className="mt-3 flex gap-2">
-
-        <Link
-          href={`/products/${product.slug}`}
-          className="
-            flex-1
-            rounded-md
-            border
-            border-[#0F2747]
-            py-2
-            text-center
-            text-xs
-            font-semibold
-            text-[#0F2747]
-            transition
-            hover:bg-[#0F2747]
-            hover:text-white
-          "
-        >
-          View Details
+        <Link href={`/products/${product.slug}`}>
+          <h3
+            className="
+              mt-1.5
+              line-clamp-2
+              text-[13px]
+              font-bold
+              leading-snug
+              text-[#0F2747]
+              transition-colors
+              group-hover:text-slate-700
+            "
+          >
+            {product.name}
+          </h3>
         </Link>
 
-        <Link
-          href={`/products/${product.slug}#enquiry`}
-          className="
-            flex-1
-            rounded-md  
-            bg-gray-600
-            py-2
-            text-center
-            text-xs
-            font-semibold
-            text-white
-            transition
-            hover:bg-gray-700
-          "
-        >
-          Enquire
-        </Link>
+        {product.shortDescription && (
+          <p className="mt-1 line-clamp-1 text-[11px] text-slate-500">
+            {product.shortDescription}
+          </p>
+        )}
 
+        {/* Actions */}
+        <div className="mt-2.5 flex items-center gap-1.5">
+          <Link
+            href={`/products/${product.slug}`}
+            className="
+              flex-1
+              rounded-md
+              border
+              border-[#0F2747]
+              py-1.5
+              text-center
+              text-[11px]
+              font-semibold
+              text-[#0F2747]
+              transition
+              hover:bg-[#0F2747]
+              hover:text-white
+            "
+          >
+            View Details
+          </Link>
+
+          <Link
+            href={`/products/${product.slug}#enquiry`}
+            aria-label="Enquire Now"
+            className="
+              group/enquire
+              flex
+              h-[30px]
+              w-[30px]
+              shrink-0
+              items-center
+              justify-center
+              gap-0
+              hover:gap-1.5
+              overflow-hidden
+              rounded-md
+              bg-[#0F2747]
+              px-0
+              text-white
+              transition-all
+              duration-300
+              ease-in-out
+              hover:w-[110px]
+              hover:px-2.5
+              hover:bg-[#0F2747]
+            "
+          >
+            <MessageCircle size={14} strokeWidth={2.2} className="shrink-0" />
+
+            <span
+              className="
+                max-w-0
+                overflow-hidden
+                whitespace-nowrap
+                text-[11px]
+                font-semibold
+                opacity-0
+                transition-all
+                duration-300
+                ease-in-out
+                group-hover/enquire:max-w-[80px]
+                group-hover/enquire:opacity-100
+              "
+            >
+              Enquire Now
+            </span>
+          </Link>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }

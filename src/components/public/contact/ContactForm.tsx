@@ -4,7 +4,26 @@ import { useState } from "react";
 
 import { createContact } from "@/actions/contact/contact";
 
-export default function ContactForm() {
+interface Category {
+  id: string;
+  name: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  categoryId: string;
+}
+
+interface ContactFormProps {
+  categories: Category[];
+  products: Product[];
+}
+
+export default function ContactForm({
+  categories,
+  products,
+}: ContactFormProps) {
   const [name, setName] = useState("");
 
   const [email, setEmail] = useState("");
@@ -12,6 +31,9 @@ export default function ContactForm() {
   const [mobile, setMobile] = useState("");
 
   const [companyName, setCompanyName] = useState("");
+  const [categoryId, setCategoryId] = useState("");
+
+  const [productId, setProductId] = useState("");
 
   const [city, setCity] = useState("");
 
@@ -37,6 +59,8 @@ export default function ContactForm() {
         email,
         mobile,
         companyName,
+        categoryId,
+        productId,
         city,
         message,
       });
@@ -53,6 +77,8 @@ export default function ContactForm() {
       setEmail("");
       setMobile("");
       setCompanyName("");
+      setCategoryId("");
+      setProductId("");
       setCity("");
       setMessage("");
     } catch {
@@ -95,8 +121,6 @@ export default function ContactForm() {
         <h2 className="mt-2 text-2xl font-bold text-[#0F2747]">
           Request a Quote
         </h2>
-
-       
       </div>
 
       {/* Alerts */}
@@ -205,6 +229,64 @@ export default function ContactForm() {
           />
         </div>
 
+        <div className="grid gap-4 md:grid-cols-2">
+          <select
+            value={categoryId}
+            onChange={(e) => {
+              setCategoryId(e.target.value);
+              setProductId("");
+            }}
+            className="
+              rounded-xl
+              border
+              border-slate-300
+              px-4
+              py-3
+              text-sm
+              outline-none
+              focus:border-[#0F2747]
+              focus:ring-2
+              focus:ring-blue-100
+            "
+          >
+            <option value="">Select Category</option>
+
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+
+          <select
+            value={productId}
+            onChange={(e) => setProductId(e.target.value)}
+            disabled={!categoryId}
+            className="
+              rounded-xl
+              border
+              border-slate-300
+              px-4
+              py-3
+              text-sm
+              outline-none
+              focus:border-[#0F2747]
+              focus:ring-2
+              focus:ring-blue-100
+              disabled:bg-slate-100
+            "
+          >
+            <option value="">Select Product</option>
+
+            {products
+              .filter((product) => product.categoryId === categoryId)
+              .map((product) => (
+                <option key={product.id} value={product.id}>
+                  {product.name}
+                </option>
+              ))}
+          </select>
+        </div>
         {/* City */}
 
         <input

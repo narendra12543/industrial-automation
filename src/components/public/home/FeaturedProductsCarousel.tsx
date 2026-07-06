@@ -57,11 +57,11 @@ export default function FeaturedProductsCarousel({
           transition-all
           duration-300
           hover:scale-110
-          hover:border-orange-500
-          hover:bg-orange-500
-          hover:text-white
-          lg:flex
-        "
+          hover:border-gray-200
+            hover:bg-gray-200
+            hover:text-black
+            lg:flex
+          "
       >
         <ChevronLeft size={22} />
       </button>
@@ -91,9 +91,9 @@ export default function FeaturedProductsCarousel({
           transition-all
           duration-300
           hover:scale-110
-          hover:border-orange-500
-          hover:bg-orange-500
-          hover:text-white
+          hover:border-gray-200
+          hover:bg-gray-200
+          hover:text-black
           lg:flex
         "
       >

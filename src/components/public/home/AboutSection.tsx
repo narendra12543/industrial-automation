@@ -110,7 +110,6 @@ export default function AboutSection() {
                 transition-all
                 duration-300
                 hover:-translate-y-1
-                hover:bg-orange-500
                 hover:shadow-xl
               "
             >
