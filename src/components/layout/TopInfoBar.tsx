@@ -81,6 +81,7 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
           text-sm
           font-semibold
           text-[#0F2747]
+          whitespace-nowrap
           transition-all
           duration-300
           hover:text-orange-600
