@@ -107,7 +107,7 @@ export default function SolutionsSwiper() {
                     <h2 className="mx-auto mt-6 max-w-2xl text-2xl font-extrabold leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.45)] sm:text-2xl lg:text-3xl">
                       Smart Industrial Automation{" "}
                       <span className="text-orange-400">Solutions</span> For
-                      Modern Manufacturing
+                      Modern Manufacturing...
                     </h2>
                   </div>
 

@@ -283,7 +283,7 @@ export default function MobileNavigation({
 
                 {isAdmin && (
                   <Link
-                    href="/admin"
+                    href="/admin/enquiries"
                     onClick={onClose}
                     className="
                       flex

@@ -195,7 +195,7 @@ export default function ProfileMenu({
               </Link> */}
 
               <Link
-                href="/admin"
+                href="/admin/enquiries"
                 className="
                   block
                   px-4
