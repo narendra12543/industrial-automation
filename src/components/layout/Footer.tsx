@@ -86,7 +86,7 @@ export default function Footer() {
               <div className="flex sm:hidden items-center gap-2.5 pt-2">
                 
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2"  >
                   <a
                     href="https://facebook.com"
                     target="_blank"

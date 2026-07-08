@@ -52,7 +52,7 @@ export default async function ContactPage() {
 
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-start mt-2">
             <ContactForm
-              categories={categories}
+              
               products={products}
             />
 
