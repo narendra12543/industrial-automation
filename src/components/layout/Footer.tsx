@@ -84,7 +84,7 @@ export default function Footer() {
             </div>
             {/* Follow Us On - Mobile only */}
               <div className="flex sm:hidden items-center gap-2.5 pt-2">
-                <span className="text-xs text-slate-400">Follow Us On :</span>
+                
 
                 <div className="flex items-center gap-2">
                   <a

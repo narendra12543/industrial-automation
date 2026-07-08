@@ -170,17 +170,19 @@ model ProjectImage {
 }
 
 model ContactMessage {
-  id          String   @id @default(cuid())
-  name        String
-  email       String
-  mobile      String
-  companyName String?
-  categoryId  String?
-  productId   String?
-  city        String?
-  message     String
-  createdAt   DateTime @default(now())
+  id               String   @id @default(cuid())
+  name             String
+  email            String
+  mobile           String
+  companyName      String?
+  city             String?
+  message          String
+  createdAt        DateTime @default(now())
+  categoryId       String?
+  productIds       Json?
+  otherProductName String?
 
+  @@index([categoryId], map: "contact_messages_categoryid_idx")
   @@map("contact_messages")
 }
 

@@ -1,27 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 import { createContact } from "@/actions/contact/contact";
 
-interface Category {
-  id: string;
-  name: string;
-}
 
 interface Product {
   id: string;
   name: string;
-  categoryId: string;
+ 
 }
 
 interface ContactFormProps {
-  categories: Category[];
   products: Product[];
 }
 
 export default function ContactForm({
-  categories,
   products,
 }: ContactFormProps) {
   const [name, setName] = useState("");
@@ -31,9 +29,13 @@ export default function ContactForm({
   const [mobile, setMobile] = useState("");
 
   const [companyName, setCompanyName] = useState("");
-  const [categoryId, setCategoryId] = useState("");
+  const [productIds, setProductIds] = useState<string[]>([]);
 
-  const [productId, setProductId] = useState("");
+  const [showProductSelector, setShowProductSelector] =
+    useState(false);
+
+  const [otherProductName, setOtherProductName] =
+    useState("");
 
   const [city, setCity] = useState("");
 
@@ -45,12 +47,53 @@ export default function ContactForm({
 
   const [success, setSuccess] = useState("");
 
+  const selectorRef =
+  useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(
+      event: MouseEvent
+    ) {
+      if (
+        selectorRef.current &&
+        !selectorRef.current.contains(
+          event.target as Node
+        )
+      ) {
+        setShowProductSelector(false);
+      }
+    }
+
+    document.addEventListener(
+      "mousedown",
+      handleClickOutside
+    );
+
+    return () =>
+      document.removeEventListener(
+        "mousedown",
+        handleClickOutside
+      );
+  }, []);
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setError("");
     setSuccess("");
+    if (productIds.length === 0) {
+      setError("Please select product.");
+      return;
+    }
 
+    if (
+      productIds.includes("other") &&
+      !otherProductName.trim()
+    ) {
+      setError("Please enter Other Product Name.");
+      return;
+    }
+    
     try {
       setLoading(true);
 
@@ -59,8 +102,8 @@ export default function ContactForm({
         email,
         mobile,
         companyName,
-        categoryId,
-        productId,
+        productIds,
+        otherProductName,
         city,
         message,
       });
@@ -77,8 +120,9 @@ export default function ContactForm({
       setEmail("");
       setMobile("");
       setCompanyName("");
-      setCategoryId("");
-      setProductId("");
+      setProductIds([]);
+      setOtherProductName("");
+      setShowProductSelector(false);
       setCity("");
       setMessage("");
     } catch {
@@ -115,12 +159,9 @@ export default function ContactForm({
           text-orange-600
         "
         >
-          Quick Enquiry, our experts will contact you shortly.
+         Get a Response From Our Experts Within 24 Hours
         </span>
 
-        <h2 className="mt-2 text-2xl font-bold text-[#0F2747]">
-          Request a Quote
-        </h2>
       </div>
 
       {/* Alerts */}
@@ -151,8 +192,8 @@ export default function ContactForm({
             rounded-xl
             border
             border-slate-300
-            px-4
-            py-3
+            px-3
+            py-2
             text-sm
             outline-none
             transition
@@ -172,8 +213,8 @@ export default function ContactForm({
             rounded-xl
             border
             border-slate-300
-            px-4
-            py-3
+            px-3
+            py-2
             text-sm
             outline-none
             transition
@@ -197,8 +238,8 @@ export default function ContactForm({
             rounded-xl
             border
             border-slate-300
-            px-4
-            py-3
+            px-3
+            py-2
             text-sm
             outline-none
             transition
@@ -217,8 +258,8 @@ export default function ContactForm({
             rounded-xl
             border
             border-slate-300
-            px-4
-            py-3
+            px-3
+            py-2
             text-sm
             outline-none
             transition
@@ -229,66 +270,266 @@ export default function ContactForm({
           />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
-          <select
-            value={categoryId}
-            onChange={(e) => {
-              setCategoryId(e.target.value);
-              setProductId("");
-            }}
+        {/* Select Product */}
+
+        <div
+          className={`grid gap-4 ${
+            productIds.includes("other")
+              ? "md:grid-cols-2"
+              : "md:grid-cols-1"
+          }`}
+        >
+
+        <div
+          className="relative"
+          ref={selectorRef}
+        >
+
+          <button
+            type="button"
+            onClick={() =>
+              setShowProductSelector(
+                !showProductSelector
+              )
+            }
             className="
+              flex
+              w-full
+              items-center
+              justify-between
               rounded-xl
               border
               border-slate-300
-              px-4
-              py-3
+              bg-white
+              px-3
+              py-2
+              text-left
               text-sm
-              outline-none
+              transition
+              hover:border-[#0F2747]
               focus:border-[#0F2747]
               focus:ring-2
               focus:ring-blue-100
             "
           >
-            <option value="">Select Category</option>
+            <span
+              className={`truncate ${
+                productIds.length === 0
+                  ? "text-slate-400"
+                  : "text-slate-900"
+              }`}
+            >
+              {productIds.length === 0
+                ? "Select Products *"
+                : (() => {
+                    const selectedNames = products
+                      .filter((product) =>
+                        productIds.includes(product.id)
+                      )
+                      .map((product) => product.name);
 
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            ))}
-          </select>
+                    if (
+                      productIds.includes("other")
+                    ) {
+                      selectedNames.push("Other");
+                    }
 
-          <select
-            value={productId}
-            onChange={(e) => setProductId(e.target.value)}
-            disabled={!categoryId}
-            className="
-              rounded-xl
-              border
-              border-slate-300
-              px-4
-              py-3
-              text-sm
-              outline-none
-              focus:border-[#0F2747]
-              focus:ring-2
-              focus:ring-blue-100
-              disabled:bg-slate-100
-            "
-          >
-            <option value="">Select Product</option>
+                    if (selectedNames.length <= 2) {
+                      return selectedNames.join(", ");
+                    }
 
-            {products
-              .filter((product) => product.categoryId === categoryId)
-              .map((product) => (
-                <option key={product.id} value={product.id}>
-                  {product.name}
-                </option>
-              ))}
-          </select>
+                    return `${selectedNames
+                      .slice(0, 2)
+                      .join(", ")} +${
+                      selectedNames.length - 2
+                    }`;
+                  })()}
+            </span>
+
+            <span className="text-sm">▼</span>
+          </button>
+
+          {showProductSelector && (
+            <div
+              className="
+                absolute
+                left-0
+                right-0
+                z-50
+                mt-2
+                h-48
+                overflow-y-auto
+                rounded-xl
+                border
+                border-slate-200
+                bg-white
+                p-3
+                shadow-xl
+              "
+            >
+
+              <div
+                className={`grid gap-2 ${
+                  productIds.includes("other")
+                    ? "grid-cols-1"
+                    : "md:grid-cols-2 lg:grid-cols-3"
+                }`}
+              >
+                {products.map((product) => (
+                  <label
+                    key={product.id}
+                    className={`
+                    flex
+                    cursor-pointer
+                    items-start
+                    gap-2
+                    rounded-lg
+                    px-2
+                    py-0
+                    transition-all
+                    ${
+                      productIds.includes(product.id)
+                        ? "bg-orange-0"
+                        : "hover:bg-slate-50"
+                    }
+                    `}
+                  >
+                   <input
+                      type="checkbox"
+                      className="
+                        mt-0.5
+                        h-3
+                        w-3
+                        shrink-0
+                        rounded
+                        border-slate-300
+                        accent-gray-500
+                      "
+                      checked={productIds.includes(
+                        product.id
+                      )}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setProductIds((prev) =>
+                            prev.includes(product.id)
+                              ? prev
+                              : [...prev, product.id]
+                          );
+                        } else {
+                          setProductIds(
+                            productIds.filter(
+                              (id) =>
+                                id !== product.id
+                            )
+                          );
+                        }
+                      }}
+                    />
+
+                    <span className="text-sm leading-5 text-slate-700">
+                      {product.name}
+                    </span>
+                  </label>
+                ))}
+
+                {/* Other */}
+
+                <label
+                  className={`
+                    flex
+                    cursor-pointer
+                    items-start
+                    gap-2
+                    rounded-lg
+                    px-2
+                    py-0.5
+                    transition-all
+                    ${
+                      productIds.includes("other")
+                        ? "bg-orange-00"
+                        : "hover:bg-slate-50"
+                    }
+                  `}
+                >
+                  <input
+                    type="checkbox"
+                    className="
+                      mt-0.5
+                      h-3
+                      w-3 
+                      shrink-0
+                      rounded
+                      border-slate-300
+                      accent-gray-500
+                    "
+                    checked={productIds.includes(
+                      "other"
+                    )}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setProductIds((prev) =>
+                          prev.includes("other")
+                            ? prev
+                            : [...prev, "other"]
+                        );
+                        setShowProductSelector(false);
+                      } else {
+                        setProductIds(
+                          productIds.filter(
+                            (id) =>
+                              id !== "other"
+                          )
+                        );
+
+                        setOtherProductName("");
+                      }
+                    }}
+                  />
+
+                  <span className="text-sm leading-5 text-slate-700">
+                    Other
+                  </span>
+                </label>
+              </div>
+            </div>
+          )}
         </div>
-        {/* City */}
 
+        {/* Other Product Name */}
+
+        {productIds.includes("other") && (
+          <div>
+            <input
+              type="text"
+              placeholder="Please enter the other product name *"
+              value={otherProductName}
+              onChange={(e) =>
+                setOtherProductName(e.target.value)
+              }
+              autoFocus
+              className="
+                w-full
+                rounded-xl
+                border
+                border-slate-300
+                px-3
+                py-2
+                text-sm
+                outline-none
+                transition
+                placeholder:text-slate-500
+                focus:border-[#0F2747]
+                focus:bg-white
+                focus:ring-2
+                focus:ring-blue-100
+              "
+            />
+          </div>
+        )}
+
+        </div>
+
+        {/* City */}
         <input
           type="text"
           placeholder="City"
@@ -299,8 +540,8 @@ export default function ContactForm({
           rounded-xl
           border
           border-slate-300
-          px-4
-          py-3
+          px-3
+          py-2
           text-sm
           outline-none
           transition
@@ -322,10 +563,10 @@ export default function ContactForm({
           rounded-xl
           border
           border-slate-300
-          px-4
+          px-3
           py-2
           text-sm
-          leading-6
+          leading-3
           outline-none
           transition
           resize-none

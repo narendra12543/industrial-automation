@@ -18,7 +18,7 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
         px-4
     "
     >
-      {/* Email + Phone - truly centered on the bar */}
+      {/* Email + Phone + Social Icons - truly centered on the bar */}
       <div
         className="
         absolute
@@ -90,25 +90,10 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
           <Phone size={16} className="text-orange-500" />
           +91 7057748540
         </a>
-      </div>
 
-      {/* Follow Us On - Social Icons, pushed to far right */}
+        {/* Social Icons */}
 
-      <div
-        className="
-        ml-auto
-        hidden
-        md:flex
-        items-center
-        gap-3
-        text-sm
-        font-medium
-        text-[#0F2747]
-      "
-      >
-        <span className="hidden lg:block">Follow Us On :</span>
-
-        <div className="flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2">
           <a
             href="https://facebook.com"
             target="_blank"

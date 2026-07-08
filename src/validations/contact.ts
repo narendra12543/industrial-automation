@@ -8,10 +8,14 @@ export const createContactSchema =
 
     companyName: z.string().optional(),
     categoryId: z.string().optional(),
-    productId: z.string().optional(),
-    city: z.string().optional(),
+    productIds: z
+      .array(z.string())
+      .min(1, "Please select product."),
+    otherProductName: z.string().optional(),
 
+    city: z.string().optional(),
     message: z.string().min(10),
+    
   });
 
 export type CreateContactInput =

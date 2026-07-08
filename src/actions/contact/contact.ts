@@ -9,7 +9,8 @@ export async function createContact(data: {
   mobile: string;
   companyName?: string;
   categoryId?: string;
-  productId?: string;
+  productIds: string[];
+  otherProductName?: string;
   city?: string;
   message: string;
 }) {
@@ -21,27 +22,22 @@ export async function createContact(data: {
     });
 
     console.log("Contact Saved Successfully");
-    const category = data.categoryId
-      ? await prisma.category.findUnique({
-          where: {
-            id: data.categoryId,
-          },
-          select: {
-            name: true,
-          },
-        })
-      : null;
+    const products = await prisma.product.findMany({
+      where: {
+        id: {
+          in: data.productIds.filter(
+            (id) => id !== "other"
+          ),
+        },
+      },
+      select: {
+        name: true,
+      },
+    });
 
-    const product = data.productId
-      ? await prisma.product.findUnique({
-          where: {
-            id: data.productId,
-          },
-          select: {
-            name: true,
-          },
-        })
-      : null;
+    const productNames = products
+      .map((product) => product.name)
+      .join(", ");
 
     // Customer Email
 
@@ -119,14 +115,20 @@ export async function createContact(data: {
             </p>
 
             <p>
-              <strong>Category:</strong>
-              ${category?.name ?? "-"}
+              <strong>Products:</strong>
+              ${productNames || "-"}
             </p>
 
+            ${
+              data.otherProductName
+                ? `
             <p>
-              <strong>Product:</strong>
-              ${product?.name ?? "-"}
+              <strong>Other Product:</strong>
+              ${data.otherProductName}
             </p>
+            `
+                : ""
+            }
 
             <p>
               <strong>City:</strong>
