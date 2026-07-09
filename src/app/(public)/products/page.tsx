@@ -7,9 +7,14 @@ import ProductsCatalog from "@/components/public/products/ProductsCatalog";
 import ProductsCTA from "@/components/public/products/ProductsCTA";
 
 export const metadata: Metadata = {
-  title: "Aven Industrial automation Products",
+  title: "Products",
+
   description:
-    "Explore our complete range of Aven Industrial automation products and solutions.",
+    "Explore Automatic Gates, Boom Barriers, High Speed Doors, Rolling Shutters, Dock Levelers, Dock Shelters and Industrial Automation Products.",
+
+  alternates: {
+    canonical: "/products",
+  },
 };
 
 export default async function ProductsPage() {

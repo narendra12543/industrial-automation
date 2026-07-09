@@ -5,3 +5,9 @@ export default function NotFound() {
     </div>
   );
 }
+export const metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};

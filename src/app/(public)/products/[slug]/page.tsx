@@ -10,6 +10,11 @@ import ApplicationsSection from "@/components/public/product-details/Application
 
 import ProductEnquiryForm from "@/components/enquiries/ProductEnquiryForm";
 import ProductDescription from "@/components/products/ProductDescription";
+import type { Metadata } from "next";
+import Script from "next/script";
+import ProductSchema from "@/components/seo/ProductSchema";
+import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+
 
 interface ProductDetailsPageProps {
   params: Promise<{
@@ -17,7 +22,9 @@ interface ProductDetailsPageProps {
   }>;
 }
 
-export async function generateMetadata({ params }: ProductDetailsPageProps) {
+export async function generateMetadata({
+  params,
+}: ProductDetailsPageProps): Promise<Metadata> {
   const { slug } = await params;
 
   const product = await getProductBySlug(slug);
@@ -25,12 +32,64 @@ export async function generateMetadata({ params }: ProductDetailsPageProps) {
   if (!product) {
     return {
       title: "Product Not Found",
+      description: "The requested product could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
+  const title = product.name;
+
+  const description =
+    product.shortDescription ??
+    `${product.name} from Aven Automation. Premium Industrial Entrance Automation Solutions.`;
+
+  const canonical = `https://avenautomation.in/products/${product.slug}`;
+
+  const image =
+    product.images.find((img) => img.isPrimary)?.imageUrl ??
+    product.images[0]?.imageUrl;
+
   return {
-    title: product.name,
-    description: product.shortDescription ?? product.name,
+    title,
+    description,
+
+    alternates: {
+      canonical,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "website",
+      siteName: "Aven Automation",
+
+      images: image
+        ? [
+            {
+              url: image,
+              width: 1200,
+              height: 630,
+              alt: product.name,
+            },
+          ]
+        : [],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: image ? [image] : [],
+    },
   };
 }
 
@@ -53,12 +112,60 @@ export default async function ProductDetailsPage({
   //     product.id
   //   );
 
-  const primaryImage =
-    product.images.find((image) => image.isPrimary) ?? product.images[0];
+  const primaryImage = product.images.find((image) => image.isPrimary) ?? product.images[0];
+
+  const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+
+  name: product.name,
+
+  description:
+    product.shortDescription ??
+    product.description ??
+    product.name,
+
+  image: product.images.map((image) => image.imageUrl),
+
+  sku: product.id,
+
+  brand: {
+    "@type": "Brand",
+    name: "Aven Automation",
+  },
+
+  manufacturer: {
+    "@type": "Organization",
+    name: "Aven Automation",
+  },
+
+  category: product.category?.name,
+
+  url: `https://avenautomation.in/products/${product.slug}`,
+};
 
   return (
-    
-    <div className="bg-slate-50">
+    <>
+      <ProductSchema product={product} />
+      
+      <BreadcrumbSchema
+        items={[
+          {
+            name: "Home",
+            url: "https://avenautomation.in",
+          },
+          {
+            name: "Products",
+            url: "https://avenautomation.in/products",
+          },
+          {
+            name: product.name,
+            url: `https://avenautomation.in/products/${product.slug}`,
+          },
+        ]}
+      />
+
+      <div className="bg-slate-50">
       
       <div className="mx-auto max-w-7xl px-4 py-10">
         {/* Hero Section */}
@@ -182,7 +289,8 @@ export default async function ProductDetailsPage({
             />
           </section>
         </div>
-      </div>
+        </div>
     </div>
+  </>
   );
 }

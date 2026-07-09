@@ -92,10 +92,12 @@ const goNext = () => {
           src={selectedImage.imageUrl}
           alt={
             selectedImage.altText ??
-            "Product Image"
+            `${selectedImage.id} - Aven Automation`
           }
           fill
+          sizes="(max-width:768px) 100vw, 50vw"
           className="object-contain p-6"
+          priority
         />
       </div>
 
@@ -122,6 +124,7 @@ const goNext = () => {
                   "Thumbnail"
                 }
                 fill
+                sizes="120px"
                 className="object-cover"
               />
             </button>

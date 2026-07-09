@@ -1,7 +1,19 @@
 import ContactForm from "@/components/public/contact/ContactForm";
 import GoogleMapSection from "@/components/public/contact/GoogleMapSection";
 import { prisma } from "@/lib/prisma";
+import type { Metadata } from "next";
 
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+
+  description:
+    "Contact Aven Automation for Automatic Gates, Boom Barriers, Industrial Doors and Entrance Automation Solutions.",
+
+  alternates: {
+    canonical: "/contact",
+  },
+};
 export default async function ContactPage() {
   
   const categories =
