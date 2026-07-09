@@ -138,19 +138,13 @@ export async function createEnquiry(
             ),
         });
 
-await sendCustomerEmail({
-  customerEmail:
-    email,
-
-  customerName:
-    name,
-
-  productName:
-    product.name,
-
-  pdfBuffer:
-    pdf,
-});
+        await sendCustomerEmail({
+          customerEmail: email,
+          customerName: name,
+          productName: product.name,
+          categoryName: product.category?.name ?? "N/A",
+          pdfBuffer: pdf,
+        });
         await sendAdminEmail({
             customerName:
             name,

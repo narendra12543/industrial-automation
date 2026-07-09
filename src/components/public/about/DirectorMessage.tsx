@@ -58,7 +58,7 @@ export default function DirectorMessage() {
                   text-slate-700
                 "
               >
-                Our vision is to become a trusted industrial automation partner
+                Our vision is to become a trusted Aven Industrial automation partner
                 by delivering reliable, innovative and future-ready engineering
                 solutions that help industries improve productivity, safety and
                 operational excellence.
@@ -95,7 +95,7 @@ export default function DirectorMessage() {
               "
             >
               <p>
-                At Industrial Automation Platform, we believe every industry
+                At Aven Industrial automation Platform, we believe every industry
                 deserves dependable, efficient and intelligent automation
                 solutions. Our commitment is to deliver products and engineering
                 services that improve productivity while maintaining the highest

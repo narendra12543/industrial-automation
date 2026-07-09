@@ -161,7 +161,7 @@ export default async function ProductDetailsPage({
                   </h2>
 
                   <p className="mt-1 max-w-2xl text-sm text-slate-300">
-                    Tell us about your requirement. Our industrial automation
+                    Tell us about your requirement. Our Aven Industrial automation
                     experts will contact you with the best solution for your
                     application.
                   </p>

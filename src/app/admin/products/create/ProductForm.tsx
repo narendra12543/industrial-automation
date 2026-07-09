@@ -149,7 +149,7 @@ export default function ProductForm({
           </h1>
 
           <p className="mt-2 text-slate-600">
-            Create a new industrial automation product.
+            Create a new Aven Industrial automationproduct.
           </p>
         </div>
 

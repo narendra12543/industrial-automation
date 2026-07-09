@@ -7,9 +7,9 @@ import ProductsCatalog from "@/components/public/products/ProductsCatalog";
 import ProductsCTA from "@/components/public/products/ProductsCTA";
 
 export const metadata: Metadata = {
-  title: "Industrial Automation Products",
+  title: "Aven Industrial automation Products",
   description:
-    "Explore our complete range of industrial automation products and solutions.",
+    "Explore our complete range of Aven Industrial automation products and solutions.",
 };
 
 export default async function ProductsPage() {

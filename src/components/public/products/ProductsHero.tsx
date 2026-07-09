@@ -28,7 +28,7 @@ export default function ProductsHero({
       <div className="relative mx-auto max-w-7xl px-4">
       
         <h1 className="text-3xl font-bold text-[#0F2747] md:text-3xl">
-          Industrial Automation Products
+          Aven Industrial automation Products
         </h1>
         
       </div>

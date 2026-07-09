@@ -22,7 +22,7 @@ export default async function AdminCategoriesPage() {
               </h1>
 
               <p className="mt-2 text-[#0F2747]/80">
-                Manage industrial automation product categories.
+                Manage Aven Industrial automationproduct categories.
               </p>
             </div>
 

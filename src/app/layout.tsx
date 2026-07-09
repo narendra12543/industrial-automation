@@ -13,9 +13,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Industrial Automation Platform",
+  title: "Aven Automation",
   description:
     "Automatic Door Motors, Gate Automation Systems, Rolling Shutter Motors, Boom Barriers and Entrance Automation Solutions",
+  
 };
 
 export default async function RootLayout({

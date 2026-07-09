@@ -101,7 +101,7 @@ export default function SolutionsSwiper() {
                   <div className="absolute inset-x-0 top-0 flex flex-col items-center px-6 pt-5 text-center sm:px-10 sm:pt-5 lg:px-16 lg:pt-5">
                     <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-orange-300 backdrop-blur-md sm:text-xs">
                   
-                      Industrial Automation Solutions
+                      Aven Industrial automation
                     </span>
 
                     <h2 className="mx-auto mt-6 max-w-2xl text-2xl font-extrabold leading-[1.15] tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.45)] sm:text-2xl lg:text-3xl">

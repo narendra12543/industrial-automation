@@ -1,5 +1,6 @@
 import {
   Body,
+  Button,
   Column,
   Container,
   Head,
@@ -14,10 +15,14 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
-interface EnquiryConfirmationTemplateProps {
-  customerName: string;
-  productName: string;
-  categoryName?: string;
+interface CustomerContactTemplateProps {
+  name: string;
+  email: string;
+  mobile: string;
+  company?: string;
+  city?: string;
+  products: string;
+  message: string;
 }
 
 const COLORS = {
@@ -33,15 +38,20 @@ const COLORS = {
   successBg: "#EAF7EE",
 };
 
+// Must be a full public HTTPS URL — email clients cannot load local files.
 // Replace "yourdomain.com" with your actual deployed domain.
 const LOGO_URL = "https://yourdomain.com/aven/aven-logo-1.png";
 
-export const EnquiryConfirmationTemplate = ({
-  customerName,
-  productName,
-  categoryName,
-}: EnquiryConfirmationTemplateProps) => {
-  const previewText = `Thank you ${customerName}, your enquiry for ${productName} has been received. Product details PDF attached.`;
+export const CustomerContactTemplate = ({
+  name,
+  email,
+  mobile,
+  company,
+  city,
+  products,
+  message,
+}: CustomerContactTemplateProps) => {
+  const previewText = `Thank you ${name}, we have received your enquiry. Our technical team is reviewing your requirements.`;
 
   return (
     <Html>
@@ -73,13 +83,12 @@ export const EnquiryConfirmationTemplate = ({
           {/* ===================== HERO ===================== */}
           <Section style={styles.heroSection}>
             <Heading style={styles.heroHeading}>
-              Thank You {customerName}
+              Thank You {name}
             </Heading>
             <Text style={styles.heroSubtitle}>
-              We have received your enquiry for{" "}
-              <strong>{productName}</strong>.
+              We have successfully received your enquiry.
               <br />
-              Please find the product information PDF attached to this email.
+              Our technical team is reviewing your requirements.
             </Text>
           </Section>
 
@@ -110,24 +119,33 @@ export const EnquiryConfirmationTemplate = ({
               </Row>
             </Section>
 
-            {/* Product Details Card */}
+            {/* Enquiry Details Card */}
             <Section style={styles.detailsCard}>
-              <Text style={styles.cardTitle}>Enquiry Summary</Text>
+              <Text style={styles.cardTitle}>Enquiry Details</Text>
               <Hr style={styles.cardDivider} />
 
-              <DetailRow label="Product" value={productName} />
+              <DetailRow label="Name" value={name} />
+              <DetailRow label="Email" value={email} />
+              <DetailRow label="Mobile" value={mobile} />
+              <DetailRow label="Company" value={company || "-"} />
+              <DetailRow label="City" value={city || "-"} />
+              <DetailRow label="Products" value={products || "-"} />
               <DetailRow
-                label="Category"
-                value={categoryName || "-"}
+                label="Message"
+                value={message}
                 isLast
               />
-
-              <Text style={styles.attachmentNote}>
-                📎 Detailed specifications, features and applications for
-                this product are included in the attached PDF.
-              </Text>
             </Section>
 
+            {/* CTA Button */}
+            <Section style={styles.ctaSection}>
+              <Button
+                href="https://avenautomation.in/products"
+                style={styles.ctaButton}
+              >
+                View Products
+              </Button>
+            </Section>
 
             {/* Contact Section */}
             <Section style={styles.contactCard}>
@@ -177,7 +195,7 @@ export const EnquiryConfirmationTemplate = ({
   );
 };
 
-export default EnquiryConfirmationTemplate;
+export default CustomerContactTemplate;
 
 /* ============================================================
    Reusable Sub-Components
@@ -237,7 +255,8 @@ const TimelineItem = ({
 const styles: Record<string, React.CSSProperties> = {
   body: {
     backgroundColor: COLORS.background,
-    fontFamily: "'Segoe UI', Helvetica, Arial, sans-serif",
+    fontFamily:
+      "'Segoe UI', Helvetica, Arial, sans-serif",
     margin: 0,
     padding: "24px 0",
   },
@@ -247,6 +266,7 @@ const styles: Record<string, React.CSSProperties> = {
     backgroundColor: COLORS.background,
   },
 
+  /* Header */
   header: {
     backgroundColor: COLORS.primary,
     backgroundImage: `linear-gradient(135deg, ${COLORS.primary} 0%, ${COLORS.primaryDark} 100%)`,
@@ -275,6 +295,7 @@ const styles: Record<string, React.CSSProperties> = {
     textAlign: "center" as const,
   },
 
+  /* Hero */
   heroSection: {
     backgroundColor: COLORS.card,
     padding: "40px 32px 24px 32px",
@@ -300,6 +321,7 @@ const styles: Record<string, React.CSSProperties> = {
     padding: "0 32px 32px 32px",
   },
 
+  /* Success Card */
   successCard: {
     backgroundColor: COLORS.successBg,
     border: `1px solid ${COLORS.success}`,
@@ -334,6 +356,7 @@ const styles: Record<string, React.CSSProperties> = {
     lineHeight: "28px",
   },
 
+  /* Generic Card */
   detailsCard: {
     backgroundColor: COLORS.card,
     border: `1px solid ${COLORS.border}`,
@@ -368,6 +391,7 @@ const styles: Record<string, React.CSSProperties> = {
     margin: "12px 0 16px 0",
   },
 
+  /* Detail Rows */
   detailRow: {
     marginBottom: "14px",
   },
@@ -390,18 +414,8 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
     lineHeight: "20px",
   },
-  attachmentNote: {
-    color: COLORS.textMuted,
-    fontSize: "13px",
-    lineHeight: "20px",
-    marginTop: "16px",
-    marginBottom: 0,
-    backgroundColor: COLORS.background,
-    border: `1px dashed ${COLORS.border}`,
-    borderRadius: "8px",
-    padding: "12px 14px",
-  },
 
+  /* Timeline */
   timelineRow: {
     marginBottom: "16px",
   },
@@ -434,6 +448,24 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
   },
 
+  /* CTA */
+  ctaSection: {
+    textAlign: "center" as const,
+    margin: "8px 0 28px 0",
+  },
+  ctaButton: {
+    backgroundColor: COLORS.accent,
+    borderRadius: "8px",
+    color: "#FFFFFF",
+    fontSize: "15px",
+    fontWeight: 700,
+    textDecoration: "none",
+    textAlign: "center" as const,
+    padding: "14px 36px",
+    display: "inline-block",
+  },
+
+  /* Contact */
   contactColumn: {
     padding: "0 8px",
   },
@@ -460,6 +492,7 @@ const styles: Record<string, React.CSSProperties> = {
     wordBreak: "break-word" as const,
   },
 
+  /* Footer */
   footer: {
     backgroundColor: COLORS.primaryDark,
     borderRadius: "0 0 12px 12px",

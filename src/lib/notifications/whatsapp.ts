@@ -26,7 +26,7 @@ ${productName}
 Our team will contact you shortly.
 
 Regards,
-Industrial Automation Solutions
+Aven Industrial automation
 `;
 }
 

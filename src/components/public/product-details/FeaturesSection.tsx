@@ -28,7 +28,7 @@ export default function FeaturesSection({
           Key Features
         </h2>
         <p className="mt-1 text-sm text-slate-500">
-          Designed for reliable industrial automation performance.
+          Designed for reliable Aven Industrial automationperformance.
         </p>
       </div>
 

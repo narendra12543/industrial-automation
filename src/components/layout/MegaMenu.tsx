@@ -1,6 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
+import {
+  Cog,
+  ShieldCheck,
+  DoorOpen,
+  Warehouse,
+  Zap,
+  LayoutGrid,
+  Package,
+  ArrowUpRight,
+} from "lucide-react";
 
 interface ProductMegaMenuProps {
   categories: {
@@ -17,16 +28,37 @@ interface ProductMegaMenuProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+// Pick an icon that matches the category name so the sidebar reads at a glance
+function getCategoryIcon(name: string) {
+  const n = name.toLowerCase();
+  if (n.includes("motor")) return Cog;
+  if (n.includes("barrier")) return ShieldCheck;
+  if (n.includes("gate")) return DoorOpen;
+  if (n.includes("hangar")) return Warehouse;
+  if (n.includes("speed")) return Zap;
+  if (n.includes("sectional") || n.includes("overhead")) return LayoutGrid;
+  return Package;
+}
+
+const ROW_HEIGHT = 44; // px — button height + gap, used by the sliding pill
+
 export default function ProductMegaMenu({
   categories,
   open,
   setOpen,
 }: ProductMegaMenuProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeCategory = categories[activeIndex];
+  const isWide = (activeCategory?.products.length ?? 0) > 5;
+
   return (
     <div
       className="relative"
       onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseLeave={() => {
+        setOpen(false);
+        setActiveIndex(0);
+      }}
     >
       {/* Trigger */}
 
@@ -55,113 +87,154 @@ export default function ProductMegaMenu({
           top-full
           left-1/2
           -translate-x-[43%]
-          mt-5
-          w-[1150px]
+          mt-4
+          ${isWide ? "w-[860px]" : "w-[580px]"}
           overflow-hidden
-          rounded-b-2xl
+          rounded-[20px]
           border
           border-slate-200/70
-          bg-gradient-to-br
-          from-white
-          via-slate-50
-          to-white
-          shadow-2xl
+          bg-white/95
+          backdrop-blur-xl
+          shadow-[0_20px_60px_-15px_rgba(15,39,71,0.25)]
           z-[60]
           transition-all
           duration-300
+          ease-out
           ${
             open
               ? "visible opacity-100 translate-y-0"
-              : "invisible opacity-0 -translate-y-3"
+              : "invisible opacity-0 -translate-y-2"
           }
         `}
       >
-        {/* Background Effects */}
-
-        <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-orange-200/60 blur-[120px]" />
-
-        <div className="absolute -top-20 right-0 h-80 w-80 rounded-full bg-blue-200/60 blur-[120px]" />
-
-        <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-slate-100/60 blur-[120px]" />
-
-        <div className="absolute bottom-10 right-1/4 h-60 w-60 rounded-full bg-cyan-100/40 blur-[100px]" />
-
-        <div className="absolute top-1/2 left-1/4 h-52 w-52 rounded-full bg-orange-100/40 blur-[90px]" />
+        {/* Background Effects — kept small and controlled, not oversized */}
+        <div className="pointer-events-none absolute -top-16 -left-16 h-56 w-56 rounded-full bg-orange-100/60 blur-[90px]" />
+        <div className="pointer-events-none absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-blue-100/60 blur-[90px]" />
 
         {/* Content */}
 
-        <div className="relative z-10">
-          {/* Categories */}
+        <div className="relative z-10 flex">
+          {/* Sidebar */}
 
-          <div className="grid grid-cols-4 gap-x-10 gap-y-4 p-5">
-            {categories.map((category) => (
-              <div key={category.id}>
-                {/* Category */}
+          <div className="w-[190px] shrink-0 border-r border-slate-100 p-2.5">
+            <div className="relative">
+              {/* Sliding highlight pill — the signature element */}
+              <div
+                className="absolute left-0 right-0 rounded-xl bg-[#0F2747] transition-transform duration-300 ease-out"
+                style={{
+                  height: 38,
+                  transform: `translateY(${activeIndex * ROW_HEIGHT}px)`,
+                }}
+              />
 
+              {categories.map((category, idx) => {
+                const Icon = getCategoryIcon(category.name);
+                const isActive = idx === activeIndex;
+
+                return (
+                  <button
+                    key={category.id}
+                    type="button"
+                    onMouseEnter={() => setActiveIndex(idx)}
+                    onFocus={() => setActiveIndex(idx)}
+                    style={{ height: 38, marginBottom: ROW_HEIGHT - 38 }}
+                    className="relative z-10 flex w-full items-center gap-2.5 rounded-xl px-3 text-left"
+                  >
+                    <Icon
+                      className={`h-[15px] w-[15px] shrink-0 transition-colors duration-200 ${
+                        isActive ? "text-orange-300" : "text-slate-400"
+                      }`}
+                    />
+
+                    <span
+                      className={`truncate text-[13px] font-medium transition-colors duration-200 ${
+                        isActive ? "text-white" : "text-slate-600"
+                      }`}
+                    >
+                      {category.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Detail Panel */}
+
+          <div className="relative flex-1 p-5">
+            {activeCategory && (
+              <>
                 <Link
                   href={`/products?category=${encodeURIComponent(
-                    category.name
+                    activeCategory.name
                   )}`}
                   onClick={() => setOpen(false)}
-                  className="group mb-4 inline-block"
+                  className="
+                    absolute
+                    right-5
+                    top-5
+                    flex
+                    items-center
+                    gap-1
+                    text-[11px]
+                    font-medium
+                    text-slate-400
+                    transition-colors
+                    hover:text-orange-600
+                  "
                 >
-                  <h3
-                    className="
-                      text-lg
-                      font-semibold
-                      text-[#0F2747]
-                      transition-colors
-                      duration-300
-                      hover:underline
-                    "
-                  >
-                    {category.name}
-                  </h3>
-
-                  <div
-                    className="
-                      w-0
-                      bg-[#0F2747]
-                      transition-all
-                      duration-300
-                      group-hover:w-full
-                      
-                    "
-                  />
+                  View all
+                  <ArrowUpRight className="h-3 w-3" />
                 </Link>
 
-                {/* Products */}
-
-                <div>
-                  {category.products.map((product) => (
+                <div
+                  className={`mt-0 grid gap-x-4 gap-y-0.5 ${
+                    activeCategory.products.length > 5
+                      ? "grid-cols-2"
+                      : "grid-cols-1"
+                  }`}
+                >
+                  {activeCategory.products.map((product) => (
                     <Link
                       key={product.id}
                       href={`/products/${product.slug}`}
                       onClick={() => setOpen(false)}
                       className="
+                        group
                         flex
                         items-center
                         gap-2
-                        border-b
-                        border-slate-200/70
-                        py-1
-                        text-sm
+                        rounded-lg
+                        px-2.5
+                        py-2
+                        text-[13px]
                         text-slate-700
                         transition-all
-                        duration-200
+                        duration-150
+                        hover:bg-slate-50
                         hover:text-[#0F2747]
                       "
                     >
-                      <span className="text-slate-500">•</span>
+                      <span
+                        className="
+                          h-1
+                          w-1
+                          shrink-0
+                          rounded-full
+                          bg-slate-300
+                          transition-colors
+                          group-hover:bg-orange-500
+                        "
+                      />
 
-                      <span className="hover:underline underline-offset-4">
+                      <span className="truncate transition-transform duration-150 group-hover:translate-x-0.5">
                         {product.name}
                       </span>
                     </Link>
                   ))}
                 </div>
-              </div>
-            ))}
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const solutions = [
   "Automatic Monitoring",
@@ -26,26 +27,49 @@ export default function Footer() {
         <div className="grid grid-cols-2 gap-6 gap-y-8 lg:grid-cols-4 lg:gap-8 lg:gap-y-10">
           {/* Company */}
           <div>
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-xs font-bold text-[#0F2747] sm:h-10 sm:w-10 sm:text-sm">
-                IAS
-              </div>
+            {/* Company */}
+            <div>
+              <Link
+                href="/"
+                className="flex items-center gap-1.5"
+              >
+                {/* Logo */}
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white shadow-sm sm:h-12 sm:w-12">
+                  <Image
+                    src="/aven-logo.png"
+                    alt="Aven Automation"
+                    width={44}
+                    height={44}
+                    className="h-[32px] w-[32px] object-contain sm:h-[38px] sm:w-[38px]"
+                  />
+                </div>
 
-              <div>
-                <h3 className="text-xs font-bold leading-tight sm:text-sm">
-                  Industrial Automation
-                </h3>
-                <p className="text-[11px] text-slate-400 sm:text-xs">
-                  Solutions
+                  {/* Company Name */}
+                  <div className="flex flex-col justify-center">
+                    <h1 className="text-base font-extrabold tracking-tight text-white leading-none sm:text-lg">
+                      Aven
+                    </h1>
+
+                    <span
+                      className="mt-1 font-medium uppercase text-slate-400"
+                      style={{
+                        fontSize: "7px",
+                        letterSpacing: "0.14em",
+                        WebkitTextSizeAdjust: "100%",
+                        textSizeAdjust: "100%",
+                      }}
+                    >
+                      Industrial Automation
+                    </span>
+                  </div>
+                </Link>
+
+                <p className="mt-3 max-w-xs text-xs leading-5 text-slate-400 sm:mt-4 sm:text-sm sm:leading-6">
+                  Smart industrial automation, gate automation, boom barriers,
+                  rolling shutters and engineering solutions for modern
+                  industries.
                 </p>
               </div>
-            </div>
-
-            <p className="mt-3 max-w-xs text-xs leading-5 text-slate-400 sm:mt-4 sm:text-sm sm:leading-6">
-              Smart industrial automation, gate automation, boom barriers,
-              rolling shutters and engineering solutions for modern
-              industries.
-            </p>
           </div>
 
           {/* Solutions */}
@@ -157,11 +181,18 @@ export default function Footer() {
               </a>
 
               <a
-                href="mailto:info@company.com"
+                href="mailto:info@avenautomation.in"
                 className="flex items-center gap-2.5 transition hover:text-white sm:gap-3"
               >
                 <Mail size={14} className="shrink-0 text-orange-400 sm:size-[15px]" />
-                info@company.com
+                info@avenautomation.in
+              </a>
+              <a
+                href="mailto:sales@avenautomation.in"
+                className="flex items-center gap-2.5 transition hover:text-white sm:gap-3"
+              >
+                <Mail size={14} className="shrink-0 text-orange-400 sm:size-[15px]" />
+                sales@avenautomation.in
               </a>
 
               <div className="flex items-start gap-2.5 sm:gap-3">
@@ -192,7 +223,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-4 flex flex-col items-center gap-1 border-t border-white/10 pt-4 text-center text-[11px] text-slate-400 sm:mt-10 sm:gap-1.5 sm:pt-4 sm:text-xs sm:flex-row sm:justify-between sm:text-left lg:mt-4">
-          <div >© 2026 Industrial Automation Solutions. All rights reserved.</div>
+          <div >© 2026 Aven Industrial automation. All rights reserved.</div>
           <div>
             Designed and developed by{" "}
             <a

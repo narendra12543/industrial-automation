@@ -50,7 +50,7 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
         {/* Email */}
 
         <a
-          href="mailto:sales@yourcompany.com"
+          href="mailto:sales@avenautomation.in"
           className="
           flex
           items-center
@@ -65,7 +65,7 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
         >
           <Mail size={16} className="text-orange-500" />
 
-          <span className="hidden sm:block">sales@yourcompany.com</span>
+          <span className="hidden sm:block">sales@avenautomation.in</span>
 
           <span className="sm:hidden">Email</span>
         </a>

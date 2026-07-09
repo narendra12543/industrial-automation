@@ -67,7 +67,7 @@ export default function HeroSection() {
                 backdrop-blur-sm
               "
             >
-              Industrial Automation Solutions
+              Aven Industrial automation
             </div>
 
             <h1
@@ -89,7 +89,7 @@ export default function HeroSection() {
                 animate-[fadeUp_1s_ease-out]
               "
             >
-              Smart Industrial Automation Solutions
+              Smart Aven Industrial automation
               <br />
               For Modern Manufacturing
             </h1>

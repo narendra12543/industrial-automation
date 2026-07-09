@@ -25,7 +25,7 @@ export default function CompanyOverview() {
 
             <p className="text-slate-600">
               To become a trusted
-              industrial automation
+              aven industrial automation
               partner known for quality,
               innovation and customer
               satisfaction.

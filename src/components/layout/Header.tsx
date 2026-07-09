@@ -7,7 +7,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { LayoutGrid } from "lucide-react";
 import { useEffect } from "react";
 import { FileText } from "lucide-react";
-
+import Image from "next/image";
 import TopInfoBar from "./TopInfoBar";
 import ProductSearchModal from "@/components/search/ProductSearchModal";
 
@@ -91,41 +91,39 @@ export default function Header({
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
 
-            <Link href="/" className="flex items-center gap-3">
-              <div
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-xl
-                  bg-[#0F2747]
-                  text-base
-                  font-bold
-                  text-white
-                  shadow-md
-                "
-              >
-                IAS
+            <Link
+              href="/"
+              className="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-90"
+            >
+              {/* Logo */}
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm sm:h-15 sm:w-15">
+                <Image
+                  src="/aven-logo.png"
+                  alt="Aven Automation"
+                  width={58}
+                  height={58}
+                  priority
+                  className="h-[42px] w-[42px] object-contain sm:h-[58px] sm:w-[58px]"
+                />
               </div>
 
-              <div className="hidden sm:block">
-                <p className="text-lg font-bold text-[#0F2747]">
+              {/* Company Name */}
+              <div className="flex flex-col justify-center">
+                <h1 className="text-xl font-extrabold tracking-tight text-[#0F2747] leading-none sm:text-[28px]">
+                  Aven
+                </h1>
+
+                <span
+                  className="mt-1 font-medium uppercase text-slate-500 sm:text-[11px] sm:tracking-[0.22em]"
+                  style={{
+                    fontSize: "7px",
+                    letterSpacing: "0.14em",
+                    WebkitTextSizeAdjust: "100%",
+                    textSizeAdjust: "100%",
+                  }}
+                >
                   Industrial Automation
-                </p>
-
-                <p className="text-xs tracking-wide text-slate-500">
-                  Solutions
-                </p>
-              </div>
-
-              <div className="block sm:hidden">
-                <p className="text-sm font-bold leading-tight text-[#0F2747]">
-                  Industrial
-                  <br />
-                  Automation
-                </p>
+                </span>
               </div>
             </Link>
 

@@ -17,35 +17,57 @@ export default function GoogleMapSection() {
 
   {/* Call */}
 
-  <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:shadow-md">
+  <a
+    href="tel:+91 7057748540"
+    className="block rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:shadow-md"
+  >
     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F2747] text-white">
       <Phone size={20} />
     </div>
 
     <h3 className="text-sm font-semibold text-[#0F2747]">
-      Call
+      Call Us
     </h3>
 
-    <p className="mt-2 text-xs font-medium leading-5 text-slate-600">
+    <p className="mt-2 text-xs leading-5 text-slate-600">
       +91 7057748540
     </p>
-  </div>
+  </a>
 
   {/* Email */}
 
   <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:shadow-md">
-    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F2747] text-white">
-      <Mail size={20} />
-    </div>
-
-    <h3 className="text-sm font-semibold text-[#0F2747]">
-      Email
-    </h3>
-
-    <p className="mt-2 break-all text-xs leading-5 text-slate-600">
-      info@company.com
-    </p>
+  <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F2747] text-white">
+    <Mail size={20} />
   </div>
+
+  <h3 className="text-sm font-semibold text-[#0F2747]">
+    Email
+  </h3>
+
+  <div className="mt-2 space-y-1 text-xs leading-5">
+    <a
+      href="mailto:info@avenautomation.in"
+      className="block break-all text-slate-600 hover:text-[#0F2747]"
+    >
+      info@avenautomation.in
+    </a>
+
+    <a
+      href="mailto:sales@avenautomation.in"
+      className="block break-all text-slate-600 hover:text-[#0F2747]"
+    >
+      sales@avenautomation.in
+    </a>
+
+    {/* <a
+      href="mailto:narendra@avenautomation.in"
+      className="block break-all text-slate-600 hover:text-[#0F2747]"
+    >
+      narendra@avenautomation.in
+    </a> */}
+  </div>
+</div>
 
   {/* Address */}
 

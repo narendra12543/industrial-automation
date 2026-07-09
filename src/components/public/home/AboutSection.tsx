@@ -18,7 +18,7 @@ export default function AboutSection() {
           <div className="relative overflow-hidden rounded-3xl shadow-xl">
             <Image
               src="/images/about-company.png"
-              alt="Industrial Automation Team"
+              alt="Aven Industrial automationTeam"
               width={700}
               height={520}
               className="h-full w-full object-cover transition duration-500 hover:scale-105"
@@ -47,13 +47,13 @@ export default function AboutSection() {
             </span>
 
             <h2 className="mt-2 text-3xl font-bold text-[#0F2747]">
-              Industrial Automation
+              Aven Industrial 
               <br />
-              Solutions Partner
+              Automation Partner
             </h2>
 
             <p className="mt-2 text-md leading-8 text-slate-600">
-              Industrial Automation Solutions is a trusted provider of
+              Aven Industrial automationis a trusted provider of
               advanced automation technologies for manufacturing plants,
               warehouses, commercial buildings and industrial
               infrastructure. We help businesses improve productivity,

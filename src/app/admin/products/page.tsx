@@ -35,7 +35,7 @@ export default async function AdminProductsPage() {
               </h1>
 
               <p className="mt-2 text-slate-600">
-                Manage industrial automation products.
+                Manage Aven Industrial automation products.
               </p>
             </div>
 

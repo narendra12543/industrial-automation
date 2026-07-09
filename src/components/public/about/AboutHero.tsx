@@ -47,7 +47,7 @@ export default function AboutHero() {
                 text-orange-700
               "
             >
-              Industrial Automation Experts
+              Aven Industrial automationExperts
             </div>
 
             <h1 className="mt-4  text-2xl font-bold text-[#0F2747] md:text-3xl">

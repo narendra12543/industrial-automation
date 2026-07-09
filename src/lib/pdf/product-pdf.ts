@@ -1,4 +1,5 @@
-import { PDFDocument, StandardFonts, PDFPage, PDFFont, rgb } from "pdf-lib";
+import { PDFDocument, StandardFonts, PDFPage, PDFFont, PDFImage, rgb, RGB } from "pdf-lib";
+import { AVEN_LOGO_FULL_BASE64 } from "./aven-logo-base64";
 
 interface ProductPdfData {
   productName: string;
@@ -10,44 +11,153 @@ interface ProductPdfData {
   applications?: string | null;
 }
 
+// Brand palette (matches the email templates)
+const COLORS = {
+  primary: rgb(0.059, 0.153, 0.278), // #0F2747
+  primaryDark: rgb(0.039, 0.106, 0.2), // #0A1B33
+  accent: rgb(0.969, 0.58, 0.114), // #F7941D
+  background: rgb(0.973, 0.98, 0.988), // #F8FAFC
+  white: rgb(1, 1, 1),
+  border: rgb(0.906, 0.918, 0.941), // #E7EAF0
+  textDark: rgb(0.063, 0.094, 0.157), // #101828
+  textMuted: rgb(0.361, 0.42, 0.51), // #5C6B82
+  tableHeaderBg: rgb(0.93, 0.95, 0.98),
+  rowAltBg: rgb(0.976, 0.984, 0.992),
+  rowLine: rgb(0.88, 0.89, 0.92),
+};
+
+const PAGE_WIDTH = 595;
+const PAGE_HEIGHT = 842;
+const MARGIN = 40;
+const CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2; // 515
+const BOTTOM_MARGIN = 70; // reserved for footer
+const HEADER_HEIGHT = 92;
+const COMPACT_HEADER_HEIGHT = 46;
+
 export async function generateProductPdf(data: ProductPdfData): Promise<Uint8Array> {
   const pdfDoc = await PDFDocument.create();
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-  let currentPage = pdfDoc.addPage([595, 842]); // Standard A4 Dimensions
-  let y = 790; 
-  const margin = 40;
-  const bottomMargin = 55;
+  // Embed the full logo — icon + wordmark + tagline already baked in (base64, safe for Vercel/serverless)
+  const logoBytes = Buffer.from(AVEN_LOGO_FULL_BASE64, "base64");
+  const logoImage: PDFImage = await pdfDoc.embedPng(logoBytes);
+  const logoAspect = logoImage.width / logoImage.height;
 
-  const addNewPage = () => {
-    currentPage = pdfDoc.addPage([595, 842]);
-    y = 790;
-    
-    currentPage.drawText("Industrial Automation Solutions", { x: margin, y, size: 10, font: boldFont });
-    currentPage.drawLine({ start: { x: margin, y: y - 8 }, end: { x: 555, y: y - 8 }, thickness: 0.5, color: rgb(0.7, 0.7, 0.7) });
-    y -= 35;
+  let currentPage: PDFPage;
+  let y = 0;
+
+  /* ---------------------------------------------------------
+     Header — white background with brand logo
+     --------------------------------------------------------- */
+  const drawHeader = (page: PDFPage, first: boolean) => {
+    const headerHeight = first ? HEADER_HEIGHT : COMPACT_HEADER_HEIGHT;
+
+    // Header background
+    page.drawRectangle({
+      x: 0,
+      y: PAGE_HEIGHT - headerHeight,
+      width: PAGE_WIDTH,
+      height: headerHeight,
+      color: COLORS.white,
+    });
+
+    // Accent underline
+    page.drawRectangle({
+      x: 0,
+      y: PAGE_HEIGHT - headerHeight - 3,
+      width: PAGE_WIDTH,
+      height: 3,
+      color: COLORS.accent,
+    });
+
+    const logoHeight = first ? 42 : 24;
+    const logoWidth = logoHeight * logoAspect;
+    const logoY = PAGE_HEIGHT - headerHeight + (headerHeight - logoHeight) / 2;
+
+    page.drawImage(logoImage, {
+      x: MARGIN,
+      y: logoY,
+      width: logoWidth,
+      height: logoHeight,
+    });
+
+    const labelSize = first ? 9.5 : 9;
+    const label = first
+      ? `Product Data Sheet  |  ${new Date().toLocaleDateString()}`
+      : "Product Data Sheet";
+    const labelWidth = font.widthOfTextAtSize(label, labelSize);
+    page.drawText(label, {
+      x: PAGE_WIDTH - MARGIN - labelWidth,
+      y: PAGE_HEIGHT - headerHeight / 2 - labelSize / 2 + 1,
+      size: labelSize,
+      font,
+      color: COLORS.textMuted,
+    });
+
+    return PAGE_HEIGHT - headerHeight - 28;
   };
 
+  const addNewPage = () => {
+    currentPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+    y = drawHeader(currentPage, false);
+  };
+
+  currentPage = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+  y = drawHeader(currentPage, true);
+
   const checkPageSpace = (neededHeight: number) => {
-    if (y - neededHeight < bottomMargin) {
+    if (y - neededHeight < BOTTOM_MARGIN) {
       addNewPage();
     }
   };
 
+  /* ---------------------------------------------------------
+     Section heading with accent tab
+     --------------------------------------------------------- */
+  const drawSectionTitle = (title: string) => {
+    checkPageSpace(34);
+    currentPage.drawRectangle({
+      x: MARGIN,
+      y: y - 4,
+      width: 4,
+      height: 16,
+      color: COLORS.accent,
+    });
+    currentPage.drawText(title, {
+      x: MARGIN + 12,
+      y,
+      size: 13.5,
+      font: boldFont,
+      color: COLORS.primary,
+    });
+    y -= 22;
+    currentPage.drawLine({
+      start: { x: MARGIN, y },
+      end: { x: MARGIN + CONTENT_WIDTH, y },
+      thickness: 0.75,
+      color: COLORS.border,
+    });
+    y -= 16;
+  };
+
   /**
    * Safe Text Wrapping Utility
-   * Wraps text and returns how many lines were rendered so we can compute table cell heights.
    */
-  const wrapTextAndGetLines = (text: string, maxWidth: number, fontSize: number, textFont: PDFFont): string[] => {
-    const paragraphs = text.split('\n');
+  const wrapTextAndGetLines = (
+    text: string,
+    maxWidth: number,
+    fontSize: number,
+    textFont: PDFFont
+  ): string[] => {
+    const paragraphs = text.split("\n");
     const lines: string[] = [];
 
-    paragraphs.forEach(paragraph => {
-      const words = paragraph.split(' ');
+    paragraphs.forEach((paragraph) => {
+      const words = paragraph.split(" ");
       let currentLine = "";
 
-      words.forEach(word => {
+      words.forEach((word) => {
         const testLine = currentLine ? currentLine + " " + word : word;
         const testWidth = textFont.widthOfTextAtSize(testLine, fontSize);
 
@@ -63,6 +173,71 @@ export async function generateProductPdf(data: ProductPdfData): Promise<Uint8Arr
     return lines;
   };
 
+  const drawBulletListTwoCols = (items: string[], bulletColor: RGB) => {
+    const colGap = 20;
+    const colWidth = (CONTENT_WIDTH - colGap) / 2;
+    const bulletFontSize = 10;
+    const lineHeight = 14;
+    const rowGap = 8;
+    const rightX = MARGIN + colWidth + colGap;
+
+    const rowCount = Math.ceil(items.length / 2);
+
+    for (let row = 0; row < rowCount; row++) {
+      const leftText = items[row * 2];
+      const rightText = items[row * 2 + 1];
+
+      const leftLines = wrapTextAndGetLines(leftText, colWidth - 16, bulletFontSize, font);
+      const rightLines = rightText
+        ? wrapTextAndGetLines(rightText, colWidth - 16, bulletFontSize, font)
+        : [];
+
+      const maxLines = Math.max(leftLines.length, rightLines.length, 1);
+      const rowHeight = maxLines * lineHeight + rowGap;
+
+      checkPageSpace(rowHeight);
+      const rowTopY = y;
+
+      // Left column
+      currentPage.drawCircle({
+        x: MARGIN + 4,
+        y: rowTopY - 4,
+        size: 2.4,
+        color: bulletColor,
+      });
+      leftLines.forEach((line, idx) => {
+        currentPage.drawText(line, {
+          x: MARGIN + 14,
+          y: rowTopY - idx * lineHeight,
+          size: bulletFontSize,
+          font,
+          color: COLORS.textDark,
+        });
+      });
+
+      // Right column
+      if (rightText) {
+        currentPage.drawCircle({
+          x: rightX + 4,
+          y: rowTopY - 4,
+          size: 2.4,
+          color: bulletColor,
+        });
+        rightLines.forEach((line, idx) => {
+          currentPage.drawText(line, {
+            x: rightX + 14,
+            y: rowTopY - idx * lineHeight,
+            size: bulletFontSize,
+            font,
+            color: COLORS.textDark,
+          });
+        });
+      }
+
+      y -= rowHeight;
+    }
+  };
+
   const parseField = (field: unknown) => {
     if (!field) return null;
     return typeof field === "string" ? JSON.parse(field) : field;
@@ -72,160 +247,248 @@ export async function generateProductPdf(data: ProductPdfData): Promise<Uint8Arr
   const features = parseField(data.features) || [];
   const applications = parseField(data.applications) || [];
 
-  // --- Document Header ---
-  currentPage.drawText("Industrial Automation Solutions", { x: margin, y, size: 22, font: boldFont });
+  /* ---------------------------------------------------------
+     Title block — product name in large type
+     --------------------------------------------------------- */
+  checkPageSpace(70);
+  currentPage.drawText(data.productName, {
+    x: MARGIN,
+    y,
+    size: 20,
+    font: boldFont,
+    color: COLORS.textDark,
+  });
   y -= 22;
-  currentPage.drawText(`Generated: ${new Date().toLocaleDateString()}`, { x: margin, y, size: 9, font });
-  y -= 45;
 
-  // --- Primary Info Block ---
-  checkPageSpace(75);
-  currentPage.drawText("Product Information", { x: margin, y, size: 14, font: boldFont });
-  y -= 24;
-  currentPage.drawText(`Product Name: ${data.productName}`, { x: margin, y, size: 11, font });
-  y -= 18;
-  currentPage.drawText(`Category: ${data.categoryName}`, { x: margin, y, size: 11, font });
-  y -= 35;
+  // Category pill
+  const categoryLabel = data.categoryName;
+  const pillPaddingX = 10;
+  const pillWidth = boldFont.widthOfTextAtSize(categoryLabel, 9.5) + pillPaddingX * 2;
+  currentPage.drawRectangle({
+    x: MARGIN,
+    y: y - 14,
+    width: pillWidth,
+    height: 20,
+    color: COLORS.background,
+    borderColor: COLORS.border,
+    borderWidth: 0.75,
+  });
+  currentPage.drawText(categoryLabel, {
+    x: MARGIN + pillPaddingX,
+    y: y - 8,
+    size: 9.5,
+    font: boldFont,
+    color: COLORS.primary,
+  });
+  y -= 40;
 
-  // --- Short Description Section ---
+  // --- Short Description ---
   if (data.shortDescription) {
-    checkPageSpace(40);
-    currentPage.drawText("Short Description", { x: margin, y, size: 13, font: boldFont });
-    y -= 22;
-    const lines = wrapTextAndGetLines(data.shortDescription, 515, 10.5, font);
-    lines.forEach(line => {
-      checkPageSpace(15);
-      currentPage.drawText(line, { x: margin, y, size: 10.5, font });
-      y -= 15;
+    const lines = wrapTextAndGetLines(data.shortDescription, CONTENT_WIDTH, 11, font);
+    lines.forEach((line) => {
+      checkPageSpace(17);
+      currentPage.drawText(line, {
+        x: MARGIN,
+        y,
+        size: 11,
+        font,
+        color: COLORS.textMuted,
+      });
+      y -= 17;
     });
-    y -= 15;
+    y -= 14;
   }
 
-  // --- Detailed Body Description ---
+  // --- Detailed Description ---
   if (data.description) {
-    checkPageSpace(40);
-    currentPage.drawText("Description", { x: margin, y, size: 13, font: boldFont });
-    y -= 22;
-    const lines = wrapTextAndGetLines(data.description, 515, 10.5, font);
-    lines.forEach(line => {
+    drawSectionTitle("Description");
+    const lines = wrapTextAndGetLines(data.description, CONTENT_WIDTH, 10.5, font);
+    lines.forEach((line) => {
       checkPageSpace(15);
-      currentPage.drawText(line, { x: margin, y, size: 10.5, font });
+      currentPage.drawText(line, {
+        x: MARGIN,
+        y,
+        size: 10.5,
+        font,
+        color: COLORS.textDark,
+      });
       y -= 15;
     });
     y -= 15;
   }
 
-  // --- Specifications Table Grid ---
-  checkPageSpace(60);
-  currentPage.drawText("Specifications", { x: margin, y, size: 13, font: boldFont });
-  y -= 25;
+  /* ---------------------------------------------------------
+     Specifications table
+     --------------------------------------------------------- */
+  drawSectionTitle("Specifications");
 
   const specEntries = Object.entries(specifications);
   if (specEntries.length === 0) {
-    currentPage.drawText("Not Available", { x: margin, y, size: 10.5, font });
+    currentPage.drawText("Not Available", {
+      x: MARGIN,
+      y,
+      size: 10.5,
+      font,
+      color: COLORS.textMuted,
+    });
     y -= 20;
   } else {
-    const tableWidth = 515;
-    const col1Width = 180;
-    const col2Width = tableWidth - col1Width; // 335
-    const cellPadding = 8;
+    const tableWidth = CONTENT_WIDTH;
+    const col1Width = 170;
+    const col2Width = tableWidth - col1Width;
+    const cellPadding = 10;
     const tableLineHeight = 14;
 
-    // FIXED: Corrected method call from fillRect to drawRectangle to remove IDE errors
-    checkPageSpace(30);
-    currentPage.drawRectangle({ x: margin, y: y - 20, width: tableWidth, height: 20, color: rgb(0.93, 0.95, 0.98) });
-    currentPage.drawText("Parameter", { x: margin + cellPadding, y: y - 14, size: 10, font: boldFont });
-    currentPage.drawText("Specification Details", { x: margin + col1Width + cellPadding, y: y - 14, size: 10, font: boldFont });
-    
-    // Header Outer Borders
-    currentPage.drawLine({ start: { x: margin, y }, end: { x: margin + tableWidth, y }, thickness: 1, color: rgb(0.7, 0.7, 0.7) });
-    currentPage.drawLine({ start: { x: margin, y: y - 20 }, end: { x: margin + tableWidth, y: y - 20 }, thickness: 1, color: rgb(0.7, 0.7, 0.7) });
-    y -= 20;
+    const drawTableHeader = () => {
+      checkPageSpace(30);
+      currentPage.drawRectangle({
+        x: MARGIN,
+        y: y - 22,
+        width: tableWidth,
+        height: 22,
+        color: COLORS.primary,
+      });
+      currentPage.drawText("PARAMETER", {
+        x: MARGIN + cellPadding,
+        y: y - 15,
+        size: 9,
+        font: boldFont,
+        color: COLORS.white,
+      });
+      currentPage.drawText("SPECIFICATION DETAILS", {
+        x: MARGIN + col1Width + cellPadding,
+        y: y - 15,
+        size: 9,
+        font: boldFont,
+        color: COLORS.white,
+      });
+      y -= 22;
+    };
 
-    for (const [key, value] of specEntries) {
-      const valStr = typeof value === 'object' ? JSON.stringify(value) : String(value);
+    drawTableHeader();
 
-      const keyLines = wrapTextAndGetLines(String(key), col1Width - (cellPadding * 2), 9.5, boldFont);
-      const valLines = wrapTextAndGetLines(valStr, col2Width - (cellPadding * 2), 9.5, font);
+    specEntries.forEach(([key, value], rowIndex) => {
+      const valStr = typeof value === "object" ? JSON.stringify(value) : String(value);
+
+      const keyLines = wrapTextAndGetLines(String(key), col1Width - cellPadding * 2, 9.5, boldFont);
+      const valLines = wrapTextAndGetLines(valStr, col2Width - cellPadding * 2, 9.5, font);
 
       const maxLines = Math.max(keyLines.length, valLines.length);
-      const rowHeight = (maxLines * tableLineHeight) + (cellPadding * 2);
+      const rowHeight = maxLines * tableLineHeight + cellPadding * 1.6;
 
-      if (y - rowHeight < bottomMargin) {
+      if (y - rowHeight < BOTTOM_MARGIN) {
         addNewPage();
-        // Redraw Header on fresh pages
-        currentPage.drawRectangle({ x: margin, y: y - 20, width: tableWidth, height: 20, color: rgb(0.93, 0.95, 0.98) });
-        currentPage.drawText("Parameter", { x: margin + cellPadding, y: y - 14, size: 10, font: boldFont });
-        currentPage.drawText("Specification Details", { x: margin + col1Width + cellPadding, y: y - 14, size: 10, font: boldFont });
-        currentPage.drawLine({ start: { x: margin, y }, end: { x: margin + tableWidth, y }, thickness: 1, color: rgb(0.7, 0.7, 0.7) });
-        currentPage.drawLine({ start: { x: margin, y: y - 20 }, end: { x: margin + tableWidth, y: y - 20 }, thickness: 1, color: rgb(0.7, 0.7, 0.7) });
-        y -= 20;
+        drawSectionTitle("Specifications (continued)");
+        drawTableHeader();
       }
 
       const rowTopY = y;
 
-      // Column 1 values
+      // Alternating row background
+      if (rowIndex % 2 === 1) {
+        currentPage.drawRectangle({
+          x: MARGIN,
+          y: rowTopY - rowHeight,
+          width: tableWidth,
+          height: rowHeight,
+          color: COLORS.rowAltBg,
+        });
+      }
+
       keyLines.forEach((line, idx) => {
-        currentPage.drawText(line, { x: margin + cellPadding, y: rowTopY - cellPadding - (idx * tableLineHeight) - 8, size: 9.5, font: boldFont });
+        currentPage.drawText(line, {
+          x: MARGIN + cellPadding,
+          y: rowTopY - cellPadding - idx * tableLineHeight,
+          size: 9.5,
+          font: boldFont,
+          color: COLORS.primary,
+        });
       });
 
-      // Column 2 values
       valLines.forEach((line, idx) => {
-        currentPage.drawText(line, { x: margin + col1Width + cellPadding, y: rowTopY - cellPadding - (idx * tableLineHeight) - 8, size: 9.5, font });
+        currentPage.drawText(line, {
+          x: MARGIN + col1Width + cellPadding,
+          y: rowTopY - cellPadding - idx * tableLineHeight,
+          size: 9.5,
+          font,
+          color: COLORS.textDark,
+        });
       });
 
       y -= rowHeight;
 
-      // Structural lines per row
-      currentPage.drawLine({ start: { x: margin, y }, end: { x: margin + tableWidth, y }, thickness: 0.5, color: rgb(0.8, 0.8, 0.8) });
-      currentPage.drawLine({ start: { x: margin, y: rowTopY }, end: { x: margin, y }, thickness: 0.5, color: rgb(0.8, 0.8, 0.8) });
-      currentPage.drawLine({ start: { x: margin + col1Width, y: rowTopY }, end: { x: margin + col1Width, y }, thickness: 0.5, color: rgb(0.8, 0.8, 0.8) });
-      currentPage.drawLine({ start: { x: margin + tableWidth, y: rowTopY }, end: { x: margin + tableWidth, y }, thickness: 0.5, color: rgb(0.8, 0.8, 0.8) });
-    }
+      currentPage.drawLine({
+        start: { x: MARGIN, y },
+        end: { x: MARGIN + tableWidth, y },
+        thickness: 0.5,
+        color: COLORS.rowLine,
+      });
+    });
+
     y -= 20;
   }
 
   // --- Features ---
   if (features.length > 0) {
-    checkPageSpace(40);
-    currentPage.drawText("Features", { x: margin, y, size: 13, font: boldFont });
-    y -= 25;
-    features.forEach((feature: string) => {
-      const lines = wrapTextAndGetLines(`•  ${feature}`, 515, 10.5, font);
-      lines.forEach(line => {
-        checkPageSpace(16);
-        currentPage.drawText(line, { x: margin, y, size: 10.5, font });
-        y -= 16;
-      });
-      y -= 4;
-    });
-    y -= 15;
+    drawSectionTitle("Features");
+    drawBulletListTwoCols(
+      features.map((f: string) => f),
+      COLORS.accent
+    );
+    y -= 6;
   }
 
   // --- Applications ---
   if (applications.length > 0) {
-    checkPageSpace(40);
-    currentPage.drawText("Applications", { x: margin, y, size: 13, font: boldFont });
-    y -= 25;
-    applications.forEach((app: string) => {
-      const lines = wrapTextAndGetLines(`•  ${app}`, 515, 10.5, font);
-      lines.forEach(line => {
-        checkPageSpace(16);
-        currentPage.drawText(line, { x: margin, y, size: 10.5, font });
-        y -= 16;
-      });
-      y -= 4;
-    });
-    y -= 15;
+    drawSectionTitle("Applications");
+    drawBulletListTwoCols(
+      applications.map((a: string) => a),
+      COLORS.primary
+    );
+    y -= 6;
   }
 
-  // --- Footer Details ---
-  checkPageSpace(95);
-  currentPage.drawText("Contact Information", { x: margin, y, size: 12, font: boldFont });
-  y -= 22;
-  currentPage.drawText("Industrial Automation Solutions", { x: margin, y, size: 11, font });
-  y -= 18;
-  currentPage.drawText("Email: info@industrialautomation.com | Phone: +91 9876543210", { x: margin, y, size: 10, font });
+  /* ---------------------------------------------------------
+     Footer — drawn on every page after all content is placed
+     --------------------------------------------------------- */
+  const allPages = pdfDoc.getPages();
+  const totalPages = allPages.length;
+  const footerHeight = 46;
+
+  allPages.forEach((page, index) => {
+    page.drawRectangle({
+      x: 0,
+      y: 0,
+      width: PAGE_WIDTH,
+      height: footerHeight,
+      color: COLORS.primaryDark,
+    });
+
+    page.drawText("Aven Automation", {
+      x: MARGIN,
+      y: 26,
+      size: 10,
+      font: boldFont,
+      color: COLORS.white,
+    });
+    page.drawText("sales@avenautomation.in  |  +91 9876543210  |  avenautomation.in", {
+      x: MARGIN,
+      y: 12,
+      size: 8.5,
+      font,
+      color: rgb(0.72, 0.78, 0.88),
+    });
+
+    const pageLabel = `Page ${index + 1} of ${totalPages}`;
+    const pageLabelWidth = font.widthOfTextAtSize(pageLabel, 8.5);
+    page.drawText(pageLabel, {
+      x: PAGE_WIDTH - MARGIN - pageLabelWidth,
+      y: 18,
+      size: 8.5,
+      font,
+      color: rgb(0.72, 0.78, 0.88),
+    });
+  });
 
   return await pdfDoc.save();
 }

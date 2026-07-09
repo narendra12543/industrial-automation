@@ -11,9 +11,9 @@ import {
 
 const features = [
   {
-    title: "Industrial Automation Expertise",
+    title: "Aven Industrial automationExpertise",
     description:
-      "Years of experience delivering PLC, SCADA, HMI, VFD and complete industrial automation solutions for modern manufacturing industries.",
+      "Years of experience delivering PLC, SCADA, HMI, VFD and complete Aven  Industrial automationfor modern manufacturing industries.",
     icon: Cog,
   },
   {
@@ -79,7 +79,7 @@ export default function WhyChooseUsAbout() {
             "
           >
             Why Industries Trust Our
-            Industrial Automation Solutions
+            Aven Industrial automation
           </h2>
 
           <p
@@ -93,7 +93,7 @@ export default function WhyChooseUsAbout() {
             We combine engineering expertise,
             quality products and reliable
             customer support to deliver
-            industrial automation solutions
+            Aven Industrial automation
             that improve productivity,
             efficiency and operational safety.
           </p>

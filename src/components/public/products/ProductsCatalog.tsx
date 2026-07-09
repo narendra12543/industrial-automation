@@ -139,7 +139,7 @@ export default function ProductsCatalog({
               </h2>
 
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
-                Explore our range of industrial automation solutions  engineered for
+                Explore our range of Aven  Industrial automation engineered for
                 durability, security, and seamless integration across barriers, gates,
                 and high-speed door systems.
               </p>
