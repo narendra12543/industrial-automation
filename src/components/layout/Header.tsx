@@ -195,7 +195,7 @@ export default function Header({
             <div className="flex items-center gap-4">
              
               <a
-                href="/catalog/Industrial-Automation-Catalog.pdf"
+                href="/catalog/Aven-Industrial-Automation-Catalog.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="
@@ -301,7 +301,7 @@ export default function Header({
               )}
               {/* Mobile Catalogue */}
               <a
-                href="/catalog/Industrial-Automation-Catalog.pdf" 
+                href="/catalog/Aven-Industrial-Automation-Catalog.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="

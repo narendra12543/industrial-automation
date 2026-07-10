@@ -26,22 +26,71 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Aven Automation provides Automatic Gates, Boom Barriers, High Speed Doors, Industrial Doors, Rolling Shutters, Dock Levelers, Dock Shelters and complete Entrance Automation Solutions across India.",
+  "Aven Automation is a leading Industrial Entrance Automation company providing Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Rolling Shutters, Dock Levelers, Dock Shelters and complete automation solutions across Pune, Maharashtra and India.",
 
   keywords: [
-    "Automatic Gate",
-    "Sliding Gate",
-    "Swing Gate",
-    "Boom Barrier",
-    "Industrial Door",
-    "Sectional Door",
-    "Dock Leveler",
-    "Dock Shelter",
-    "Garage Door",
-    "High Speed Door",
-    "Rolling Shutter",
-    "Entrance Automation",
+    "Industrial Entrance Automation",
     "Industrial Automation",
+    "Industrial Automation Company",
+    "Industrial Automation Solutions",
+
+    "Automatic Gates",
+    "Automatic Gate",
+    "Automatic Sliding Gate",
+    "Sliding Gate Automation",
+    "Automatic Swing Gate",
+    "Swing Gate Automation",
+    "Telescopic Sliding Gate",
+
+    "Industrial Door",
+    "Industrial Doors",
+    "Sectional Overhead Door",
+    "Transparent Sectional Door",
+    "Garage Sectional Door",
+
+    "High Speed Door",
+    "Industrial High Speed Door",
+    "Roll Up Door",
+    "Clean Room Door",
+    "Anti Crash Door",
+    "Fold Up Door",
+
+    "Motorized Sliding Door",
+    "Manual Sliding Door",
+
+    "Boom Barrier",
+    "Automatic Boom Barrier",
+    "Automatic Swing Barrier",
+    "Automatic Rising Bollard",
+
+    "Rolling Shutter",
+    "Automatic Rolling Shutter",
+    "Motorized Rolling Shutter",
+    "Gear Operated Rolling Shutter",
+
+    "Dock Leveler",
+    "Hydraulic Dock Leveler",
+    "Dock Shelter",
+    "Loading Bay Equipment",
+
+    "Steel Sliding Hangar Door",
+    "Fabric Fold Up Hangar Door",
+
+    "Sliding Gate Motor",
+    "Swing Gate Motor",
+    "Rolling Shutter Motor",
+    "Glass Sliding Door Motor",
+
+    "Inclined Belt Conveyor",
+    "Flat Belt Conveyor",
+
+    "Automatic Gate Manufacturer",
+    "Industrial Door Supplier",
+    "Boom Barrier Supplier",
+    "Industrial Automation Pune",
+    "Industrial Automation Maharashtra",
+    "Industrial Entrance Automation India",
+
     "Aven Automation",
   ],
 
@@ -79,8 +128,7 @@ export const metadata: Metadata = {
     title:
       "Aven Automation | Automatic Gates & Industrial Entrance Automation",
     description:
-      "Premium Automatic Gate, Boom Barrier, High Speed Door and Industrial Entrance Automation Solutions.",
-
+  "Industrial Entrance Automation solutions including Automatic Gates, High Speed Doors, Boom Barriers, Industrial Doors and Gate Automation across Pune, Maharashtra and India.",
     siteName: "Aven Automation",
 
     locale: "en_IN",

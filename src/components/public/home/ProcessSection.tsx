@@ -1,13 +1,29 @@
 const steps = [
-  "Consultation",
-  "Planning",
-  "Implementation",
-  "Support",
+  {
+    title: "Consultation",
+    description:
+      "We understand your industrial automation requirements and site conditions.",
+  },
+  {
+    title: "Planning",
+    description:
+      "Our experts prepare a customized automation solution for your facility.",
+  },
+  {
+    title: "Implementation",
+    description:
+      "Professional installation, testing and commissioning.",
+  },
+  {
+    title: "Support",
+    description:
+      "Long-term maintenance and technical support across India.",
+  },
 ];
 
 export default function ProcessSection() {
   return (
-    <section className="bg-slate-50 py-20">
+    <section className="bg-slate-50 py-8">
       <div className="mx-auto max-w-7xl px-4">
         <h2 className="text-center text-3xl font-bold text-[#0F2747]">
           Our Working Process
@@ -16,7 +32,7 @@ export default function ProcessSection() {
         <div className="mt-12 grid gap-6 md:grid-cols-4">
           {steps.map((step, index) => (
             <div
-              key={step}
+              key={step.title}
               className="
                 rounded-2xl
                 border
@@ -43,8 +59,12 @@ export default function ProcessSection() {
               </div>
 
               <h3 className="mt-4 font-semibold">
-                {step}
+                {step.title}
               </h3>
+
+              <p className="mt-2 text-sm text-slate-600">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>

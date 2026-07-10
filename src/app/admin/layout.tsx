@@ -92,6 +92,13 @@ export default async function AdminLayout({
                   </Link>
 
                   <Link
+                    href="/admin/contact-messages"
+                    className="block rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-[#0F2747]"
+                  >
+                    Contact Messages
+                  </Link>
+
+                  <Link
                     href="/admin/users"
                     className="block rounded-lg px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-[#0F2747]"
                   >

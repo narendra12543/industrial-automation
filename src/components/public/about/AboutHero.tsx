@@ -47,7 +47,7 @@ export default function AboutHero() {
                 text-orange-700
               "
             >
-              Aven Industrial automationExperts
+              Aven Industrial automation Experts
             </div>
 
             <h1 className="mt-4  text-2xl font-bold text-[#0F2747] md:text-3xl">
@@ -63,6 +63,16 @@ export default function AboutHero() {
               boom barriers and smart industrial
               technologies that improve efficiency,
               safety and productivity.
+
+              {" "}We provide Automatic Gates,
+              Industrial Doors, High Speed Doors,
+              Boom Barriers, Dock Levelers,
+              Dock Shelters and complete
+              Industrial Entrance Automation
+              Solutions for factories,
+              warehouses, commercial buildings
+              and infrastructure projects across
+              Pune, Maharashtra and India.
             </p>
 
             <p className="mt-2 text-md text-slate-600">

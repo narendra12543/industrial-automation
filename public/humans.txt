@@ -1,0 +1,31 @@
+/* TEAM */
+
+Company: Aven Automation
+Website: https://avenautomation.in
+Email: sales@avenautomation.in
+
+Technology:
+Next.js 15
+TypeScript
+Tailwind CSS
+Prisma ORM
+PostgreSQL
+Auth.js
+
+Services:
+Industrial Entrance Automation
+Automatic Gates
+Industrial Doors
+Boom Barriers
+High Speed Doors
+Dock Levelers
+Dock Shelters
+
+Location:
+Pune, Maharashtra, India
+
+/* SITE */
+
+Language: English
+Standards: HTML5, CSS3
+CMS: Custom Next.js

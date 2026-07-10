@@ -11,9 +11,9 @@ import {
 
 const features = [
   {
-    title: "Aven Industrial automationExpertise",
+    title: "Industrial Automation Expertise",
     description:
-      "Years of experience delivering PLC, SCADA, HMI, VFD and complete Aven  Industrial automationfor modern manufacturing industries.",
+      "Years of experience delivering PLC, SCADA, HMI, VFD, Automatic Gates, Industrial Doors and complete Industrial Entrance Automation solutions for manufacturing industries.",
     icon: Cog,
   },
   {
@@ -78,8 +78,8 @@ export default function WhyChooseUsAbout() {
               text-[#0F2747]
             "
           >
-            Why Industries Trust Our
-            Aven Industrial automation
+            Why Industries Choose
+            Aven Automation
           </h2>
 
           <p
@@ -90,12 +90,7 @@ export default function WhyChooseUsAbout() {
               text-slate-600
             "
           >
-            We combine engineering expertise,
-            quality products and reliable
-            customer support to deliver
-            Aven Industrial automation
-            that improve productivity,
-            efficiency and operational safety.
+            We combine engineering expertise, premium quality products and reliable technical support to deliver Automatic Gates, Industrial Doors, Boom Barriers, Dock Systems and complete Industrial Entrance Automation solutions across Pune, Maharashtra and India.
           </p>
         </div>
 

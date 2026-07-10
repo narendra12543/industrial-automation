@@ -70,6 +70,14 @@ export default async function FeaturedProductsSection() {
             <h2 className="mt-5 text-3xl font-bold text-[#0F2747] sm:text-4xl">
               Our Most Popular Industrial Solutions
             </h2>
+            <p className="mt-4 max-w-3xl text-slate-600 leading-7">
+              Explore our range of automatic gates,
+              industrial doors, boom barriers,
+              loading bay equipment and entrance
+              automation solutions designed for
+              commercial and industrial applications
+              across Pune, Maharashtra and India.
+            </p>
 
           </div>
 

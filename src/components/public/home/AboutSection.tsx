@@ -47,13 +47,13 @@ export default function AboutSection() {
             </span>
 
             <h2 className="mt-2 text-3xl font-bold text-[#0F2747]">
-              Aven Industrial 
+              Your Trusted Industrial
               <br />
               Automation Partner
             </h2>
 
             <p className="mt-2 text-md leading-8 text-slate-600">
-              Aven Industrial automationis a trusted provider of
+              Aven Industrial automation is a trusted provider of
               advanced automation technologies for manufacturing plants,
               warehouses, commercial buildings and industrial
               infrastructure. We help businesses improve productivity,

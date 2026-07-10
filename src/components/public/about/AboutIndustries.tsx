@@ -80,12 +80,7 @@ export default function AboutIndustries() {
                 text-slate-600
               "
             >
-              We provide complete industrial
-              automation solutions designed
-              to improve productivity,
-              operational efficiency and
-              workplace safety across
-              multiple industries.
+              We provide Automatic Gates, Industrial Doors, High Speed Doors, Boom Barriers, Dock Levelers, Dock Shelters and complete Industrial Entrance Automation solutions that improve productivity, operational efficiency and workplace safety.
             </p>
 
             <p
@@ -96,14 +91,7 @@ export default function AboutIndustries() {
                 text-slate-600
               "
             >
-              From PLC & SCADA systems,
-              Industrial Control Panels,
-              Gate Automation, Rolling
-              Shutters, Boom Barriers,
-              Automatic Doors and customized
-              engineering solutions, our
-              products are trusted by
-              businesses throughout India.
+              Our engineering solutions are trusted by manufacturing plants, warehouses, logistics hubs, commercial buildings, pharmaceutical industries, food processing units, automotive companies and infrastructure projects across Pune, Maharashtra and India.
             </p>
             
 

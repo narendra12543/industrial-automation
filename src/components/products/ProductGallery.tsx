@@ -13,10 +13,12 @@ interface ProductImage {
 
 interface ProductGalleryProps {
   images: ProductImage[];
+   productName: string;
 }
 
 export default function ProductGallery({
   images,
+  productName,
 }: ProductGalleryProps) {
   const initialImage =
     images.find(
@@ -92,7 +94,7 @@ const goNext = () => {
           src={selectedImage.imageUrl}
           alt={
             selectedImage.altText ??
-            `${selectedImage.id} - Aven Automation`
+            `${productName} - Aven Automation`
           }
           fill
           sizes="(max-width:768px) 100vw, 50vw"
@@ -121,7 +123,7 @@ const goNext = () => {
                 src={image.imageUrl}
                 alt={
                   image.altText ??
-                  "Thumbnail"
+                  `${productName} Thumbnail`
                 }
                 fill
                 sizes="120px"

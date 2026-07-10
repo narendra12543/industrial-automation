@@ -10,11 +10,45 @@ export const metadata: Metadata = {
   title: "Products",
 
   description:
-    "Explore Automatic Gates, Boom Barriers, High Speed Doors, Rolling Shutters, Dock Levelers, Dock Shelters and Industrial Automation Products.",
+    "Explore Industrial Entrance Automation products including Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Hangar Doors, Automation Motors and complete industrial automation solutions from Aven Automation.",
 
   alternates: {
     canonical: "/products",
   },
+
+  keywords: [
+    "Industrial Automation Products",
+    "Industrial Entrance Automation Products",
+
+    "Automatic Sliding Gate",
+    "Automatic Swing Gate",
+    "Telescopic Sliding Gate",
+
+    "Roll Up Door",
+    "High Speed Door",
+    "Industrial Door",
+    "Garage Door",
+
+    "Boom Barrier",
+    "Automatic Swing Barrier",
+    "Automatic Rising Bollard",
+
+    "Rolling Shutter",
+    "Motorized Rolling Shutter",
+    "Gear Operated Rolling Shutter",
+
+    "Manual Sliding Door",
+    "Motorized Sliding Door",
+
+    "Dock Leveler",
+    "Dock Shelter",
+
+    "Inclined Belt Conveyor",
+    "Flat Belt Conveyor",
+
+    "Industrial Automation Products India",
+    "Aven Automation",
+  ],
 };
 
 export default async function ProductsPage() {

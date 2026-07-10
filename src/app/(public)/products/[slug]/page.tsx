@@ -14,6 +14,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import ProductSchema from "@/components/seo/ProductSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
+import ProductFAQSchema from "@/components/seo/ProductFAQSchema";
 
 
 interface ProductDetailsPageProps {
@@ -32,7 +33,7 @@ export async function generateMetadata({
   if (!product) {
     return {
       title: "Product Not Found",
-      description: "The requested product could not be found.",
+      description: "The requested product could not be found.", 
       robots: {
         index: false,
         follow: false,
@@ -55,7 +56,24 @@ export async function generateMetadata({
   return {
     title,
     description,
+    keywords: [
+      product.name,
 
+      `${product.name} Manufacturer`,
+      `${product.name} Supplier`,
+      `${product.name} Dealer`,
+      `${product.name} Installation`,
+      `${product.name} Price`,
+      `${product.name} Pune`,
+      `${product.name} Maharashtra`,
+      `${product.name} India`,
+
+      `${product.category?.name}`,
+
+      "Industrial Entrance Automation",
+      "Industrial Automation",
+      "Aven Automation",
+    ],
     alternates: {
       canonical,
     },
@@ -147,6 +165,7 @@ export default async function ProductDetailsPage({
   return (
     <>
       <ProductSchema product={product} />
+      <ProductFAQSchema productName={product.name} />
       
       <BreadcrumbSchema
         items={[
@@ -174,7 +193,10 @@ export default async function ProductDetailsPage({
           {/* Left */}
 
           <div>
-            <ProductGallery images={product.images} />
+            <ProductGallery
+              images={product.images}
+              productName={product.name}
+            />
 
             <div className="mt-8">
               
@@ -268,7 +290,7 @@ export default async function ProductDetailsPage({
                   </h2>
 
                   <p className="mt-1 max-w-2xl text-sm text-slate-300">
-                    Tell us about your requirement. Our Aven Industrial automation
+                    Tell us about your requirement. Our Aven Automation
                     experts will contact you with the best solution for your
                     application.
                   </p>

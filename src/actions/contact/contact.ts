@@ -3,6 +3,11 @@
 import { prisma } from "@/lib/prisma";
 import { resend } from "@/lib/resend";
 import { CustomerContactTemplate } from "@/emails/customer-contact-template";
+import { ContactMessage } from "@prisma/client";
+
+export type ContactMessageWithProducts = ContactMessage & {
+  productNames: string;
+};
 
 export async function createContact(data: {
   name: string;
@@ -142,6 +147,153 @@ export async function createContact(data: {
     return {
       success: false,
       message: "Failed to submit message.",
+    };
+  }
+}
+
+interface GetContactMessagesParams {
+  search?: string;
+  page?: number;
+  limit?: number;
+}
+
+export async function getContactMessages({
+  search = "",
+  page = 1,
+  limit = 10,
+}: GetContactMessagesParams): Promise<{
+  messages: ContactMessageWithProducts[];
+  totalCount: number;
+  totalPages: number;
+}> {
+  try {
+    const where = search
+      ? {
+          OR: [
+            { name: { contains: search, mode: "insensitive" as const } },
+            { email: { contains: search, mode: "insensitive" as const } },
+            { mobile: { contains: search, mode: "insensitive" as const } },
+            {
+              companyName: {
+                contains: search,
+                mode: "insensitive" as const,
+              },
+            },
+            { city: { contains: search, mode: "insensitive" as const } },
+          ],
+        }
+      : {};
+
+    const totalCount = await prisma.contactMessage.count({ where });
+
+    const totalPages = Math.ceil(totalCount / limit);
+
+    const messages = await prisma.contactMessage.findMany({
+      where,
+      orderBy: { createdAt: "desc" },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+
+    const allProductIds: string[] = messages.flatMap(
+      (message) => (message.productIds as string[]) ?? []
+    );
+
+    const products = allProductIds.length
+      ? await prisma.product.findMany({
+          where: {
+            id: {
+              in: allProductIds,
+            },
+          },
+          select: {
+            id: true,
+            name: true,
+          },
+        })
+      : [];
+
+    const productMap = new Map(
+      products.map((product) => [product.id, product.name])
+    );
+
+    const enrichedMessages = messages.map((message) => ({
+      ...message,
+      productNames: ((message.productIds as string[]) ?? [])
+        .map((id) => productMap.get(id))
+        .filter((name): name is string => Boolean(name))
+        .join(", "),
+    }));
+
+    return {
+      messages: enrichedMessages,
+      totalCount,
+      totalPages,
+    };
+  } catch (error) {
+    console.error("Get Contact Messages Error:", error);
+
+    return {
+      messages: [],
+      totalCount: 0,
+      totalPages: 0,
+    };
+  }
+}
+
+export async function getRecentContactMessages(limitCount = 5) {
+  try {
+    const messages = await prisma.contactMessage.findMany({
+      orderBy: { createdAt: "desc" },
+      take: limitCount,
+    });
+
+    return messages;
+  } catch (error) {
+    console.error("Get Recent Contact Messages Error:", error);
+
+    return [];
+  }
+}
+
+export async function getContactMessageStats() {
+  try {
+    const totalMessages = await prisma.contactMessage.count();
+
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    const todayMessages = await prisma.contactMessage.count({
+      where: {
+        createdAt: {
+          gte: startOfToday,
+        },
+      },
+    });
+
+    const startOfWeek = new Date();
+    startOfWeek.setDate(startOfWeek.getDate() - 7);
+
+    const weekMessages = await prisma.contactMessage.count({
+      where: {
+        createdAt: {
+          gte: startOfWeek,
+        },
+      },
+    });
+
+    return {
+      totalMessages,
+      todayMessages,
+      weekMessages,
+    };
+  } catch (error) {
+    console.error("Get Contact Message Stats Error:", error);
+
+    return {
+      totalMessages: 0,
+      todayMessages: 0,
+      weekMessages: 0,
     };
   }
 }

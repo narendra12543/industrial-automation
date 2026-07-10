@@ -159,7 +159,7 @@ export default function ContactForm({
           text-orange-600
         "
         >
-         Get a Response From Our Experts Within 24 Hours
+         Get a Response from Our Industrial Automation Experts Within 24 Hours
         </span>
 
       </div>

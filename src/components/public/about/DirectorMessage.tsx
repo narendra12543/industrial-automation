@@ -58,10 +58,7 @@ export default function DirectorMessage() {
                   text-slate-700
                 "
               >
-                Our vision is to become a trusted Aven Industrial automation partner
-                by delivering reliable, innovative and future-ready engineering
-                solutions that help industries improve productivity, safety and
-                operational excellence.
+                Our vision is to become one of India's most trusted Industrial Entrance Automation companies by delivering reliable, innovative and future-ready engineering solutions.
               </p>
             </div>
 
@@ -75,11 +72,11 @@ export default function DirectorMessage() {
                   text-[#0F2747]
                 "
               >
-                Mr. Jon 
+                Mr. Narendra Khamkar
               </h3>
 
               <p className="mt-1 text-orange-600 font-medium">
-                Founder & Managing Director
+                Aven Automation Leadership Team
               </p>
             </div>
 
@@ -95,11 +92,7 @@ export default function DirectorMessage() {
               "
             >
               <p>
-                At Aven Industrial automation Platform, we believe every industry
-                deserves dependable, efficient and intelligent automation
-                solutions. Our commitment is to deliver products and engineering
-                services that improve productivity while maintaining the highest
-                quality standards.
+                At Aven Automation, we believe every industry deserves dependable, efficient and intelligent automation solutions. We provide Automatic Gates, Boom Barriers, Industrial Doors, High Speed Doors, Dock Levelers, Dock Shelters and customized Industrial Entrance Automation systems for factories, warehouses and commercial facilities.
               </p>
 
               <p>
