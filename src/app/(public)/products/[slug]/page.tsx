@@ -132,36 +132,7 @@ export default async function ProductDetailsPage({
 
   const primaryImage = product.images.find((image) => image.isPrimary) ?? product.images[0];
 
-  const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-
-  name: product.name,
-
-  description:
-    product.shortDescription ??
-    product.description ??
-    product.name,
-
-  image: product.images.map((image) => image.imageUrl),
-
-  sku: product.id,
-
-  brand: {
-    "@type": "Brand",
-    name: "Aven Automation",
-  },
-
-  manufacturer: {
-    "@type": "Organization",
-    name: "Aven Automation",
-  },
-
-  category: product.category?.name,
-
-  url: `https://avenautomation.in/products/${product.slug}`,
-};
-
+ 
   return (
     <>
       <ProductSchema product={product} />

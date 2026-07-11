@@ -19,32 +19,58 @@ export default function ProductSchema({
 }: ProductSchemaProps) {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Product",
 
-    name: product.name,
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://avenautomation.in/#organization",
 
-    description:
-      product.shortDescription ??
-      product.description ??
-      product.name,
+        name: "Aven Automation",
 
-    image: product.images.map((image) => image.imageUrl),
+        url: "https://avenautomation.in",
 
-    sku: product.id,
+        logo: "https://avenautomation.in/logo.png",
+      },
 
-    brand: {
-      "@type": "Brand",
-      name: "Aven Automation",
-    },
+      {
+        "@type": "Product",
 
-    manufacturer: {
-      "@type": "Organization",
-      name: "Aven Automation",
-    },
+        name: product.name,
 
-    category: product.category?.name,
+        description:
+          product.shortDescription ??
+          product.description ??
+          product.name,
 
-    url: `https://avenautomation.in/products/${product.slug}`,
+        image: product.images.map((img) => img.imageUrl),
+
+        brand: {
+          "@type": "Brand",
+          name: "Aven Automation",
+        },
+
+        manufacturer: {
+          "@id": "https://avenautomation.in/#organization",
+        },
+
+        category: product.category?.name,
+
+        url: `https://avenautomation.in/products/${product.slug}`,
+
+        additionalProperty: [
+          {
+            "@type": "PropertyValue",
+            name: "Business Type",
+            value: "Manufacturer",
+          },
+          {
+            "@type": "PropertyValue",
+            name: "Supply",
+            value: "Pan India",
+          },
+        ],
+      }
+    ],
   };
 
   return (
