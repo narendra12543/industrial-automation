@@ -41,11 +41,12 @@ export async function generateMetadata({
     };
   }
 
-  const title = product.name;
-
+  const title = `${product.name} in Pune | ${
+    product.category?.name ?? "Industrial Automation"
+  } Manufacturer | Aven Automation`;
   const description =
-    product.shortDescription ??
-    `${product.name} from Aven Automation. Premium Industrial Entrance Automation Solutions.`;
+  product.shortDescription ??
+  `${product.name} manufacturer, supplier and installation service in Pune, Pimpri Chinchwad, Chakan, Hinjawadi, Talegaon, Maharashtra and across India. Contact Aven Automation for premium industrial entrance automation solutions.`;
 
   const canonical = `https://avenautomation.in/products/${product.slug}`;
 
@@ -58,7 +59,10 @@ export async function generateMetadata({
     description,
     keywords: [
       product.name,
-
+      `${product.name} in Pune`,
+      `${product.name} Manufacturer`,
+      `${product.name} Supplier`,
+      `${product.name} Near Me`,
       `${product.name} Manufacturer`,
       `${product.name} Supplier`,
       `${product.name} Dealer`,

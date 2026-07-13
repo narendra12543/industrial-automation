@@ -63,7 +63,7 @@ export default function AboutPage() {
       <AboutHero />
       <AboutIndustries />
       <CompanyOverview />
-      <DirectorMessage />
+      {/* <DirectorMessage /> */}
       <WhyChooseUsAbout />
       
 

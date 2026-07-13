@@ -22,7 +22,7 @@ export default function OrganizationSchema({
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+91 7057748540",
+        telephone: "+91 9876543211",
         contactType: "sales",
         areaServed: "IN",
         availableLanguage: [

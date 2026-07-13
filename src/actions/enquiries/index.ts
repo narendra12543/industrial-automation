@@ -145,6 +145,7 @@ export async function createEnquiry(
           categoryName: product.category?.name ?? "N/A",
           pdfBuffer: pdf,
         });
+          
         await sendAdminEmail({
             customerName:
             name,

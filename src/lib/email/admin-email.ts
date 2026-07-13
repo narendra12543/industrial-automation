@@ -23,11 +23,13 @@ export async function sendAdminEmail({
         from:
           process.env.FROM_EMAIL!,
 
-        to:
+        to: [
           process.env.BUSINESS_EMAIL!,
+          process.env.BUSINESS_EMAIL_2!,
+        ],
+       subject: `New Product Enquiry | ${customerName} | ${productName} | ${Date.now()}`,
 
-        subject:
-          `New Product Enquiry - ${productName}`,
+       replyTo: customerEmail,
 
         html: `
           <div style="font-family:Arial,sans-serif">
@@ -77,6 +79,16 @@ export async function sendAdminEmail({
         `,
       });
 
+    console.log("SEND RESULT:", result);
+
+      if (result.data?.id) {
+        const details = await resend.emails.get(result.data.id);
+
+        console.log(
+          "EMAIL DETAILS:",
+          JSON.stringify(details, null, 2)
+        );
+      }
     return {
       success: true,
       data: result,

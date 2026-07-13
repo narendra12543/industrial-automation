@@ -224,7 +224,7 @@ export default function Header({
               {/* WhatsApp */}
 
               <a
-                href="https://wa.me/917057748540?text=Hello,%20I%20am%20interested%20in%20your%20Industrial%20Automation%20Solutions.%20Please%20share%20product%20catalog,%20pricing%20and%20technical%20details."
+                href="https://wa.me/919876543211?text=Hello,%20I%20am%20interested%20in%20your%20Industrial%20Automation%20Solutions.%20Please%20share%20product%20catalog,%20pricing%20and%20technical%20details."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="

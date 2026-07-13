@@ -38,9 +38,8 @@ const COLORS = {
   successBg: "#EAF7EE",
 };
 
-// Must be a full public HTTPS URL — email clients cannot load local files.
-// Replace "yourdomain.com" with your actual deployed domain.
-const LOGO_URL = "https://yourdomain.com/aven/aven-logo-1.png";
+
+const LOGO_URL = "https://avenautomation.in/aven/aven-logo-1.png";
 
 export const CustomerContactTemplate = ({
   name,

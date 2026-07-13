@@ -71,8 +71,13 @@ export async function createContact(data: {
 
     const businessEmailResponse = await resend.emails.send({
       from: process.env.FROM_EMAIL!,
-      to: process.env.BUSINESS_EMAIL!,
-      subject: "New Contact Form Submission",
+      to: [
+        process.env.BUSINESS_EMAIL!,
+        process.env.BUSINESS_EMAIL_2!,
+      ],
+      subject: `New Contact | ${data.name} | ${Date.now()}`,
+
+     replyTo: data.email,
       html: `
           <div style="font-family:Arial,sans-serif">
 
@@ -131,6 +136,19 @@ export async function createContact(data: {
           </div>
         `,
     });
+
+    console.log("Business Email Response:", businessEmailResponse);
+
+      if (businessEmailResponse.data?.id) {
+        const details = await resend.emails.get(
+          businessEmailResponse.data.id
+        );
+
+        console.log(
+          "EMAIL DETAILS:",
+          JSON.stringify(details, null, 2)
+        );
+      }
 
     console.log(
       "Business Email Response:",

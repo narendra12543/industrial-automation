@@ -11,7 +11,7 @@ export default function LocalBusinessSchema() {
 
     url: "https://avenautomation.in",
 
-    telephone: "+91 7057748540",
+    telephone: "+91 9876543211",
 
     email: "sales@avenautomation.in",
 

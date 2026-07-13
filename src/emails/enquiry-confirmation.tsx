@@ -33,8 +33,7 @@ const COLORS = {
   successBg: "#EAF7EE",
 };
 
-// Replace "yourdomain.com" with your actual deployed domain.
-const LOGO_URL = "https://yourdomain.com/aven/aven-logo-1.png";
+const LOGO_URL = "https://avenautomation.in/aven/aven-logo-1.png";
 
 export const EnquiryConfirmationTemplate = ({
   customerName,

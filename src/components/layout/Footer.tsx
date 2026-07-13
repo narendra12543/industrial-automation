@@ -173,11 +173,11 @@ export default function Footer() {
 
             <div className="space-y-2 text-xs text-slate-400 sm:space-y-3 sm:text-sm">
               <a
-                href="tel:+917057748540"
+                href="tel:+919876543211"
                 className="flex items-center gap-2.5 transition hover:text-white sm:gap-3"
               >
                 <Phone size={14} className="shrink-0 text-orange-400 sm:size-[15px]" />
-                +91 7057748540
+                +91 9876543211
               </a>
 
               <a
@@ -204,7 +204,7 @@ export default function Footer() {
               </div>
 
               <a
-                href="https://wa.me/917057748540"
+                href="https://wa.me/919876543211"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group mt-2 inline-flex items-center rounded-lg bg-orange-500 px-3.5 py-1.5 text-xs font-medium text-white transition duration-300 hover:bg-orange-600 sm:mt-3 sm:px-4 sm:py-2 sm:text-sm"

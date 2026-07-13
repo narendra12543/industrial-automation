@@ -18,7 +18,7 @@ export default function GoogleMapSection() {
   {/* Call */}
 
   <a
-    href="tel:+91 7057748540"
+    href="tel:+91 9876543211"
     className="block rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm transition hover:shadow-md"
   >
     <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0F2747] text-white">
@@ -30,7 +30,7 @@ export default function GoogleMapSection() {
     </h3>
 
     <p className="mt-2 text-xs leading-5 text-slate-600">
-      +91 7057748540
+      +91 9876543211
     </p>
   </a>
 
