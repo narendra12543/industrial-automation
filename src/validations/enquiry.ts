@@ -36,17 +36,13 @@ export const createEnquirySchema = z.object({
       "Valid email address is required."
     ),
 
-  mobile: z
-    .string()
-    .trim()
-    .min(
-      10,
-      "Mobile number must be at least 10 digits."
-    )
-    .max(
-      20,
-      "Mobile number cannot exceed 20 characters."
-    ),
+ mobile: z
+  .string()
+  .trim()
+  .regex(
+    /^[6-9]\d{9}$/,
+    "Please enter a valid 10-digit mobile number."
+  ),
 
   quantity: z
     .number()
@@ -58,12 +54,14 @@ export const createEnquirySchema = z.object({
   city: z
     .string()
     .trim()
+    .min(
+      2,
+      "City is required."
+    )
     .max(
       150,
       "City cannot exceed 150 characters."
-    )
-    .optional()
-    .or(z.literal("")),
+    ),
 
   message: z
     .string()

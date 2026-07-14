@@ -188,10 +188,13 @@ if (REQUIRE_LOGIN_FOR_ENQUIRY && !isAuthenticated) {
             </label>
 
             <input
-              type="text"
+              type="tel"
+              inputMode="numeric"
+              pattern="[0-9]{10}"
+              maxLength={10}
               value={mobile}
               onChange={(e) =>
-                setMobile(e.target.value)
+                setMobile(e.target.value.replace(/\D/g, ""))
               }
               className="w-full rounded-lg border border-slate-300 px-4 py-3 text-[#0F2747] placeholder:text-slate-400 outline-none focus:border-[#0F2747]"
             />
@@ -218,12 +221,13 @@ if (REQUIRE_LOGIN_FOR_ENQUIRY && !isAuthenticated) {
 
         <div>
           <label className="mb-2 block text-sm font-medium text-[#0F2747]">
-            City
+            Address / City *
           </label>
 
           <input
             type="text"
             value={city}
+            required
             onChange={(e) =>
               setCity(e.target.value)
             }

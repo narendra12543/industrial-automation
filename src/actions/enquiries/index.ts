@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { appendToSheet } from "@/lib/google-sheet";
 
 import {
   createEnquirySchema,
@@ -163,6 +164,28 @@ export async function createEnquiry(
             message,
         });
 
+
+        console.log("Google Sheet Started");
+        await appendToSheet(
+          process.env.GOOGLE_ENQUIRY_SHEET!,
+          [
+            new Date().toLocaleString("en-IN"),
+
+            name,
+
+            email,
+
+            mobile,
+
+            product.name,
+
+            quantity,
+
+            message ?? "",
+          ]
+        );
+        console.log("Google Sheet Success");
+        
         const customerWhatsapp =
             generateCustomerWhatsappMessage({
             customerName:

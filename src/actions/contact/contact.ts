@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { resend } from "@/lib/resend";
 import { CustomerContactTemplate } from "@/emails/customer-contact-template";
 import { ContactMessage } from "@prisma/client";
+import { appendToSheet } from "@/lib/google-sheet";
 
 export type ContactMessageWithProducts = ContactMessage & {
   productNames: string;
@@ -75,7 +76,7 @@ export async function createContact(data: {
         process.env.BUSINESS_EMAIL!,
         process.env.BUSINESS_EMAIL_2!,
       ],
-      subject: `New Contact | ${data.name} | ${Date.now()}`,
+      subject: `New Contact | ${data.name}`,
 
      replyTo: data.email,
       html: `
@@ -155,6 +156,27 @@ export async function createContact(data: {
       businessEmailResponse
     );
 
+    try {
+      console.log("Google Sheet Started");
+      await appendToSheet(
+        process.env.GOOGLE_CONTACT_SHEET!,
+        [
+          new Date().toLocaleString("en-IN"),
+          data.name,
+          data.email,
+          data.mobile,
+          data.companyName ?? "",
+          data.city ?? "",
+          productNames || "",
+          data.otherProductName ?? "",
+          data.message,
+        ]
+      );
+      console.log("Google Sheet Success");
+      
+    } catch (error) {
+      console.error("Google Sheet Contact Error:", error);
+    }
     return {
       success: true,
       message: "Message submitted successfully.",

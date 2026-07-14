@@ -229,45 +229,52 @@ export default function ContactForm({
 
         <div className="grid gap-4 md:grid-cols-2">
           <input
-            type="text"
+            type="tel"
+            inputMode="numeric"
+            autoComplete="tel"
+            pattern="[6-9][0-9]{9}"
+            maxLength={10}
             placeholder="Mobile Number *"
             value={mobile}
-            onChange={(e) => setMobile(e.target.value)}
+            onChange={(e) =>
+              setMobile(e.target.value.replace(/\D/g, ""))
+            }
             required
             className="
-            rounded-xl
-            border
-            border-slate-300
-            px-3
-            py-2
-            text-sm
-            outline-none
-            transition
-            focus:border-[#0F2747]
-            focus:ring-2
-            focus:ring-blue-100
-          "
+              rounded-xl
+              border
+              border-slate-300
+              px-3
+              py-2
+              text-sm
+              outline-none
+              transition
+              focus:border-[#0F2747]
+              focus:ring-2
+              focus:ring-blue-100
+            "
           />
 
           <input
-            type="text"
-            placeholder="Company Name"
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
-            className="
-            rounded-xl
-            border
-            border-slate-300
-            px-3
-            py-2
-            text-sm
-            outline-none
-            transition
-            focus:border-[#0F2747]
-            focus:ring-2
-            focus:ring-blue-100
-          "
-          />
+              type="text"
+              placeholder="Company Name *"
+              value={companyName}
+              onChange={(e) => setCompanyName(e.target.value)}
+              required
+              className="
+                rounded-xl
+                border
+                border-slate-300
+                px-3
+                py-2
+                text-sm
+                outline-none
+                transition
+                focus:border-[#0F2747]
+                focus:ring-2
+                focus:ring-blue-100
+              "
+            />
         </div>
 
         {/* Select Product */}
@@ -532,32 +539,32 @@ export default function ContactForm({
         {/* City */}
         <input
           type="text"
-          placeholder="City"
+          placeholder="Address / City *"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          required
           className="
-          w-full
-          rounded-xl
-          border
-          border-slate-300
-          px-3
-          py-2
-          text-sm
-          outline-none
-          transition
-          focus:border-[#0F2747]
-          focus:ring-2
-          focus:ring-blue-100
-        "
+            w-full
+            rounded-xl
+            border
+            border-slate-300
+            px-3
+            py-2
+            text-sm
+            outline-none
+            transition
+            focus:border-[#0F2747]
+            focus:ring-2
+            focus:ring-blue-100
+          "
         />
 
         {/* Message */}
         <textarea
           rows={4}
-          placeholder="Message *"
+          placeholder="Message "
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          required
           className="
           w-full
           rounded-xl

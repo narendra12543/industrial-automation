@@ -27,7 +27,7 @@ export async function sendAdminEmail({
           process.env.BUSINESS_EMAIL!,
           process.env.BUSINESS_EMAIL_2!,
         ],
-       subject: `New Product Enquiry | ${customerName} | ${productName} | ${Date.now()}`,
+       subject: `New Product Enquiry | ${customerName} | ${productName}`,
 
        replyTo: customerEmail,
 
@@ -70,10 +70,7 @@ export async function sendAdminEmail({
               ${message ?? "-"}
             </p>
 
-            <p>
-              <strong>Date:</strong>
-              ${new Date().toLocaleString()}
-            </p>
+           
 
           </div>
         `,
