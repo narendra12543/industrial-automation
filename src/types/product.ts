@@ -4,7 +4,7 @@ export interface ProductType {
   slug: string;
 
   shortDescription?: string | null;
-
+  description?: string | null;
   featured: boolean;
 
   category?: {

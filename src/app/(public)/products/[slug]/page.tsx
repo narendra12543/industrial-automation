@@ -15,6 +15,9 @@ import Script from "next/script";
 import ProductSchema from "@/components/seo/ProductSchema";
 import BreadcrumbSchema from "@/components/seo/BreadcrumbSchema";
 import ProductFAQSchema from "@/components/seo/ProductFAQSchema";
+import AboutProductSection from "@/components/products/AboutProductSection";
+import ProductBenefits from "@/components/products/ProductBenefits";
+import ProductFAQ from "@/components/products/ProductFAQ";
 
 
 interface ProductDetailsPageProps {
@@ -215,19 +218,24 @@ export default async function ProductDetailsPage({
 
             {product.description && (
               <ProductDescription
+                
                 description={product.description}
               />
             )}
 
-            {/* Features */}
-
-            <FeaturesSection features={product.features as string[]} />
-
-            {/* Applications */}
-
-            <ApplicationsSection
-              applications={product.applications as string[]}
+            <AboutProductSection
+              productName={product.name}
+              category={product.category?.name}
             />
+
+            <ProductBenefits
+              productName={product.name}
+            />
+            <ProductFAQ
+              productName={product.name}
+            />
+
+            
           </div>
 
           {/* Right Sidebar */}
@@ -283,6 +291,16 @@ export default async function ProductDetailsPage({
 
             <SpecificationsSection
               specifications={product.specifications as Record<string, string>}
+            />
+
+            {/* Features */}
+
+            <FeaturesSection features={product.features as string[]} />
+
+            {/* Applications */}
+
+            <ApplicationsSection
+              applications={product.applications as string[]}
             />
           </section>
         </div>
