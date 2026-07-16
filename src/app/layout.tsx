@@ -11,6 +11,7 @@ import OrganizationSchema from "@/components/seo/OrganizationSchema";
 import WebsiteSchema from "@/components/seo/WebsiteSchema";
 // import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 import { GoogleTagManager } from "@next/third-parties/google";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   },
 
   description:
-  "Aven Automation is a leading Industrial Entrance Automation company providing Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Rolling Shutters, Dock Levelers, Dock Shelters and complete automation solutions across Pune, Maharashtra and India.",
+    "Aven Automation is a leading Industrial Automation and Industrial Entrance Automation company in Pune, Maharashtra, India. We manufacture and supply Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Rolling Shutters, Dock Levelers, Dock Shelters, Conveyor Systems, Belt Conveyors, Material Handling Equipment and complete factory automation solutions.",
 
   keywords: [
     "Industrial Entrance Automation",
@@ -92,6 +93,82 @@ export const metadata: Metadata = {
     "Industrial Entrance Automation India",
 
     "Aven Automation",
+    "aven automation",
+    "Aven Automation Pune",
+    "Aven Automation Maharashtra",
+    "Aven Automation India",
+    // Conveyor
+
+    "Industrial Conveyor",
+    "Conveyor System",
+    "Conveyor Manufacturer",
+    "Conveyor Supplier",
+    "Material Handling Conveyor",
+
+    "Roller Bed Conveyor",
+    "Powered Roller Conveyor",
+    "Gravity Roller Conveyor",
+    "Roller Conveyor",
+
+    "Flat Belt Conveyor",
+    "Belt Conveyor",
+
+    "Modular Belt Conveyor",
+    "Plastic Modular Conveyor",
+
+    "Cleated Belt Conveyor",
+
+    "Curved Belt Conveyor",
+
+    "Incline Belt Conveyor",
+    "Decline Belt Conveyor",
+
+    "Sanitary Conveyor",
+    "Wash Down Conveyor",
+
+    "Specialty Conveyor",
+
+    "Chain Conveyor",
+    "Slat Conveyor",
+    "Mesh Belt Conveyor",
+    "Wire Mesh Conveyor",
+    "Overhead Conveyor",
+    "Spiral Conveyor",
+    "Assembly Line Conveyor",
+    "Packing Conveyor",
+    "Packaging Conveyor",
+    "Loading Conveyor",
+    "Unloading Conveyor",
+    "Warehouse Conveyor",
+
+    "Material Handling Equipment",
+    "Material Handling System",
+    "Factory Automation",
+    "Warehouse Automation",
+    "Production Line Automation",
+    "Industrial Material Handling",
+    "Access Control System",
+    "Turnstile Gate",
+    "Swing Barrier",
+    "Flap Barrier",
+    "Speed Gate",
+    "Tripod Turnstile",
+    "Full Height Turnstile",
+    "Pune",
+    "Pimpri Chinchwad",
+    "Chakan",
+    "Talegaon",
+    "Hinjawadi",
+    "Mumbai",
+    "Nashik",
+    "Kolhapur",
+    "Nagpur",
+    "Aurangabad",
+    "Satara",
+    "Sangli",
+    "Solapur",
+    "Maharashtra",
+    "India",
   ],
 
   authors: [
@@ -128,7 +205,7 @@ export const metadata: Metadata = {
     title:
       "Aven Automation | Automatic Gates & Industrial Entrance Automation",
     description:
-  "Industrial Entrance Automation solutions including Automatic Gates, High Speed Doors, Boom Barriers, Industrial Doors and Gate Automation across Pune, Maharashtra and India.",
+    "Automatic Gates, Industrial Doors, High Speed Doors, Boom Barriers, Conveyor Systems, Dock Equipment and Industrial Automation Solutions across Pune, Maharashtra and India.",
     siteName: "Aven Automation",
 
     locale: "en_IN",
@@ -203,7 +280,7 @@ export default async function RootLayout({
           logo="https://avenautomation.in/aven-logo.png"
         />
         <WebsiteSchema />
-        {/* <LocalBusinessSchema /> */}
+        <LocalBusinessSchema />
 
         <Header
           isAuthenticated={isAuthenticated}

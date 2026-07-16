@@ -10,21 +10,54 @@ export const metadata: Metadata = {
   title: "About Aven Automation | Industrial Entrance Automation Company",
 
   description:
-  "Learn about Aven Automation, a leading Industrial Entrance Automation company providing Automatic Gates, Industrial Doors, High Speed Doors, Boom Barriers, Dock Levelers, Dock Shelters and automation solutions across Pune, Maharashtra and India.",
+"Learn about Aven Automation, a leading Industrial Automation and Industrial Entrance Automation company in Pune, Maharashtra. We manufacture and supply Automatic Gates, High Speed Doors, Industrial Doors, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment and complete automation solutions across India.",
 
     keywords: [
+      // Brand
       "About Aven Automation",
+      "Aven Automation",
+      "Aven Automation Pune",
+      "Aven Automation Maharashtra",
+      "Aven Automation India",
+
+      // Company
       "Industrial Automation Company",
       "Industrial Entrance Automation Company",
-      "Automatic Gate Company",
-      "Industrial Door Company",
-      "Boom Barrier Company",
-      "High Speed Door Company",
-      "Industrial Automation Experts",
+      "Industrial Automation Manufacturer",
+      "Industrial Automation Supplier",
+      "Industrial Automation Solutions",
       "Automation Engineering Company",
+      "Factory Automation Company",
+      "Warehouse Automation Company",
+
+      // Products
+      "Automatic Gates",
+      "Automatic Sliding Gate",
+      "Automatic Swing Gate",
+      "Telescopic Sliding Gate",
+      "Industrial Doors",
+      "Sectional Overhead Door",
+      "High Speed Doors",
+      "Rolling Shutters",
+      "Boom Barriers",
+      "Dock Levelers",
+      "Dock Shelters",
+      "Conveyor Systems",
+      "Roller Conveyor",
+      "Flat Belt Conveyor",
+      "Modular Belt Conveyor",
+      "Cleated Belt Conveyor",
+      "Curved Belt Conveyor",
+      "Incline Belt Conveyor",
+      "Material Handling Equipment",
+
+      // Locations
       "Industrial Automation Pune",
+      "Industrial Automation Pimpri Chinchwad",
+      "Industrial Automation Chakan",
+      "Industrial Automation Hinjawadi",
       "Industrial Automation Maharashtra",
-      "Aven Automation",
+      "Industrial Automation India",
     ],
   alternates: {
     canonical: "/about",

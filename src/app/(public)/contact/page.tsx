@@ -9,18 +9,61 @@ export const metadata: Metadata = {
   "Contact Aven Automation | Industrial Entrance Automation Experts",
 
   description:
-  "Contact Aven Automation for Automatic Gates, Industrial Doors, Boom Barriers, High Speed Doors, Dock Levelers, Dock Shelters and complete Industrial Entrance Automation Solutions across Pune, Maharashtra and India.",
-
+    "Contact Aven Automation for Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment and complete Industrial Automation solutions across Pune, Maharashtra and India.",
   keywords: [
+    // Brand
     "Contact Aven Automation",
+    "Aven Automation",
+    "Aven Automation Pune",
+    "Aven Automation Maharashtra",
+    "Aven Automation India",
+
+    // Company
+    "Industrial Automation Company",
+    "Industrial Entrance Automation Company",
     "Industrial Automation Contact",
-    "Automatic Gate Supplier Pune",
-    "Boom Barrier Supplier Pune",
-    "Industrial Door Supplier Pune",
-    "High Speed Door Supplier Pune",
-    "Rolling Shutter Supplier Pune",
+    "Industrial Automation Supplier",
+
+    // Gates
+    "Automatic Sliding Gate Supplier",
+    "Automatic Swing Gate Supplier",
+    "Telescopic Sliding Gate Supplier",
+    "Gate Automation Company",
+
+    // Doors
+    "Industrial Door Supplier",
+    "High Speed Door Supplier",
+    "Sectional Overhead Door Supplier",
+    "Garage Door Supplier",
+    "Rolling Shutter Supplier",
+
+    // Parking
+    "Boom Barrier Supplier",
+    "Automatic Bollards Supplier",
+    "Dock Leveler Supplier",
+    "Dock Shelter Supplier",
+
+    // Conveyors
+    "Industrial Conveyor Supplier",
+    "Conveyor Manufacturer",
+    "Roller Bed Conveyor",
+    "Flat Belt Conveyor",
+    "Modular Belt Conveyor",
+    "Cleated Belt Conveyor",
+    "Curved Belt Conveyor",
+    "Incline Belt Conveyor",
+    "Sanitary Conveyor",
+    "Wash Down Conveyor",
+    "Specialty Conveyor",
+    "Material Handling Equipment",
+
+    // Location
     "Industrial Automation Pune",
+    "Industrial Automation Chakan",
+    "Industrial Automation Pimpri Chinchwad",
+    "Industrial Automation Hinjawadi",
     "Industrial Automation Maharashtra",
+    "Industrial Automation India",
   ],
   alternates: {
     canonical: "/contact",

@@ -10,45 +10,112 @@ export const metadata: Metadata = {
   title: "Products",
 
   description:
-    "Explore Industrial Entrance Automation products including Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Hangar Doors, Automation Motors and complete industrial automation solutions from Aven Automation.",
+    "Explore Aven Automation's complete range of Industrial Automation and Industrial Entrance Automation products including Automatic Sliding Gates, Swing Gates, Telescopic Sliding Gates, High Speed Doors, Industrial Doors, Rolling Shutters, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment, Hangar Doors, Garage Doors and Automation Solutions across Pune, Maharashtra and India.",
 
   alternates: {
     canonical: "/products",
   },
 
   keywords: [
+    // Brand
+    "Aven Automation",
+    "Aven Automation Products",
     "Industrial Automation Products",
-    "Industrial Entrance Automation Products",
 
+    // Gates
     "Automatic Sliding Gate",
     "Automatic Swing Gate",
     "Telescopic Sliding Gate",
+    "Cantilever Sliding Gate",
+    "Gate Automation",
 
-    "Roll Up Door",
-    "High Speed Door",
+    // Doors
     "Industrial Door",
+    "Industrial Doors",
+    "High Speed Door",
+    "High Speed Roll Up Door",
+    "Clean Room Door",
+    "Anti Crash Door",
+    "Sectional Overhead Door",
+    "Transparent Sectional Door",
     "Garage Door",
-
-    "Boom Barrier",
-    "Automatic Swing Barrier",
-    "Automatic Rising Bollard",
-
     "Rolling Shutter",
-    "Motorized Rolling Shutter",
-    "Gear Operated Rolling Shutter",
+    "Fire Rated Door",
+    "Fire Shutter",
+    "Steel Hangar Door",
+    "Fabric Hangar Door",
 
-    "Manual Sliding Door",
-    "Motorized Sliding Door",
-
+    // Dock
     "Dock Leveler",
+    "Hydraulic Dock Leveler",
     "Dock Shelter",
+    "Dock Seal",
+    "Loading Bay Equipment",
 
-    "Inclined Belt Conveyor",
+    // Parking
+    "Boom Barrier",
+    "Advertising Boom Barrier",
+    "Folding Boom Barrier",
+    "Automatic Bollards",
+    "Road Blocker",
+    "Swing Barrier",
+    "Tripod Turnstile",
+    "Speed Gate",
+
+    // Conveyor
+    "Industrial Conveyor",
+    "Conveyor System",
+    "Roller Bed Conveyor",
+    "Gravity Roller Conveyor",
+    "Powered Roller Conveyor",
     "Flat Belt Conveyor",
+    "Modular Belt Conveyor",
+    "Cleated Belt Conveyor",
+    "Curved Belt Conveyor",
+    "Incline Belt Conveyor",
+    "Decline Belt Conveyor",
+    "Sanitary Conveyor",
+    "Wash Down Conveyor",
+    "Specialty Conveyor",
+    "Chain Conveyor",
+    "Slat Conveyor",
+    "Mesh Belt Conveyor",
+    "Spiral Conveyor",
+    "Assembly Line Conveyor",
+    "Packing Conveyor",
+    "Warehouse Conveyor",
 
-    "Industrial Automation Products India",
-    "Aven Automation",
+    // Material Handling
+    "Material Handling Equipment",
+    "Material Handling System",
+    "Factory Automation",
+    "Warehouse Automation",
+
+    // Location
+    "Industrial Automation Pune",
+    "Industrial Automation Maharashtra",
+    "Industrial Automation India",
   ],
+  openGraph: {
+    title: "Industrial Automation Products | Aven Automation",
+    description:
+      "Automatic Gates, High Speed Doors, Industrial Doors, Boom Barriers, Conveyor Systems, Dock Equipment and Industrial Automation Products.",
+    url: "https://avenautomation.in/products",
+    siteName: "Aven Automation",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Industrial Automation Products | Aven Automation",
+    description:
+      "Explore Automatic Gates, Conveyor Systems, Industrial Doors and complete Industrial Automation Products.",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default async function ProductsPage() {
