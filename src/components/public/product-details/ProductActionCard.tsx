@@ -74,7 +74,7 @@ export default function ProductActionCard({
             </Link>
 
             <a
-              href="https://wa.me/919876543211"
+              href="https://wa.me/9187669188921"
               target="_blank"
               className="flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 py-3 font-medium text-white transition hover:bg-orange-600"
             >

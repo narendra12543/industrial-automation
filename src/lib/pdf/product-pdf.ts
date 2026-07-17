@@ -471,7 +471,7 @@ export async function generateProductPdf(data: ProductPdfData): Promise<Uint8Arr
       font: boldFont,
       color: COLORS.white,
     });
-    page.drawText("sales@avenautomation.in  |  +91 9876543210  |  avenautomation.in", {
+    page.drawText("sales@avenautomation.in  |  +91 87669188920  |  avenautomation.in", {
       x: MARGIN,
       y: 12,
       size: 8.5,
