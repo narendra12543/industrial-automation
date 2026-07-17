@@ -328,7 +328,7 @@ export default function ProductForm({
                     />
 
                     <p className="mt-2 text-sm text-slate-500">
-                        Upload brochure PDF file.
+                        Upload brochure PDF file
                     </p>
                     </div>
               </div>
