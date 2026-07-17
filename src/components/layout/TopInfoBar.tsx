@@ -73,7 +73,7 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
         {/* Phone */}
 
         <a
-          href="tel:+9187669188921"
+          href="tel:+918766918892"
           className="
           flex
           items-center
@@ -88,7 +88,7 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
         "
         >
           <Phone size={16} className="text-orange-500" />
-          +91 87669188921
+          +91 8766918892
         </a>
 
         {/* Social Icons */}

@@ -611,7 +611,7 @@ export default function ContactForm({
           </button>
 
           <a
-            href="https://wa.me/9187669188921"
+            href="https://wa.me/918766918892"
             target="_blank"
             rel="noopener noreferrer"
             className="
