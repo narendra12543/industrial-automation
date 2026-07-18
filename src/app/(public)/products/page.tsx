@@ -7,7 +7,7 @@ import ProductsCatalog from "@/components/public/products/ProductsCatalog";
 import ProductsCTA from "@/components/public/products/ProductsCTA";
 
 export const metadata: Metadata = {
-  title: "Products",
+  title: "Aven Industrial Automation Products",
 
   description:
     "Explore Aven Automation's complete range of Industrial Automation and Industrial Entrance Automation products including Automatic Sliding Gates, Swing Gates, Telescopic Sliding Gates, High Speed Doors, Industrial Doors, Rolling Shutters, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment, Hangar Doors, Garage Doors and Automation Solutions across Pune, Maharashtra and India.",
@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     "Aven Automation",
     "Aven Automation Products",
     "Industrial Automation Products",
+    "Aven Industrial Automation",
+    "aven industrial automation",
+    "Aven Industrial Automation Pune",
+    "Aven Industrial Automation Maharashtra",
+    "Aven Industrial Automation India",
 
     // Gates
     "Automatic Sliding Gate",

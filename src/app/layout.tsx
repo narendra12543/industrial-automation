@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://avenautomation.in"),
 
   title: {
-    default: "Aven Automation | Automatic Gates, Doors & Industrial Entrance Automation",
-    template: "%s | Aven Automation",
+    default: "Aven Industrial Automation | Automatic Gates, Doors & Conveyor Systems",
+    template: "%s | Aven Industrial Automation",
   },
 
   description:
-    "Aven Automation is a leading Industrial Automation and Industrial Entrance Automation company in Pune, Maharashtra, India. We manufacture and supply Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Rolling Shutters, Dock Levelers, Dock Shelters, Conveyor Systems, Belt Conveyors, Material Handling Equipment and complete factory automation solutions.",
+    "Aven Industrial Automation(Aven Automation) is a leading Industrial Automation and Industrial Entrance Automation company in Pune, Maharashtra, India. We manufacture and supply Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Rolling Shutters, Dock Levelers, Dock Shelters, Conveyor Systems, Belt Conveyors, Material Handling Equipment and complete factory automation solutions.",
 
   keywords: [
     "Industrial Entrance Automation",
@@ -97,6 +97,11 @@ export const metadata: Metadata = {
     "Aven Automation Pune",
     "Aven Automation Maharashtra",
     "Aven Automation India",
+    "Aven Industrial Automation",
+    "aven industrial automation",
+    "Aven Industrial Automation Pune",
+    "Aven Industrial Automation Maharashtra",
+    "Aven Industrial Automation India",
     // Conveyor
 
     "Industrial Conveyor",

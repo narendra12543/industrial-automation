@@ -6,10 +6,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-  "Contact Aven Automation | Industrial Entrance Automation Experts",
+  "Contact Aven Industrial Automation | Industrial Entrance Automation Experts",
 
   description:
-    "Contact Aven Automation for Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment and complete Industrial Automation solutions across Pune, Maharashtra and India.",
+    "Contact Aven Industrial Automation for Automatic Sliding Gates, Swing Gates, High Speed Doors, Industrial Doors, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment and complete Industrial Automation solutions across Pune, Maharashtra and India.",
   keywords: [
     // Brand
     "Contact Aven Automation",
@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     "Aven Automation Pune",
     "Aven Automation Maharashtra",
     "Aven Automation India",
+    "Aven Industrial Automation",
+    "aven industrial automation",
+    "Aven Industrial Automation Pune",
+    "Aven Industrial Automation Maharashtra",
+    "Aven Industrial Automation India",
 
     // Company
     "Industrial Automation Company",

@@ -7,10 +7,10 @@ import AboutIndustries from "@/components/public/about/AboutIndustries";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Aven Automation | Industrial Entrance Automation Company",
+  title: "About Aven Industrial Automation | Industrial Entrance Automation Company",
 
   description:
-"Learn about Aven Automation, a leading Industrial Automation and Industrial Entrance Automation company in Pune, Maharashtra. We manufacture and supply Automatic Gates, High Speed Doors, Industrial Doors, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment and complete automation solutions across India.",
+  "Learn about Aven Industrial Automation (Aven Automation), a leading Industrial Automation and Industrial Entrance Automation company in Pune, Maharashtra. We manufacture and supply Automatic Gates, High Speed Doors, Industrial Doors, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems, Material Handling Equipment and complete automation solutions across India.",
 
     keywords: [
       // Brand
@@ -19,6 +19,11 @@ export const metadata: Metadata = {
       "Aven Automation Pune",
       "Aven Automation Maharashtra",
       "Aven Automation India",
+      "Aven Industrial Automation",
+      "aven industrial automation",
+      "Aven Industrial Automation Pune",
+      "Aven Industrial Automation Maharashtra",
+      "Aven Industrial Automation India",
 
       // Company
       "Industrial Automation Company",
