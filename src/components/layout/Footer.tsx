@@ -5,7 +5,7 @@ import Image from "next/image";
 const solutions = [
   "Industrial Entrance Automation",
   "Gate Automation",
-  "Conveyor Syatem",
+  "Conveyor System",
   "Boom Barriers",
   "Rolling Shutters",
   "Manufacturing And Installations",

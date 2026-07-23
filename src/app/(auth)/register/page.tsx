@@ -164,7 +164,7 @@ export default function RegisterPage() {
                 type="tel"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
-                placeholder="+91 87669188920"
+                placeholder="+91 8766918892"
                 className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-200"
               />
 
