@@ -90,8 +90,43 @@ export default function Header({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
+             {/* <Link
+              href="/"
+              className="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-90"
+            >
+              
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm sm:h-15 sm:w-15">
+                <Image
+                  src="/aven-logo.png"
+                  alt="Aven Automation"
+                  width={58}
+                  height={58}
+                  priority
+                  className="h-[42px] w-[42px] object-contain sm:h-[58px] sm:w-[58px]"
+                />
+              </div>
 
-            <Link
+             
+              <div className="flex flex-col justify-center">
+                <h1 className="text-xl font-extrabold tracking-tight text-[#0F2747] leading-none sm:text-[28px]">
+                  Aven
+                </h1>
+
+                <span
+                  className="mt-1 font-medium uppercase text-slate-500 sm:text-[11px] sm:tracking-[0.22em]"
+                  style={{
+                    fontSize: "7px",
+                    letterSpacing: "0.14em",
+                    WebkitTextSizeAdjust: "100%",
+                    textSizeAdjust: "100%",
+                  }}
+                >
+                  Industrial Automation 
+                </span>
+                
+              </div>
+            </Link> */}
+           <Link
               href="/"
               className="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-90"
             >
@@ -114,15 +149,28 @@ export default function Header({
                 </h1>
 
                 <span
-                  className="mt-1 font-medium uppercase text-slate-500 sm:text-[11px] sm:tracking-[0.22em]"
+                  className="mt-1 whitespace-nowrap font-medium uppercase text-slate-500 sm:text-[11px] sm:tracking-[0.2em]"
                   style={{
                     fontSize: "7px",
-                    letterSpacing: "0.14em",
+                    letterSpacing: "0.06em",
                     WebkitTextSizeAdjust: "100%",
                     textSizeAdjust: "100%",
                   }}
                 >
                   Industrial Automation
+                </span>
+
+                <span
+                  className="mt-[3px] flex items-center gap-1 whitespace-nowrap font-semibold uppercase text-slate-600 sm:text-[10px] sm:tracking-[0.16em]"
+                  style={{
+                    fontSize: "6.5px",
+                    letterSpacing: "0.04em",
+                    WebkitTextSizeAdjust: "100%",
+                    textSizeAdjust: "100%",
+                  }}
+                >
+                  
+                  by GlowMac Engineers
                 </span>
               </div>
             </Link>

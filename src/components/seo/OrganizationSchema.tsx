@@ -18,6 +18,7 @@ export default function OrganizationSchema({
     alternateName: [
       "Aven Automation Pune",
       "Aven Industrial Automation",
+      "Aven Automation",
     ],
 
     url,
@@ -29,24 +30,54 @@ export default function OrganizationSchema({
     description:
       "Aven Automation is a leading manufacturer and supplier of Industrial Entrance Automation Systems including Automatic Sliding Gates, Swing Gates, High Speed Doors, Rolling Shutters, Boom Barriers, Dock Levelers, Dock Shelters, Hangar Doors and Industrial Automation Solutions across India.",
 
+    
+
+    brand: {
+    "@type": "Brand",
+    name: [
+      "Aven Automation",
+      "Aven Industrial Automation",
+      "Aven Automation Pune",
+    ]
+  },
+
     email: "sales@avenautomation.in",
 
-    telephone: "+91 8956614106",
+    telephone: "+91 8766918892",
 
     address: {
       "@type": "PostalAddress",
       streetAddress:
-        "Gat No.73, Dehu-Alandi Road, Chikhali",
-      addressLocality: "Pune",
+        "Office No-03, Near Akurdi Railway Station Road, Gurudwara Colony, Nigdi",
+      addressLocality: "Pimpri-Chinchwad",
       addressRegion: "Maharashtra",
-      postalCode: "411062",
+      postalCode: "411035",
       addressCountry: "IN",
     },
-
-    areaServed: {
-      "@type": "Country",
-      name: "India",
+    foundingLocation: {
+      "@type": "Place",
+      name: "Pune, Maharashtra, India",
     },
+    areaServed: [
+      "Pune",
+      "Pimpri-Chinchwad",
+      "Nigdi",
+      "Akurdi",
+      "Chinchwad",
+      "Wakad",
+      "Hinjawadi",
+      "Moshi",
+      "Bhosari",
+      "Chakan",
+      "Talegaon",
+      "Mumbai",
+      "Nashik",
+      "Kolhapur",
+      "Aurangabad",
+      "Nagpur",
+      "Maharashtra",
+      "India",
+    ],
 
     knowsAbout: [
       // Industrial Entrance Automation
@@ -188,18 +219,13 @@ export default function OrganizationSchema({
       },
       {
         "@type": "ContactPoint",
-        telephone: "+91 7757968171",
+        telephone: "+91 8766918892",
         contactType: "customer support",
         areaServed: "IN",
       },
     ],
 
-    sameAs: [
-      "https://www.linkedin.com/company/your-company",
-      "https://www.facebook.com/your-page",
-      "https://www.instagram.com/your-page",
-      "https://maps.google.com/?cid=YOUR_GOOGLE_BUSINESS_ID",
-    ],
+  
   };
 
   return (

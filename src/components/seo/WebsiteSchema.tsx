@@ -7,12 +7,25 @@ export default function WebsiteSchema() {
 
     name: "Aven Automation",
 
-    alternateName: "Aven Automation India",
+    alternateName: [
+      "Aven Industrial Automation",
+      "Aven Automation",
+    ],
 
     url: "https://avenautomation.in",
 
     description:
       "Aven Automation is a leading Industrial Automation and Industrial Entrance Automation company providing Automatic Gates, Industrial Doors, High Speed Doors, Boom Barriers, Dock Levelers, Dock Shelters, Conveyor Systems and Material Handling Equipment.",
+    about: [
+      "Industrial Automation",
+      "Industrial Entrance Automation",
+      "Automatic Gates",
+      "Industrial Doors",
+      "High Speed Doors",
+      "Boom Barriers",
+      "Dock Levelers",
+      "Conveyor Systems",
+    ],
 
     inLanguage: "en-IN",
 
@@ -21,6 +34,17 @@ export default function WebsiteSchema() {
       "@id": "https://avenautomation.in/#organization",
       name: "Aven Automation",
       url: "https://avenautomation.in",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://avenautomation.in/aven-logo.png",
+      },
+    },
+
+    potentialAction: {
+      "@type": "SearchAction",
+      target:
+        "https://avenautomation.in/products?search={search_term_string}",
+      "query-input": "required name=search_term_string",
     },
   };
 

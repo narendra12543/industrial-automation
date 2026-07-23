@@ -14,6 +14,8 @@ export default function BreadcrumbSchema({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
 
+    "@id": `${items[items.length - 1].url}#breadcrumb`,
+
     itemListElement: items.map(
       (item, index) => ({
         "@type": "ListItem",

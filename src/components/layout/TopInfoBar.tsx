@@ -31,21 +31,22 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
       >
         {/* GST */}
 
-        {/* <div
-        className="
-      hidden
-      lg:flex
-      items-center
-      gap-2
-      text-sm
-      font-medium
-      text-[#0F2747]
-    "
-      >
-        <BadgeCheck size={16} className="text-orange-500" />
+       <div
+  className="
+    hidden
+    lg:flex
+    items-center
+    gap-2
+    text-sm
+    font-medium
+    text-[#0F2747]
+    whitespace-nowrap
+  "
+>
+  <BadgeCheck size={16} className="shrink-0 text-orange-500" />
 
-        <span>GST : 12345443</span>
-      </div> */}
+  <span className="whitespace-nowrap">GST : 27ASKPN4656PIZU</span>
+</div>
 
         {/* Email */}
 

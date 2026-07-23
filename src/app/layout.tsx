@@ -215,14 +215,14 @@ export const metadata: Metadata = {
 
     locale: "en_IN",
 
-    // images: [
-    //   {
-    //     url: "/og-image.jpg",
-    //     width: 1200,
-    //     height: 630,
-    //     alt: "Aven Automation",
-    //   },
-    // ],
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Aven Automation",
+      },
+    ],
   },
 
   twitter: {
