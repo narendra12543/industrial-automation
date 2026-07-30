@@ -22,7 +22,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://avenautomation.in"),
 
   title: {
-    default: "Aven Industrial Automation | Automatic Gates, Doors & Conveyor Systems",
+    default:
+      "Aven Industrial Automation | Automatic Gates, Industrial Doors, Boom Barriers & Conveyor Systems",
     template: "%s | Aven Industrial Automation",
   },
 
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
     "Automatic Gates",
     "Automatic Gate",
     "Automatic Sliding Gate",
+    "Motorized Sliding Gate",
     "Sliding Gate Automation",
     "Automatic Swing Gate",
     "Swing Gate Automation",
@@ -208,7 +210,7 @@ export const metadata: Metadata = {
     type: "website",
     url: "https://avenautomation.in",
     title:
-      "Aven Automation | Automatic Gates & Industrial Entrance Automation",
+      "Aven Industrial Automation | Automatic Gates, Industrial Doors & Conveyor Systems",
     description:
     "Automatic Gates, Industrial Doors, High Speed Doors, Boom Barriers, Conveyor Systems, Dock Equipment and Industrial Automation Solutions across Pune, Maharashtra and India.",
     siteName: "Aven Automation",

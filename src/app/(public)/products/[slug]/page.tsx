@@ -18,7 +18,7 @@ import ProductFAQSchema from "@/components/seo/ProductFAQSchema";
 import AboutProductSection from "@/components/products/AboutProductSection";
 import ProductBenefits from "@/components/products/ProductBenefits";
 import ProductFAQ from "@/components/products/ProductFAQ";
-
+import { PRODUCT_SEO } from "@/lib/product-seo";
 
 interface ProductDetailsPageProps {
   params: Promise<{
@@ -32,6 +32,7 @@ export async function generateMetadata({
   const { slug } = await params;
 
   const product = await getProductBySlug(slug);
+  const seo = PRODUCT_SEO[product?.slug ?? ""];
 
   if (!product) {
     return {
@@ -44,12 +45,14 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${product.name} in Pune | ${
-    product.category?.name ?? "Industrial Automation"
-  } Manufacturer | Aven Automation`;
+  const title =
+    seo?.title ??
+    `${product.name} | Aven Industrial Automation`;
+
   const description =
-  product.shortDescription ??
-  `${product.name} manufacturer, supplier and installation service in Pune, Pimpri Chinchwad, Chakan, Hinjawadi, Talegaon, Maharashtra and across India. Contact Aven Automation for premium industrial entrance automation solutions.`;
+    seo?.description ??
+    product.shortDescription ??
+    `${product.name} by Aven Industrial Automation`;
 
   const canonical = `https://avenautomation.in/products/${product.slug}`;
 
@@ -60,27 +63,7 @@ export async function generateMetadata({
   return {
     title,
     description,
-    keywords: [
-      product.name,
-      `${product.name} in Pune`,
-      `${product.name} Manufacturer`,
-      `${product.name} Supplier`,
-      `${product.name} Near Me`,
-      `${product.name} Manufacturer`,
-      `${product.name} Supplier`,
-      `${product.name} Dealer`,
-      `${product.name} Installation`,
-      `${product.name} Price`,
-      `${product.name} Pune`,
-      `${product.name} Maharashtra`,
-      `${product.name} India`,
-
-      `${product.category?.name}`,
-
-      "Industrial Entrance Automation",
-      "Industrial Automation",
-      "Aven Automation",
-    ],
+    keywords: seo?.keywords,
     alternates: {
       canonical,
     },
@@ -91,11 +74,11 @@ export async function generateMetadata({
     },
 
     openGraph: {
-      title,
-      description,
+      title: seo?.ogTitle ?? title,
+      description: seo?.ogDescription ?? description,
       url: canonical,
       type: "website",
-      siteName: "Aven Automation",
+      siteName: "Aven Industrial Automation",
 
       images: image
         ? [
@@ -111,8 +94,8 @@ export async function generateMetadata({
 
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: seo?.twitterTitle ?? title,
+      description: seo?.twitterDescription ?? description,
       images: image ? [image] : [],
     },
   };
