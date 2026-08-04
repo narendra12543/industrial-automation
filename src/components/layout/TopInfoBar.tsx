@@ -45,7 +45,7 @@ export default function TopInfoBar({ show }: TopInfoBarProps) {
 >
   <BadgeCheck size={16} className="shrink-0 text-orange-500" />
 
-  <span className="whitespace-nowrap">GST : 27ASKPN4656PIZU</span>
+  <span className="whitespace-nowrap">GST : 27ASKPN4656P1ZU</span>
 </div>
 
         {/* Email */}
