@@ -30,6 +30,8 @@ export const metadata: Metadata = {
     // Gates
     "Automatic Sliding Gate",
     "Automatic Swing Gate",
+    "Motorized Sliding Gate",
+    "Motorized Swing Gate",
     "Telescopic Sliding Gate",
     "Cantilever Sliding Gate",
     "Gate Automation",
@@ -45,6 +47,8 @@ export const metadata: Metadata = {
     "Transparent Sectional Door",
     "Garage Door",
     "Rolling Shutter",
+    "Motorized Rolling Shutter",
+    "Automatic Rolling Shutter",
     "Fire Rated Door",
     "Fire Shutter",
     "Steel Hangar Door",

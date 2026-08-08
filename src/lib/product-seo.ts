@@ -24,12 +24,18 @@ export const PRODUCT_SEO: Record<string, ProductSEO> = {
 
         keywords: [
             "Automatic Sliding Gate",
+            "Motorized Sliding Gate",
+            "Motorised Sliding Gate",
+            "Industrial Sliding Gate",
             "Automatic Sliding Gate Manufacturer",
             "Automatic Sliding Gate Supplier",
             "Automatic Sliding Gate Installation",
             "Automatic Sliding Gate India",
             "Automatic Sliding Gate Pune",
             "Automatic Sliding Gate Maharashtra",
+            "Motorized Sliding Gate Manufacturer",
+            "Motorized Sliding Gate Supplier",
+            "Motorized Sliding Gate Installation",
             "Industrial Sliding Gate",
             "Industrial Sliding Gate Manufacturer",
             "Industrial Sliding Gate Supplier",
@@ -167,7 +173,7 @@ export const PRODUCT_SEO: Record<string, ProductSEO> = {
             "Heavy-duty motorized telescopic sliding gate designed for industrial, commercial and high-security applications where maximum clear opening is required with minimum back-run space.",
         },
 
-        "rolling-shutter": {
+        "motorized-rolling-shutter": {
         title:
             "Motorized Rolling Shutter Manufacturer in Pune | Industrial Rolling Shutters | Aven Industrial Automation",
 

@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      {
+        source: "/products/automatic-sliding-gate",
+        destination: "/products/motorized-sliding-gate",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
