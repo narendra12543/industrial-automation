@@ -90,7 +90,7 @@ export default function Header({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-             {/* <Link
+             <Link
               href="/"
               className="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-90"
             >
@@ -125,12 +125,12 @@ export default function Header({
                 </span>
                 
               </div>
-            </Link> */}
-           <Link
+            </Link>
+           {/* <Link
               href="/"
               className="flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-90"
             >
-              {/* Logo */}
+              
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white shadow-sm sm:h-15 sm:w-15">
                 <Image
                   src="/aven-logo.png"
@@ -142,7 +142,7 @@ export default function Header({
                 />
               </div>
 
-              {/* Company Name */}
+              
               <div className="flex flex-col justify-center">
                 <h1 className="text-xl font-extrabold tracking-tight text-[#0F2747] leading-none sm:text-[28px]">
                   Aven
@@ -173,7 +173,7 @@ export default function Header({
                   by GlowMac Engineers
                 </span>
               </div>
-            </Link>
+            </Link> */}
 
             {/* Desktop Navigation */}
 

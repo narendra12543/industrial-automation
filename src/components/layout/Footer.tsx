@@ -55,18 +55,7 @@ export default function Footer() {
                   >
                     Industrial Automation
                   </span>
-                  <span
-                    className="mt-[3px] flex items-center gap-1 font-semibold uppercase text-slate-300"
-                    style={{
-                      fontSize: "6.5px",
-                      letterSpacing: "0.12em",
-                      WebkitTextSizeAdjust: "100%",
-                      textSizeAdjust: "100%",
-                    }}
-                  >
-                    
-                    by GlowMac Engineers
-                  </span>
+                  
                 </div>
               </Link>
 
@@ -114,7 +103,7 @@ export default function Footer() {
                 </p>
               </div>
 
-              <div className="flex items-start gap-2.5 sm:gap-3">
+              {/* <div className="flex items-start gap-2.5 sm:gap-3">
                 <MapPin
                   size={14}
                   className="mt-0.5 shrink-0 text-orange-400 sm:size-[15px]"
@@ -124,7 +113,7 @@ export default function Footer() {
                   Gat No- 629, 1/1/1, Chakan Shikrapur Rd, near Sangam
                   Collection, khed, Rase, Chakan, Maharashtra 410501
                 </p>
-              </div>
+              </div> */}
             </div>
             {/* Follow Us On - Mobile only */}
             <div className="flex sm:hidden items-center gap-2.5 pt-2">

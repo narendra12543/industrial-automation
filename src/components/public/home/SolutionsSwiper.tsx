@@ -40,6 +40,11 @@ const slides: Slide[] = [
     tag: "Facility Security",
     image: "/images/rolling-shutter.png",
   },
+  {
+    title: "Conveyor Systems",
+    tag: "Material Handling",
+    image: "/images/L Shape.png",
+  },
 ];
 
 const AUTOPLAY_DELAY = 4200;
