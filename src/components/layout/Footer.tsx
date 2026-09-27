@@ -208,7 +208,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-4 flex flex-col items-center gap-1 border-t border-white/10 pt-4 text-center text-[11px] text-slate-400 sm:mt-10 sm:gap-1.5 sm:pt-4 sm:text-xs sm:flex-row sm:justify-between sm:text-left lg:mt-4">
-          <div>© 2026 Aven Industrial Automation — a brand of GlowMac Engineers. All rights reserved.</div>
+          <div>© 2026 Aven Industrial Automation All rights reserved.</div>
           <div>
             Designed and developed by{" "}
             <a
