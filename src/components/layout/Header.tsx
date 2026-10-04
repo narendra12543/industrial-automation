@@ -242,7 +242,7 @@ export default function Header({
 
             <div className="flex items-center gap-4">
              
-              <a
+              {/* <a
                 href="/catalog/Aven-Industrial-Automation-Catalog.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -268,7 +268,7 @@ export default function Header({
                 <FileText size={18} />
                 Catalogue
 
-              </a>
+              </a> */}
               {/* WhatsApp */}
 
               <a
@@ -348,7 +348,7 @@ export default function Header({
                 </div>
               )}
               {/* Mobile Catalogue */}
-              <a
+              {/* <a
                 href="/catalog/Aven-Industrial-Automation-Catalog.pdf" 
                 target="_blank"
                 rel="noopener noreferrer"
@@ -375,7 +375,7 @@ export default function Header({
                 <FileText size={18} />
 
                 <span className="text-sm">Catalogue</span>
-              </a>
+              </a> */}
 
               {/* Mobile Menu */}
 
